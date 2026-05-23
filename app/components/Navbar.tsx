@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
+import { ThemeToggle } from "@/components/theme/ThemeToogle";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +16,7 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-green-200/40 bg-white/80 backdrop-blur-md transition-all duration-300">
+    <header className="sticky top-0 z-50 border-b border-green-200/40 bg-background/80 backdrop-blur-md transition-all duration-300">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 text-slate-950 md:grid md:grid-cols-3">
         {/* Columna Izquierda: Logo */}
         <div className="flex items-center justify-start">
@@ -32,7 +33,7 @@ export default function Navbar() {
             <Link
               key={link.label}
               href={link.href}
-              className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition-all hover:bg-green-50 hover:text-green-700"
+              className="rounded-full px-4 py-2 text-sm font-medium text-foreground transition-all hover:bg-green-50 hover:text-green-700"
             >
               {link.label}
             </Link>
@@ -55,6 +56,7 @@ export default function Navbar() {
             >
               Registrarse
             </Link>
+            <ThemeToggle />
           </div>
 
           {/* Botón de Menú Móvil */}
@@ -102,7 +104,7 @@ export default function Navbar() {
             <Link
               href="#registrarse"
               onClick={() => setIsOpen(false)}
-              className="w-full rounded-xl bg-green-600 py-3.5 text-center text-sm font-semibold text-white shadow-lg shadow-green-600/10 transition active:bg-green-700"
+              className="w-full rounded-xl bg-red-600 py-3.5 text-center text-sm font-semibold text-white shadow-lg shadow-green-600/10 transition active:bg-green-700"
             >
               Registrarse
             </Link>
