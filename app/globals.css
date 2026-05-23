@@ -6,11 +6,11 @@
 :root {
   /* TINTS DE MARCA */
   --primary: #5a8a00; /* Acción primaria, primeros lugares, éxito deportivo */
-  --primary-background: #eef7d0;
+  --primary-background: #eef7d0; /* Fondo de primary */
   --primary-text: #ffffff; /* Texto sobre primary sólido */
 
   --secondary: #c93a12; /* Urgencia, en vivo, alertas deportivas */
-  --secondary-background: #fdeee9;
+  --secondary-background: #fdeee9; /* Fondo de secondary */
   --secondary-text: #ffffff; /* Texto sobre secondary sólido */
 
   /* TOKENS DE SUPERFICIE */
@@ -63,11 +63,11 @@
 .dark {
   /* TINTS DE MARCA */
   --primary: #d4f233; /* Acción primaria, primeros lugares, éxito deportivo */
-  --primary-background: rgba(212, 242, 51, 0.12);
+  --primary-background: rgba(212, 242, 51, 0.12); /* Fondo de primary */
   --primary-text: #0d0f0c; /* Texto sobre primary sólido */
 
   --secondary: #ff4b1f; /* Urgencia, en vivo, alertas deportivas */
-  --secondary-background: rgba(255, 75, 31, 0.12);
+  --secondary-background: rgba(255, 75, 31, 0.12); /* Fondo de secondary */
   --secondary-text: #ffffff; /* Texto sobre secondary sólido */
 
   /* TOKENS DE SUPERFICIE */
