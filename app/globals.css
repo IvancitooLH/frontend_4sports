@@ -154,6 +154,8 @@
   --color-info: var(--info);
   --color-info-bg: var(--info-bg);
   --color-info-border: var(--info-border);
+
+  --font-bebas: var(--font-bebas-neue);
 }
 
 body {
