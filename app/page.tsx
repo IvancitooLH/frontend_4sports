@@ -1,4 +1,4 @@
-import { ThemeToggle } from "@/components/theme/ThemeToogle";
+import { ThemeToggle } from "@/features/shared/theme/ThemeToogle";
 
 export default function Home() {
   return (

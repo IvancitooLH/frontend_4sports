@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
-import { ThemeToggle } from "@/components/theme/ThemeToogle";
+import { ThemeToggle } from "@/features/shared/theme/ThemeToogle";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
