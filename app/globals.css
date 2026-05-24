@@ -57,6 +57,10 @@
   --info: #1a5fa0;
   --info-bg: #eaf2fb;
   --info-border: rgba(26, 95, 160, 0.35);
+
+  /* SCROLL BAR */
+  --scroll-track: #cfd4cb;
+  --scroll-thumb: #9ba395;
 }
 
 /* MODO OSCURO */
@@ -114,6 +118,10 @@
   --info: #4a9ee8;
   --info-bg: rgba(74, 158, 232, 0.12);
   --info-border: rgba(74, 158, 232, 0.35);
+
+  /* SCROLL BAR */
+  --scroll-track: #212420;
+  --scroll-thumb: #555955;
 }
 
 /* Exponer variables a Tailwind */
@@ -155,10 +163,32 @@
   --color-info-bg: var(--info-bg);
   --color-info-border: var(--info-border);
 
+  --color-scroll-track: var(--scroll-track);
+  --color-scroll-thumb: var(--scroll-thumb);
+
   --font-bebas: var(--font-bebas-neue);
 }
 
 body {
   background: var(--background);
   color: var(--ink);
+}
+
+::selection {
+  background-color: var(--primary);
+  color: var(--primary-text);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-scroll-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-scroll-thumb);
+  border-radius: 10px;
 }

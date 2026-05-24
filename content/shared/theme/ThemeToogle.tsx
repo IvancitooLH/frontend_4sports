@@ -24,7 +24,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="p-2 rounded-full border absolute left-6 bottom-6 bg-surface text-body cursor-pointer"
+      className="p-2 rounded-full border border-line absolute left-6 bottom-6 bg-surface text-body cursor-pointer"
     >
       {theme === "dark" ? (
         <Sun className="size-4" />
