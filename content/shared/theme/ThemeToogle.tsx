@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { Sun, Moon } from "lucide-react";
 
 export function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -23,10 +23,10 @@ export function ThemeToggle() {
 
   return (
     <button
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
       className="p-2 rounded-full border border-line absolute left-6 bottom-6 bg-surface text-body cursor-pointer"
     >
-      {theme === "dark" ? (
+      {resolvedTheme === "dark" ? (
         <Sun className="size-4" />
       ) : (
         <Moon className="size-4" />

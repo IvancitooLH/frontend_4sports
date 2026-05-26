@@ -6,8 +6,8 @@ export function RegisterContent() {
     <div className="max-h-dvh h-dvh w-full flex items-center justify-center flex-col gap-4">
       <h1>Registrarse</h1>
       <div className="flex gap-4">
-        <Link href={"/player"}>Jugador</Link>
-        <Link href={"/organizer"}>Organizador</Link>
+        <Link href={"/player/home"}>Jugador</Link>
+        <Link href={"/organizer/home"}>Organizador</Link>
       </div>
     </div>
   );
