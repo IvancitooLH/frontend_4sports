@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@plugin "tailwindcss-animate";
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* MODO CLARO */
@@ -98,25 +100,25 @@
   /* Success — confirmación, completado, primero */
 
   --success: #4caf72;
-  --success-bg: rgba(76, 175, 114, 0.12);
+  --success-bg: #142219;;
   --success-border: rgba(76, 175, 114, 0.35);
 
   /* Danger — error, pago vencido, eliminado */
 
   --danger: #ff4b1f;
-  --danger-bg: rgba(255, 75, 31, 0.12);
+  --danger-bg: #2A160F;
   --danger-border: rgba(255, 75, 31, 0.35);
 
   /* Warning — cobro pendiente, conflicto de horario, advertencia */
 
   --warn: #f5a623;
-  --warn-bg: rgba(245, 166, 35, 0.12);
+  --warn-bg: #29210F;
   --warn-border: rgba(245, 166, 35, 0.35);
 
   /* Info — notificaciones, solicitudes, neutral informativo */
 
   --info: #4a9ee8;
-  --info-bg: rgba(74, 158, 232, 0.12);
+  --info-bg: #142027;
   --info-border: rgba(74, 158, 232, 0.35);
 
   /* SCROLL BAR */

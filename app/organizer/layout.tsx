@@ -2,7 +2,6 @@
 
 /* COMPONENTS */
 import { Sidebar } from "@/content/shared/ui/sidebar/Sidebar";
-import { Announcement } from "@/content/shared/ui/annoucement/Announcement";
 import { RouteTitle } from "@/content/shared/ui/routeTitle/RouteTitle";
 
 /* DATA */
@@ -29,7 +28,6 @@ export default function OrganizerLayout({
       transition={{ duration: 0.5, ease: "easeInOut" }}
     >
       <Sidebar links={organizerSidebarLinks} />
-      <Announcement />
       {/* <Modal /> */}
       <div
         className={`flex flex-col h-dvh w-full transition-all duration-300 ${

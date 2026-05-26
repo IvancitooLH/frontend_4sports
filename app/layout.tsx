@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Bebas_Neue, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
+import { Announcement } from "@/content/shared/ui/annoucement/Announcement";
 
 const bebasNeue = Bebas_Neue({
   variable: "--font-bebas-neue",
@@ -33,7 +34,10 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Announcement />
+          {children}
+        </Providers>
       </body>
     </html>
   );

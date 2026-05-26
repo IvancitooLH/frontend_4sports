@@ -23,17 +23,17 @@ export function ThemeToggleButtons() {
 
   return (
     <div
-      className={`flex w-full h-fit p-4 transition-all duration-300 flex-col`}
+      className={`flex w-full h-fit transition-all duration-300`}
     >
       <button
         onClick={resolvedTheme === "dark" ? () => setTheme("light") : () => {}}
-        className={`p-2 border-x border-t border-line text-body cursor-pointer w-full flex justify-center rounded-t-xl ${resolvedTheme === "light" && "bg-surface text-primary"}`}
+        className={`p-2 border border-line text-body cursor-pointer w-full flex justify-center rounded-l-xl ${resolvedTheme === "light" && "bg-surface text-primary"}`}
       >
         <Sun className="size-4" />
       </button>
       <button
         onClick={resolvedTheme === "light" ? () => setTheme("dark") : () => {}}
-        className={`p-2 border border-line text-body cursor-pointer w-full flex justify-center rounded-b-xl ${resolvedTheme === "dark" && "bg-surface text-primary"}`}
+        className={`p-2 border-y border-r border-line text-body cursor-pointer w-full flex justify-center rounded-r-xl ${resolvedTheme === "dark" && "bg-surface text-primary"}`}
       >
         <Moon className="size-4" />
       </button>

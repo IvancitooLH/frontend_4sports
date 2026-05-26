@@ -13,14 +13,12 @@ import {
   ChevronsRight,
   UserRound,
   ChevronsUpDown,
-  User,
-  Settings,
 } from "lucide-react";
 import { FourSportsLogo } from "@/content/shared/icons/FourSportsLogo";
 
 /* NAVIGATION */
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 /* STORES */
 import { useSidebarStore } from "@/content/shared/ui/sidebar/stores/SidebarStore";
@@ -30,17 +28,20 @@ import { useAnnouncement } from "@/content/shared/ui/annoucement/stores/announce
 import { LinkSidebar } from "@/content/shared/ui/sidebar/types/LinkSidebar";
 
 /* LIBS */
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import * as Tooltip from "@radix-ui/react-tooltip";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
 export function Sidebar({ links }: { links: LinkSidebar[] }) {
+  const router = useRouter();
+
   const { expanded, toggleSidebar } = useSidebarStore();
   const { setAnnouncement } = useAnnouncement();
 
   const [mounted, setMounted] = useState(false);
   const [openTooltip, setOpenTooltip] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const [user] = useState({
     name: "Pirita Dreemurr",
@@ -59,15 +60,16 @@ export function Sidebar({ links }: { links: LinkSidebar[] }) {
     try {
       setAnnouncement({
         isActivated: true,
-        isOk: true,
+        announceType: "ok",
         message: "Sesión cerrada correctamente",
       });
+      router.push("/login");
     } catch (error) {
       console.log("Error: ", error);
 
       setAnnouncement({
         isActivated: true,
-        isOk: false,
+        announceType: "error",
         message:
           "Ocurrió un error al cerrar sesión, intente nuevamente más tarde",
       });
@@ -129,178 +131,65 @@ export function Sidebar({ links }: { links: LinkSidebar[] }) {
             className="h-full overflow-y-auto flex flex-col gap-2 items-center w-full overflow-x-hidden max-h-full"
           >
             <Tooltip.Provider delayDuration={100}>
-              {links.map((link) => (
-                <Tooltip.Root
-                  key={link.href}
-                  open={!expanded ? openTooltip === link.href : false}
-                  onOpenChange={(open) => {
-                    if (!expanded) {
-                      setOpenTooltip(open ? link.href : null);
-                    }
-                  }}
-                >
-                  <Tooltip.Trigger asChild>
-                    <Link
-                      href={link.href}
-                      className={`px-[0.70rem] py-2 rounded-xl flex relative group transition-all items-center duration-300 w-full ${expanded ? "gap-6" : "lg:gap-0 gap-6"} ${linkClasses(
-                        link.href,
-                      )}`}
+              {links.map(
+                (link) =>
+                  link.href !== "/organizer/profile" && (
+                    <Tooltip.Root
+                      key={link.href}
+                      open={!expanded ? openTooltip === link.href : false}
+                      onOpenChange={(open) => {
+                        if (!expanded) {
+                          setOpenTooltip(open ? link.href : null);
+                        }
+                      }}
                     >
-                      <link.icon className="size-4 min-w-4 min-h-4" />
+                      <Tooltip.Trigger asChild>
+                        <Link
+                          href={link.href}
+                          className={`px-[0.70rem] py-2 rounded-xl flex relative group transition-all items-center duration-300 w-full ${expanded ? "gap-6" : "lg:gap-0 gap-6"} ${linkClasses(
+                            link.href,
+                          )}`}
+                        >
+                          <link.icon className="size-4 min-w-4 min-h-4" />
 
-                      <span
-                        className={`transition-all duration-300 text-sm ${
-                          expanded
-                            ? "w-full opacity-100"
-                            : "lg:w-0 w-fit lg:opacity-0 opacity-100 pointer-events-none"
-                        }`}
-                      >
-                        {link.label}
-                      </span>
-                    </Link>
-                  </Tooltip.Trigger>
+                          <span
+                            className={`transition-all duration-300 text-sm ${
+                              expanded
+                                ? "w-full opacity-100"
+                                : "lg:w-0 w-fit lg:opacity-0 opacity-100 pointer-events-none"
+                            }`}
+                          >
+                            {link.label}
+                          </span>
+                        </Link>
+                      </Tooltip.Trigger>
 
-                  {!expanded && (
-                    <Tooltip.Portal>
-                      <Tooltip.Content
-                        side="right"
-                        sideOffset={25}
-                        className="z-70 rounded-full bg-surface px-3 py-1 text-sm font-medium text-ink border border-line"
-                      >
-                        {link.label}
-                      </Tooltip.Content>
-                    </Tooltip.Portal>
-                  )}
-                </Tooltip.Root>
-              ))}
+                      {!expanded && (
+                        <Tooltip.Portal>
+                          <Tooltip.Content
+                            side="right"
+                            sideOffset={25}
+                            className="z-70 rounded-full bg-background px-3 py-1 text-sm font-medium text-ink border border-line"
+                          >
+                            {link.label}
+                          </Tooltip.Content>
+                        </Tooltip.Portal>
+                      )}
+                    </Tooltip.Root>
+                  ),
+              )}
             </Tooltip.Provider>
           </motion.div>
         </div>
 
-        <div className="">
-          <ThemeToggleButtons />
-          <div className="p-2.5 overflow-hidden w-full border-t border-t-line">
-            <DropdownMenu.Root>
-              <DropdownMenu.Trigger asChild>
-                <button
-                  className="
-          flex items-center
-          p-1.5
-          overflow-hidden
-          w-full
-          gap-4
-          border border-transparent
-          hover:bg-surface
-          transition-all
-          duration-300
-          rounded-xl
-          hover:border-line
-          cursor-pointer
-          outline-none
-        "
-                >
-                  <div className="rounded-full w-10 h-10 min-w-10 min-h-10 flex justify-center items-center bg-surface border border-line">
-                    <UserRound className="size-4" />
-                  </div>
-
-                  <div className="flex-1 min-w-0 flex flex-col text-left">
-                    <span className="font-semibold truncate text-sm">
-                      {user.name}
-                    </span>
-
-                    <span className="text-xs text-neutral-400 truncate">
-                      {user.email}
-                    </span>
-                  </div>
-
-                  <div className="shrink-0">
-                    <ChevronsUpDown className="size-4 min-w-4 min-h-4" />
-                  </div>
-                </button>
-              </DropdownMenu.Trigger>
-
-              <DropdownMenu.Portal>
-                <DropdownMenu.Content
-                  sideOffset={12}
-                  align="end"
-                  avoidCollisions
-                  side={isMobile ? "bottom" : "right"}
-                  className="
-          z-100
-          min-w-56
-          rounded-2xl
-          border
-          border-line
-          bg-background
-          p-2
-          shadow-xl
-          animate-in
-          fade-in-0
-          zoom-in-95
-
-          md:data-[side=right]:slide-in-from-left-2
-          data-[side=top]:slide-in-from-bottom-2
-        "
-                >
-                  <DropdownMenu.Item
-                    className="
-            flex items-center gap-3
-            rounded-xl
-            px-3 py-2
-            text-sm
-            outline-none
-            cursor-pointer
-            hover:bg-surface
-          "
-                  >
-                    <User className="size-4" />
-                    Ver perfil
-                  </DropdownMenu.Item>
-
-                  <DropdownMenu.Item
-                    className="
-            flex items-center gap-3
-            rounded-xl
-            px-3 py-2
-            text-sm
-            outline-none
-            cursor-pointer
-            hover:bg-surface
-          "
-                  >
-                    <Settings className="size-4" />
-                    Configuración
-                  </DropdownMenu.Item>
-
-                  <DropdownMenu.Separator className="my-2 h-px bg-line" />
-
-                  <DropdownMenu.Item
-                    onClick={handleSignOut}
-                    className="
-            flex items-center gap-3
-            rounded-xl
-            px-3 py-2
-            text-sm
-            text-red-500
-            outline-none
-            cursor-pointer
-            hover:bg-red-500/10
-          "
-                  >
-                    <LogOut className="size-4" />
-                    Cerrar sesión
-                  </DropdownMenu.Item>
-                </DropdownMenu.Content>
-              </DropdownMenu.Portal>
-            </DropdownMenu.Root>
-          </div>
-          {/* <div className="p-2.5 overflow-hidden w-full border-t border-t-line">
-            <div className="flex items-center p-1.5 overflow-hidden w-full gap-4 border border-transparent hover:bg-surface cursor-pointer transition-all duration-300 rounded-xl hover:border-line">
+        <DropdownMenu.Root open={open} onOpenChange={setOpen}>
+          <DropdownMenu.Trigger asChild>
+            <button className="flex items-center p-4 overflow-hidden w-full gap-4 hover:bg-surface transition-all duration-300 cursor-pointer outline-none border-t border-t-line">
               <div className="rounded-full w-10 h-10 min-w-10 min-h-10 flex justify-center items-center bg-surface border border-line">
                 <UserRound className="size-4" />
               </div>
 
-              <div className="flex-1 min-w-0 flex flex-col">
+              <div className="flex-1 min-w-0 flex flex-col text-left">
                 <span className="font-semibold truncate text-sm">
                   {user.name}
                 </span>
@@ -313,9 +202,51 @@ export function Sidebar({ links }: { links: LinkSidebar[] }) {
               <div className="shrink-0">
                 <ChevronsUpDown className="size-4 min-w-4 min-h-4" />
               </div>
-            </div>
-          </div> */}
-        </div>
+            </button>
+          </DropdownMenu.Trigger>
+
+          <AnimatePresence>
+            {open && (
+              <DropdownMenu.Portal forceMount>
+                <DropdownMenu.Content
+                  sideOffset={12}
+                  align="end"
+                  avoidCollisions
+                  side={isMobile ? "bottom" : "right"}
+                  asChild
+                >
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95, y: -6 }}
+                    animate={{ opacity: 1, scale: 1, y: -12 }}
+                    exit={{ opacity: 0, scale: 0.95, y: -6 }}
+                    transition={{ duration: 0.15 }}
+                    className="z-100 min-w-56 rounded-2xl border border-line p-2 shadow-md"
+                  >
+                    <DropdownMenu.Item
+                      onClick={() => router.push("/organizer/profile")}
+                      className="flex items-center gap-3 rounded-xl p-2 text-sm outline-none cursor-pointer hover:bg-surface mb-2 transition-colors duration-300"
+                    >
+                      <UserRound className="size-4" />
+                      Ver perfil
+                    </DropdownMenu.Item>
+
+                    <ThemeToggleButtons />
+
+                    <DropdownMenu.Separator className="my-2 h-px bg-line" />
+
+                    <DropdownMenu.Item
+                      onClick={handleSignOut}
+                      className="flex items-center gap-3 rounded-xl p-2 text-sm text-danger outline-none cursor-pointer hover:bg-red-500/10 transition-colors duration-300"
+                    >
+                      <LogOut className="size-4" />
+                      Cerrar sesión
+                    </DropdownMenu.Item>
+                  </motion.div>
+                </DropdownMenu.Content>
+              </DropdownMenu.Portal>
+            )}
+          </AnimatePresence>
+        </DropdownMenu.Root>
       </aside>
       <div
         onClick={toggleSidebar}
