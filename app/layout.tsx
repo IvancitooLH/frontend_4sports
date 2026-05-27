@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, DM_Sans } from "next/font/google";
+import { Bebas_Neue, DM_Sans, Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import { Announcement } from "@/content/shared/ui/annoucement/Announcement";
+import { cn } from "@/lib/utils";
+
+const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
 const bebasNeue = Bebas_Neue({
   variable: "--font-bebas-neue",
@@ -30,7 +33,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${bebasNeue.variable} ${dmSans.variable} h-full antialiased`}
+      className={cn("h-full", "antialiased", bebasNeue.variable, dmSans.variable, "font-sans", inter.variable)}
       suppressHydrationWarning
     >
       <body>
