@@ -1,6 +1,15 @@
 import { SVGProps } from "react";
 
-export const FourSportsDarkIcon = (props: SVGProps<SVGSVGElement>) => (
+interface LogoProps extends SVGProps<SVGSVGElement> {
+  primaryColor: string;
+  secondaryColor: string;
+}
+
+export const FourSports = ({
+  primaryColor,
+  secondaryColor,
+  ...props
+}: LogoProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={"100%"}
@@ -22,7 +31,7 @@ export const FourSportsDarkIcon = (props: SVGProps<SVGSVGElement>) => (
         letterSpacing: 0,
         wordSpacing: 0,
         textAnchor: "middle",
-        fill: "#f2f2ef",
+        fill: secondaryColor,
         fillOpacity: 1,
         fillRule: "evenodd",
         strokeWidth: 0.706108,
@@ -44,7 +53,7 @@ export const FourSportsDarkIcon = (props: SVGProps<SVGSVGElement>) => (
         letterSpacing: 0,
         wordSpacing: 0,
         textAnchor: "middle",
-        fill: "#d4f233",
+        fill: primaryColor,
         fillOpacity: 1,
         fillRule: "evenodd",
         strokeWidth: 0.969079,

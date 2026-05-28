@@ -5,7 +5,7 @@ import { navbarLinks } from "@/content/shared/ui/navbar/data/navbarLinks";
 import Link from "next/link";
 
 /* ICONS */
-import { FourSportsLogo } from "@/content/shared/icons/FourSportsLogo";
+import { FourSportsIcon } from "@/content/shared/icons/fourSports/FourSportsIcon";
 
 export function Navbar() {
   return (
@@ -13,7 +13,7 @@ export function Navbar() {
       <div
         className={`pointer-events-none w-24 `}
       >
-        <FourSportsLogo />
+        <FourSportsIcon />
       </div>
 
       <nav className="flex gap-4">
@@ -24,8 +24,8 @@ export function Navbar() {
         ))}
       </nav>
       <div className="flex gap-4">
-        <Link href={"/login"}>Ingresar</Link>
-        <Link href={"/register"}>Registrarse</Link>
+        <Link href={"/login"} className="p-2 bg-blue-600">Ingresar</Link>
+        <Link href={"/register"} className="p-2">Registrarse</Link>
       </div>
     </header>
   );

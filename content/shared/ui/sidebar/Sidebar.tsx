@@ -14,7 +14,7 @@ import {
   UserRound,
   ChevronsUpDown,
 } from "lucide-react";
-import { FourSportsLogo } from "@/content/shared/icons/FourSportsLogo";
+import { FourSportsIcon } from "@/content/shared/icons/fourSports/FourSportsIcon";
 
 /* NAVIGATION */
 import Link from "next/link";
@@ -110,7 +110,7 @@ export function Sidebar({ links }: { links: LinkSidebar[] }) {
             <div
               className={`transition-all duration-300 pointer-events-none absolute ${expanded ? "w-24 lg:opacity-100 left-0" : "left-0 w-24 lg:w-0 lg:opacity-0 lg:-left-64"}`}
             >
-              <FourSportsLogo />
+              <FourSportsIcon />
             </div>
             <button
               onClick={toggleSidebar}

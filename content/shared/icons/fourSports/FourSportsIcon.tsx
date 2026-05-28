@@ -1,13 +1,13 @@
 "use client";
 
 /* ICONS */
-import { FourSportsIcon } from "@/content/shared/icons/FourSportsIcon";
+import { FourSports } from "@/content/shared/icons/fourSports/FourSports";
 
 /* HOOKS */
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
-export function FourSportsLogo() {
+export function FourSportsIcon() {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -22,7 +22,7 @@ export function FourSportsLogo() {
   if (!mounted) return null;
 
   return (
-    <FourSportsIcon
+    <FourSports
       primaryColor={resolvedTheme === "dark" ? "#d4f233" : "#5a8a00"}
       secondaryColor={resolvedTheme === "dark" ? "#ff4b1f" : "#c93a12"}
     />

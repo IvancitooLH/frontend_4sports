@@ -32,13 +32,13 @@ export function DinamicInputText<T extends FieldValues>({
             id={name}
             type={type}
             placeholder={placeholder}
-            className="w-full text-sm h-fit px-4 py-2 bg-transparent outline-none border border-zinc-200 rounded-xl hover:bg-[#F2F9FF] transition-all duration-300 placeholder:text-zinc-500 focus:ring-2 focus:ring-zinc-200"
+            className="w-full text-sm h-fit px-4 py-2 bg-background outline-none border border-line rounded-xl hover:bg-surface transition-all duration-300 placeholder:text-faint focus:ring-2 focus:ring-lucide"
           />
         )}
       />
 
       {error?.message && (
-        <p className="text-red-500 text-sm">{String(error.message)}</p>
+        <p className="text-danger text-sm">{String(error.message)}</p>
       )}
     </div>
   );

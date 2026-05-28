@@ -9,17 +9,26 @@
 /* MODO CLARO */
 :root {
   /* TINTS DE MARCA */
+
   --primary: #5a8a00; /* Acción primaria, primeros lugares, éxito deportivo */
+  --primary-hover: #78b409;
   --primary-background: #eef7d0; /* Fondo de primary */
   --primary-text: #ffffff; /* Texto sobre primary sólido */
 
   --secondary: #c93a12; /* Urgencia, en vivo, alertas deportivas */
+  --secondary-hover: #e75026;
   --secondary-background: #fdeee9; /* Fondo de secondary */
   --secondary-text: #ffffff; /* Texto sobre secondary sólido */
 
-  /* TOKENS DE SUPERFICIE */ 
-  --background: #F7F6F2; /* Fondo de página */
+  --disabled: #e2e5df;
+  --disabled-text: #c5c8c0;
+  --disabled-border: #c5c8c0;
+
+  /* TOKENS DE SUPERFICIE */
+
+  --background: #f7f6f2; /* Fondo de página */
   --surface: #f0efe9; /* Fondos de secciones, sidebars */
+  --surface-hover: #dddcd4;
   --card: oklch(1 0 0); /* Tarjetas, modales, dropdowns */
   --card-2: #f7f6f2; /* Fondos secundarios dentro de cards */
 
@@ -27,8 +36,9 @@
 
   --ink: #141510; /* Títulos, marcadores, texto principal */
   --body: #2e3128; /* Texto de cuerpo */
-  --muted: oklch(0.97 0 0); /* Texto secundario, labels */
+  --muted: #6f706d; /* Texto secundario, labels */
   --faint: #9da19a; /* Placeholders, timestamps, texto deshabilitado */
+  --lucide: #ccd0c8;
 
   /* TOKENS DE BORDE */
 
@@ -64,7 +74,7 @@
   /* SCROLL BAR */
   --scroll-track: #cfd4cb;
   --scroll-thumb: #9ba395;
-  
+
   --foreground: oklch(0.145 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -97,18 +107,26 @@
 /* MODO OSCURO */
 .dark {
   /* TINTS DE MARCA */
+
   --primary: #d4f233; /* Acción primaria, primeros lugares, éxito deportivo */
+  --primary-hover: #ecff7f;
   --primary-background: rgba(212, 242, 51, 0.12); /* Fondo de primary */
   --primary-text: #0d0f0c; /* Texto sobre primary sólido */
 
   --secondary: #ff4b1f; /* Urgencia, en vivo, alertas deportivas */
+  --secondary-hover: #ff7856;
   --secondary-background: rgba(255, 75, 31, 0.12); /* Fondo de secondary */
   --secondary-text: #ffffff; /* Texto sobre secondary sólido */
 
+  --disabled: #222320;
+  --disabled-text: #3e3f3c;
+  --disabled-border: #3e3f3c;
+
   /* TOKENS DE SUPERFICIE */
 
-  --background: #0D0F0C; /* Fondo de página */
+  --background: #0d0f0c; /* Fondo de página */
   --surface: #141610; /* Fondos de secciones, sidebars */
+  --surface-hover: #22251c;
   --card: oklch(0.205 0 0); /* Tarjetas, modales, dropdowns */
   --card-2: #212420; /* Fondos secundarios dentro de cards */
 
@@ -116,8 +134,9 @@
 
   --ink: #f2f2ef; /* Títulos, marcadores, texto principal */
   --body: #c8cbc4; /* Texto de cuerpo */
-  --muted: oklch(0.269 0 0); /* Texto secundario, labels */
+  --muted: #858b85; /* Texto secundario, labels */
   --faint: #555955; /* Placeholders, timestamps, texto deshabilitado */
+  --lucide: #3d3f3d;
 
   /* TOKENS DE BORDE */
 
@@ -129,19 +148,19 @@
   /* Success — confirmación, completado, primero */
 
   --success: #4caf72;
-  --success-bg: #142219;;
+  --success-bg: #142219;
   --success-border: rgba(76, 175, 114, 0.35);
 
   /* Danger — error, pago vencido, eliminado */
 
   --danger: #ff4b1f;
-  --danger-bg: #2A160F;
+  --danger-bg: #2a160f;
   --danger-border: rgba(255, 75, 31, 0.35);
 
   /* Warning — cobro pendiente, conflicto de horario, advertencia */
 
   --warn: #f5a623;
-  --warn-bg: #29210F;
+  --warn-bg: #29210f;
   --warn-border: rgba(245, 166, 35, 0.35);
 
   /* Info — notificaciones, solicitudes, neutral informativo */
@@ -184,15 +203,22 @@
 /* Exponer variables a Tailwind */
 @theme inline {
   --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
   --color-primary-background: var(--primary-background);
   --color-primary-text: var(--primary-text);
 
   --color-secondary: var(--secondary);
+  --color-secondary-hover: var(--secondary-hover);
   --color-secondary-background: var(--secondary-background);
   --color-secondary-text: var(--secondary-text);
 
+  --color-disabled: var(--disabled);
+  --color-disabled-text: var(--disabled-text);
+  --color-disabled-border: var(--disabled-border);
+
   --color-background: var(--background);
   --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
   --color-card: var(--card);
   --color-card-2: var(--card-2);
 
@@ -200,6 +226,7 @@
   --color-body: var(--body);
   --color-muted: var(--muted);
   --color-faint: var(--faint);
+  --color-lucide: var(--lucide);
 
   --color-line: var(--line);
   --color-line-2: var(--line-2);
@@ -255,7 +282,7 @@
 
   --color-chart-1: var(--chart-1);
 
-  --color-ring: var(--ring);
+  --color-ring: var(--ink);
 
   --color-input: var(--input);
 
@@ -323,11 +350,5 @@ body {
 @layer base {
   * {
     @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-  html {
-    @apply font-sans;
   }
 }
