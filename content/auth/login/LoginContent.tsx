@@ -2,7 +2,10 @@
 
 /* COMPONENTS */
 import Image from "next/image";
-import { LoginUI } from "@/content/auth/login/components/LoginUI";
+import Link from "next/link";
+import { AuthUI } from "@/content/auth/components/AuthUI";
+import { DinamicInputText } from "@/content/shared/form/dinamicInputText/DinamicInputText";
+import { DinamicButton } from "@/content/shared/form/dinamicButton/DinamicButton";
 
 /* ICONS */
 import { FourSportsIcon } from "@/content/shared/icons/fourSports/FourSportsIcon";
@@ -14,7 +17,7 @@ import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
 /* IMAGES */
-import cancha from "@/content/auth/login/images/loginBackground.png";
+import cancha from "@/content/auth/images/cancha.png";
 
 /* NAVIGATION */
 import { useRouter } from "next/navigation";
@@ -24,9 +27,6 @@ import { useAnnouncement } from "@/content/shared/ui/annoucement/stores/announce
 
 /* TYPES */
 import { LoginForm } from "@/content/auth/login/types/LoginForm";
-import { DinamicInputText } from "@/content/shared/form/dinamicInputText/DinamicInputText";
-import Link from "next/link";
-import { DinamicButton } from "@/content/shared/form/dinamicButton/DinamicButton";
 
 export function LoginContent() {
   const router = useRouter();
@@ -45,6 +45,11 @@ export function LoginContent() {
     try {
       setSaving(true);
 
+      setAnnouncement({
+        isActivated: true,
+        announceType: "ok",
+        message: "Sesión iniciada correctamente",
+      });
       router.push("/organizer/home");
       /* router.push("/player/home"); */
 
@@ -61,7 +66,7 @@ export function LoginContent() {
   };
 
   return (
-    <LoginUI
+    <AuthUI
       title="Ingresa a tu cuenta"
       icon={<FourSportsIcon />}
       image={
@@ -92,10 +97,7 @@ export function LoginContent() {
           />
 
           <div className="w-full h-fit mb-4">
-            <Link
-              href={"/password/recover"}
-              className="text-primary underline text-sm"
-            >
+            <Link href={"/login/#"} className="text-primary underline text-sm">
               Olvidé mi contraseña
             </Link>
           </div>
@@ -140,6 +142,13 @@ export function LoginContent() {
                 </div>
               }
             />
+          </div>
+
+          <div className="w-full h-fit mb-4 flex gap-2 justify-center">
+            <p>¿No tienes una cuenta?</p>
+            <Link href={"/register"} className="text-primary underline">
+              Ir a Registrarse
+            </Link>
           </div>
         </FormProvider>
       }

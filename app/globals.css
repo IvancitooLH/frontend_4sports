@@ -110,7 +110,7 @@
 
   --primary: #d4f233; /* Acción primaria, primeros lugares, éxito deportivo */
   --primary-hover: #ecff7f;
-  --primary-background: rgba(212, 242, 51, 0.12); /* Fondo de primary */
+  --primary-background: #252A11; /* Fondo de primary */
   --primary-text: #0d0f0c; /* Texto sobre primary sólido */
 
   --secondary: #ff4b1f; /* Urgencia, en vivo, alertas deportivas */

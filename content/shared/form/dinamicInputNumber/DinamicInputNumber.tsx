@@ -51,13 +51,13 @@ export function DinamicInputNumber<T extends FieldValues>({
             min={min}
             max={max}
             disabled={disabled}
-            className={`w-full text-sm h-fit px-4 py-2 outline-none border border-zinc-200 rounded-xl transition-all duration-300 placeholder:text-zinc-500  ${disabled ? "bg-zinc-100 pointer-events-none text-zinc-400" : "bg-transparent hover:bg-[#F2F9FF] focus:ring-2 focus:ring-zinc-200"}`}
+            className={`w-full text-sm h-fit px-4 py-2 outline-none border bg-background border-line rounded-xl transition-all duration-300 placeholder:text-faint  ${disabled ? "bg-disabled pointer-events-none text-disabled-text" : "bg-transparent hover:bg-surface focus:ring-2 focus:ring-lucide"}`}
           />
         )}
       />
 
       {error?.message && (
-        <p className="text-red-500 text-sm">{String(error.message)}</p>
+        <p className="text-danger text-sm">{String(error.message)}</p>
       )}
     </div>
   );

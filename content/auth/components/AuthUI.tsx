@@ -1,4 +1,4 @@
-export function LoginUI({
+export function AuthUI({
   icon,
   title,
   body,
