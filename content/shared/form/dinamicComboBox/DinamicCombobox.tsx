@@ -1,3 +1,5 @@
+"use client"
+
 /* HOOKS */
 import { Controller, FieldValues, useFormContext } from "react-hook-form";
 import { useState, useRef, useEffect } from "react";
@@ -8,6 +10,7 @@ import { Check, ChevronDown } from "lucide-react";
 /* TYPES */
 import { DinamicComboboxProps } from "./types/dinamicComboboxProps";
 import { DinamicComboboxInternalProps } from "./types/dinamicComboboxInternalProps";
+import { ComboboxItem } from "./types/comboboxItem";
 
 export function DinamicCombobox<T extends FieldValues>({
   name,
@@ -60,10 +63,12 @@ function ComboboxInternal({
   const ref = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
 
-  const selectedIndex = items.findIndex((item) => item === value);
+  const selectedIndex = items.findIndex((item) => item.value === value);
 
-  const selectItem = (item: string) => {
-    onChange(item);
+  const selectedItem = items.find((item) => item.value === value);
+
+  const selectItem = (item: ComboboxItem) => {
+    onChange(item.value);
     setOpen(false);
   };
 
@@ -119,11 +124,14 @@ function ComboboxInternal({
     return () => document.removeEventListener("mousedown", handleClick);
   }, []);
 
-  // Hacer scroll automático al ingresar
+  // Scroll al abrir
   useEffect(() => {
     if (open && selectedIndex >= 0 && listRef.current) {
       const element = listRef.current.children[selectedIndex] as HTMLElement;
-      element?.scrollIntoView({ block: "nearest" });
+
+      element?.scrollIntoView({
+        block: "nearest",
+      });
     }
   }, [open, selectedIndex]);
 
@@ -145,10 +153,12 @@ function ComboboxInternal({
         tabIndex={0}
         onClick={toggleOpen}
         onKeyDown={handleKeyDown}
-        className="w-full py-2 pl-4 pr-1 border border-line rounded-xl cursor-pointer flex items-center justify-between outline-none focus:ring-2 focus:ring-lucide text-sm transition-all duration-300"
+        className="w-full py-2 pl-4 pr-1 border border-line rounded-xl cursor-pointer flex items-center justify-between outline-none focus:ring-2 focus:ring-lucide text-sm transition-all duration-300 bg-background hover:bg-surface"
       >
-        <span className={`truncate ${value ? "text-ink" : "text-faint"}`}>
-          {value || placeholder || "Seleccionar"}
+        <span
+          className={`truncate ${selectedItem ? "text-ink" : "text-faint"}`}
+        >
+          {selectedItem?.label || placeholder || "Seleccionar"}
         </span>
 
         <div className="px-1 rounded-md hover:bg-surface">
@@ -162,20 +172,20 @@ function ComboboxInternal({
           className="absolute top-full left-0 p-2 mt-1 w-full bg-surface border border-line rounded-lg shadow-lg max-h-30 overflow-y-auto scrollbar-none z-10"
         >
           {items.map((item, index) => {
-            const isSelected = item === value;
+            const isSelected = item.value === value;
             const isHighlighted = index === highlightedIndex;
 
             return (
               <div
-                key={item}
+                key={item.value}
                 onClick={() => selectItem(item)}
                 onMouseEnter={() => setHighlightedIndex(index)}
                 className={`px-4 py-2 flex rounded-lg items-center truncate justify-between cursor-pointer text-sm transition-colors
                   ${isHighlighted ? "bg-lucide" : ""}
-                  ${isSelected ? "" : ""}
                 `}
               >
-                {item}
+                {item.label}
+
                 {isSelected && <Check className="size-3" />}
               </div>
             );

@@ -1,3 +1,5 @@
+"use client"
+
 /* COMPONENTS */
 import { Checkbox } from "@/components/ui/checkbox";
 

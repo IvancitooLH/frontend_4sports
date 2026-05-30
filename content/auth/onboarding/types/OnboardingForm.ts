@@ -1,16 +1,28 @@
 /* TYPES */
-import { Role } from "@/content/auth/onboarding/types/Role";
+import { Role } from "@/content/auth/onboarding/types/role";
 
 export type OnboardingForm = {
   /* Común */
-  name: string;
+  fotoPerfil?: File;
+  username: string;
+  nombres: string;
+  apellidos: string;
+
+  lada: string;
+  telefono: number;
+  pais: string;
+  estado: string;
+  ciudad: string;
+
   role: Role;
 
   /* Jugador */
-  position?: string;
-  team?: string;
+  deportes?: string[];
+  posicion?: string;
+  buscandoEquipo?: boolean;
 
   /* Organizador */
-  organizationName?: string;
-  organizationType?: string;
+  fotoOrganizacion?: File;
+  nombreOrganizacion?: string;
+  descripcionOrganizacion?: string;
 };

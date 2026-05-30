@@ -10,26 +10,33 @@ import { motion } from "framer-motion";
 import { ButtonType } from "@/content/shared/form/dinamicButton/types/buttonType";
 
 /* UTILS */
-import { getNormalStyles, getHoverStyles } from "@/content/shared/form/dinamicButton/utils/getStyles";
+import {
+  getNormalStyles,
+  getHoverStyles,
+} from "@/content/shared/form/dinamicButton/utils/getStyles";
 
 export function DinamicButton({
   action,
   type,
   twClassName,
   disabled,
+  disabledSpinner,
   label,
   icon,
+  spinFromText,
 }: {
   action: () => void;
   type: ButtonType;
   twClassName: string;
   disabled: boolean;
+  disabledSpinner: boolean;
   label: string;
   icon?: React.ReactNode;
+  spinFromText: boolean;
 }) {
   return (
     <motion.button
-      className={`flex items-center justify-center gap-3 ${disabled ? "cursor-default" : "cursor-pointer"} ${twClassName}`}
+      className={`flex items-center justify-center ${disabled ? "cursor-default" : "cursor-pointer"} ${twClassName} ${label === "" ? "gap-0" : "gap-3"}`}
       animate={getNormalStyles(type)}
       whileHover={getHoverStyles(type)}
       whileTap={disabled ? {} : { scale: 0.95 }}
@@ -44,11 +51,24 @@ export function DinamicButton({
       disabled={disabled}
     >
       {disabled ? (
-        <>
-          <span className="font-semibold text-transparent">E</span>
-          <Loader className="size-4 animate-spin" />
-          <span className="font-semibold text-transparent">E</span>
-        </>
+        disabledSpinner ? (
+          <>
+            {spinFromText && (
+              <span className="font-semibold text-transparent">E</span>
+            )}
+
+            <Loader className="size-4 animate-spin" />
+
+            {spinFromText && (
+              <span className="font-semibold text-transparent">E</span>
+            )}
+          </>
+        ) : (
+          <>
+            {icon && icon}
+            <span className="font-medium">{label}</span>
+          </>
+        )
       ) : (
         <>
           {icon && icon}

@@ -1,18 +1,18 @@
-"use client"
+"use client";
 
 /* HOOKS */
 import { Controller, useFormContext, FieldValues } from "react-hook-form";
 
 /* TYPES */
-import { DinamicInputTextProps } from "./types/dinamicInputTextProps";
+import { DinamicInputTextAreaProps } from "@/content/shared/form/dinamicTextArea/types/dinamicTextAreaProps";
 
-export function DinamicInputText<T extends FieldValues>({
+export function DinamicTextArea<T extends FieldValues>({
   name,
   label,
   placeholder,
   rules,
-  type = "text",
-}: DinamicInputTextProps<T>) {
+  twHeight,
+}: DinamicInputTextAreaProps<T>) {
   const {
     control,
     formState: { errors },
@@ -29,12 +29,11 @@ export function DinamicInputText<T extends FieldValues>({
         control={control}
         rules={rules}
         render={({ field }) => (
-          <input
+          <textarea
             {...field}
             id={name}
-            type={type}
             placeholder={placeholder}
-            className="w-full text-sm h-fit px-4 py-2 bg-background outline-none border border-line rounded-xl hover:bg-surface transition-all duration-300 placeholder:text-faint focus:ring-2 focus:ring-lucide"
+            className={`w-full text-sm resize-none px-4 py-2 bg-background outline-none border border-line rounded-xl hover:bg-surface transition-all duration-300 placeholder:text-faint focus:ring-2 focus:ring-lucide ${twHeight !== undefined ? twHeight : "h-40"}`}
           />
         )}
       />

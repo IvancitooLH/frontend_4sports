@@ -1,6 +1,6 @@
 /* CONTENT */
-import { ChoiceContent } from "@/content/auth/register/choice/ChoiceContent";
+import { OnboardingContent } from "@/content/auth/onboarding/OnboardingContent";
 
-export default function ChoicePage() {
-  return <ChoiceContent />;
+export default function OnboardingPage() {
+  return <OnboardingContent />;
 }

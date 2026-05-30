@@ -1,63 +1,60 @@
 "use client";
 
-import { useMemo, useState } from "react";
+/* COMPONENTS */
+import { OnboardingGeneralFormStep1 } from "@/content/auth/onboarding/components/steps/general/OnboardingGeneralFormStep1";
+import { OnboardingGeneralFormStep2 } from "@/content/auth/onboarding/components/steps/general/OnboardingGeneralFormStep2";
+import { OnboardingGeneralFormStep3 } from "@/content/auth/onboarding/components/steps/general/OnboardingGeneralFormStep3";
+import { OnboardingPlayerStep1 } from "@/content/auth/onboarding/components/steps/player/OnboardingPlayerFormStep1";
+import { OnboardingOrganizerFormStep1 } from "@/content/auth/onboarding/components/steps/organizer/OnboardingOrganizerStep1";
+import { DinamicButton } from "@/content/shared/form/dinamicButton/DinamicButton";
+import { useAnnouncement } from "@/content/shared/ui/annoucement/stores/announcementStore";
 
+/* HOOKS */
+import { useMemo, useState } from "react";
 import {
   FormProvider,
   SubmitHandler,
   useForm,
-  useFormContext,
   useWatch,
 } from "react-hook-form";
 
+/* ICONS */
+import { ChevronLeft, ChevronRight, Check } from "lucide-react";
+
+/* LIBS */
 import { AnimatePresence, motion } from "framer-motion";
 
-/* -------------------------------------------------------------------------- */
-/*                                   TYPES                                    */
-/* -------------------------------------------------------------------------- */
-
-type Role = "player" | "organizer";
-
-type FormValues = {
-  /* COMMON */
-  name: string;
-  role: Role;
-
-  /* PLAYER */
-  position?: string;
-  team?: string;
-
-  /* ORGANIZER */
-  organizationName?: string;
-  organizationType?: string;
-};
-
-type Step = {
-  title: string;
-  description?: string
-  fields: (keyof FormValues)[];
-  component: React.ReactNode;
-};
-
-/* -------------------------------------------------------------------------- */
-/*                              MAIN COMPONENT                                */
-/* -------------------------------------------------------------------------- */
+/* TYPES */
+import { OnboardingForm } from "@/content/auth/onboarding/types/onboardingForm";
+import { Step } from "@/content/auth/onboarding/types/step";
 
 export function OnboardingContent() {
-  const [step, setStep] = useState(0);
+  const { setAnnouncement } = useAnnouncement();
 
-  const methods = useForm<FormValues>({
+  const [step, setStep] = useState(0);
+  const [saving, setSaving] = useState(false);
+
+  const methods = useForm<OnboardingForm>({
     mode: "onTouched",
     shouldUnregister: false,
     defaultValues: {
-      name: "",
+      username: "",
+      nombres: "",
+      apellidos: "",
+
+      lada: "",
+      pais: "",
+      estado: "",
+      ciudad: "",
+
       role: "player",
 
-      position: "",
-      team: "",
+      deportes: [],
+      posicion: "",
+      buscandoEquipo: false,
 
-      organizationName: "",
-      organizationType: "",
+      nombreOrganizacion: "",
+      descripcionOrganizacion: "",
     },
   });
 
@@ -68,50 +65,56 @@ export function OnboardingContent() {
     name: "role",
   });
 
-  /* ---------------------------------------------------------------------- */
-  /*                               DYNAMIC STEPS                            */
-  /* ---------------------------------------------------------------------- */
-
   const steps: Step[] = useMemo(() => {
     const commonSteps: Step[] = [
       {
-        title: "Información básica",
-        fields: ["name"],
-        component: <BasicInfoStep />,
+        title: "¿Quién eres?",
+        fields: ["fotoPerfil", "username", "nombres", "apellidos"],
+        component: <OnboardingGeneralFormStep1 />,
       },
-
       {
-        title: "Selecciona tu rol",
+        title: "Contacto",
+        fields: ["lada", "telefono", "pais", "estado", "ciudad"],
+        component: <OnboardingGeneralFormStep2 />,
+      },
+      {
+        title: "Elige tu rol",
         description: "¿Para que deseas utilizar 4Sports?",
         fields: ["role"],
-        component: <RoleSelectionStep />,
+        component: <OnboardingGeneralFormStep3 />,
       },
     ];
 
     const playerSteps: Step[] = [
       {
-        title: "Perfil de jugador",
-        fields: ["position", "team"],
-        component: <PlayerStep />,
+        title: "Tu pasión",
+        fields: ["deportes", "posicion", "buscandoEquipo"],
+        component: <OnboardingPlayerStep1 />,
       },
     ];
 
     const organizerSteps: Step[] = [
       {
-        title: "Perfil de organizador",
-        fields: ["organizationName", "organizationType"],
-        component: <OrganizerStep />,
+        title: "Tu organización",
+        fields: [
+          "fotoOrganizacion",
+          "nombreOrganizacion",
+          "descripcionOrganizacion",
+        ],
+        component: <OnboardingOrganizerFormStep1 />,
       },
     ];
 
     if (role === "player") {
-      resetField("organizationName");
-      resetField("organizationType");
+      resetField("fotoOrganizacion");
+      resetField("nombreOrganizacion");
+      resetField("descripcionOrganizacion");
     }
 
     if (role === "organizer") {
-      resetField("position");
-      resetField("team");
+      resetField("deportes");
+      resetField("posicion");
+      resetField("buscandoEquipo");
     }
 
     return [
@@ -121,12 +124,7 @@ export function OnboardingContent() {
   }, [role, resetField]);
 
   const currentStep = steps[step];
-
   const isLastStep = step === steps.length - 1;
-
-  /* ---------------------------------------------------------------------- */
-  /*                               NAVIGATION                               */
-  /* ---------------------------------------------------------------------- */
 
   const nextStep = async () => {
     const isValid = await trigger(currentStep.fields);
@@ -142,65 +140,52 @@ export function OnboardingContent() {
     setStep((prev) => prev - 1);
   };
 
-  /* ---------------------------------------------------------------------- */
-  /*                                 SUBMIT                                 */
-  /* ---------------------------------------------------------------------- */
+  const onSubmit: SubmitHandler<OnboardingForm> = async (data) => {
+    setSaving(true);
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
     const cleanData = { ...data };
 
     if (cleanData.role === "player") {
-      delete cleanData.organizationName;
-      delete cleanData.organizationType;
+      delete cleanData.fotoOrganizacion;
+      delete cleanData.nombreOrganizacion;
+      delete cleanData.descripcionOrganizacion;
     }
 
     if (cleanData.role === "organizer") {
-      delete cleanData.position;
-      delete cleanData.team;
+      delete cleanData.deportes;
+      delete cleanData.posicion;
+      delete cleanData.buscandoEquipo;
     }
 
-    console.log(cleanData);
-
-    alert(JSON.stringify(cleanData, null, 2));
+    setTimeout(() => {
+      console.log(cleanData);
+      setAnnouncement({
+        isActivated: true,
+        announceType: "ok",
+        message: "Datos guardados correctamente",
+      });
+      setSaving(false);
+    }, 3000);
   };
-
-  /* ---------------------------------------------------------------------- */
-  /*                                  JSX                                   */
-  /* ---------------------------------------------------------------------- */
 
   return (
     <FormProvider {...methods}>
-      <div className="w-full max-w-lg mx-auto rounded-3xl border border-neutral-200 p-8 flex flex-col gap-8">
-        {/* HEADER */}
-        <div className="flex flex-col gap-5">
-          {/* DOTS */}
-          <div className="flex items-center justify-center gap-3">
-            {steps.map((_, index) => (
-              <button
-                key={index}
-                type="button"
-                onClick={() => setStep(index)}
-                className={`h-3 w-3 rounded-full transition-all duration-300 ${
-                  index === step ? "bg-black scale-125" : "bg-neutral-300"
-                }`}
-              />
-            ))}
-          </div>
+      <div className="w-full h-full flex flex-col bg-orange-600">
+        <h1 className="font-medium text-lg mb-2 text-center shrink-0">
+          Sigue los pasos para completar tu registro
+        </h1>
 
-          {/* TITLE */}
-          <div className="text-center">
-            <h2 className="text-2xl font-bold">{currentStep.title}</h2>
-            <h3 className="text-lg text-muted">{currentStep.description}</h3>
-          </div>
-        </div>
+        {/* TITLE */}
+        <h2 className="text-2xl font-bold text-center mb-2 shrink-0">
+          {currentStep.title}
+        </h2>
 
-        {/* FORM */}
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-8">
-          {/* ANIMATED CONTENT */}
-          <div className="min-h-55 overflow-hidden relative">
+        {/* ANIMATED CONTENT */}
+        <div className="flex-1 min-h-0 bg-yellow-600 overflow-hidden relative">
+          <div className="w-full h-full overflow-y-auto overflow-x-hidden p-1">
             <AnimatePresence mode="wait">
               <motion.div
-                key={`${role}-${step}`}
+                key={step}
                 initial={{
                   opacity: 0,
                   x: 40,
@@ -216,231 +201,66 @@ export function OnboardingContent() {
                 transition={{
                   duration: 0.3,
                 }}
+                className="w-full min-h-full flex items-center"
               >
                 {currentStep.component}
               </motion.div>
             </AnimatePresence>
           </div>
+        </div>
 
-          {/* BUTTONS */}
-          <div className="flex items-center justify-between gap-4">
-            <button
-              type="button"
-              onClick={prevStep}
-              disabled={step === 0}
-              className="px-4 py-2 rounded-xl border border-neutral-300 disabled:opacity-40"
-            >
-              Atrás
-            </button>
+        {/* BUTTONS */}
+        <div className="flex items-center justify-center gap-6 w-full h-fit mt-4 shrink-0">
+          <DinamicButton
+            action={prevStep}
+            disabled={step === 0}
+            disabledSpinner={false}
+            label=""
+            spinFromText={false}
+            icon={<ChevronLeft className="size-4" />}
+            twClassName="w-fit h-fit p-2 rounded-full"
+            type={step === 0 ? "disabled" : "filled"}
+          />
 
-            {!isLastStep ? (
+          {/* DOTS */}
+          <div className="flex items-center justify-center gap-3">
+            {steps.map((_, index) => (
               <button
+                key={index}
                 type="button"
-                onClick={nextStep}
-                className="px-4 py-2 rounded-xl bg-black text-white"
-              >
-                Siguiente
-              </button>
-            ) : (
-              <button
-                type="submit"
-                className="px-4 py-2 rounded-xl bg-green-600 text-white"
-              >
-                Confirmar
-              </button>
-            )}
+                onClick={() => setStep(index)}
+                className={`h-3 w-3 rounded-full transition-all duration-300 ${
+                  index === step ? "bg-primary scale-150" : "bg-faint"
+                }`}
+              />
+            ))}
           </div>
-        </form>
+
+          {!isLastStep ? (
+            <DinamicButton
+              action={nextStep}
+              disabled={false}
+              disabledSpinner={false}
+              label=""
+              spinFromText={false}
+              icon={<ChevronRight className="size-4" />}
+              twClassName="w-fit h-fit p-2 rounded-full"
+              type="filled"
+            />
+          ) : (
+            <DinamicButton
+              action={handleSubmit(onSubmit)}
+              disabled={saving}
+              disabledSpinner={true}
+              label=""
+              spinFromText={false}
+              icon={<Check className="size-4" />}
+              twClassName="w-fit h-fit p-2 rounded-full"
+              type={saving ? "disabled" : "filled"}
+            />
+          )}
+        </div>
       </div>
     </FormProvider>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/*                             COMMON STEP 1                                  */
-/* -------------------------------------------------------------------------- */
-
-function BasicInfoStep() {
-  const {
-    register,
-    formState: { errors },
-  } = useFormContext<FormValues>();
-
-  return (
-    <div className="flex flex-col gap-2">
-      <label className="font-medium">Nombre</label>
-
-      <input
-        type="text"
-        placeholder="Tu nombre"
-        className="border border-neutral-300 rounded-xl px-4 py-3 outline-none"
-        {...register("name", {
-          required: "El nombre es obligatorio",
-        })}
-      />
-
-      {errors.name && (
-        <span className="text-sm text-red-500">{errors.name.message}</span>
-      )}
-    </div>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/*                             COMMON STEP 2                                  */
-/* -------------------------------------------------------------------------- */
-
-function RoleSelectionStep() {
-  const { watch, setValue } = useFormContext<FormValues>();
-
-  const role = watch("role");
-
-  return (
-    <div className="grid grid-cols-2 gap-4">
-      <RoleCard
-        active={role === "player"}
-        title="Jugador"
-        onClick={() => {
-          setValue("role", "player");
-        }}
-      />
-
-      <RoleCard
-        active={role === "organizer"}
-        title="Organizador"
-        onClick={() => {
-          setValue("role", "organizer");
-        }}
-      />
-    </div>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/*                               PLAYER STEP                                  */
-/* -------------------------------------------------------------------------- */
-
-function PlayerStep() {
-  const {
-    register,
-    formState: { errors },
-  } = useFormContext<FormValues>();
-
-  return (
-    <div className="flex flex-col gap-4">
-      <div className="flex flex-col gap-2">
-        <label>Posición</label>
-
-        <input
-          type="text"
-          placeholder="Forward"
-          className="border border-neutral-300 rounded-xl px-4 py-3 outline-none"
-          {...register("position", {
-            required: "La posición es obligatoria",
-          })}
-        />
-
-        {errors.position && (
-          <span className="text-sm text-red-500">
-            {errors.position.message}
-          </span>
-        )}
-      </div>
-
-      <div className="flex flex-col gap-2">
-        <label>Equipo</label>
-
-        <input
-          type="text"
-          placeholder="FC Example"
-          className="border border-neutral-300 rounded-xl px-4 py-3 outline-none"
-          {...register("team", {
-            required: "El equipo es obligatorio",
-          })}
-        />
-
-        {errors.team && (
-          <span className="text-sm text-red-500">{errors.team.message}</span>
-        )}
-      </div>
-    </div>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/*                             ORGANIZER STEP                                 */
-/* -------------------------------------------------------------------------- */
-
-function OrganizerStep() {
-  const {
-    register,
-    formState: { errors },
-  } = useFormContext<FormValues>();
-
-  return (
-    <div className="flex flex-col gap-4">
-      <div className="flex flex-col gap-2">
-        <label>Nombre organización</label>
-
-        <input
-          type="text"
-          placeholder="Liga MX"
-          className="border border-neutral-300 rounded-xl px-4 py-3 outline-none"
-          {...register("organizationName", {
-            required: "El nombre es obligatorio",
-          })}
-        />
-
-        {errors.organizationName && (
-          <span className="text-sm text-red-500">
-            {errors.organizationName.message}
-          </span>
-        )}
-      </div>
-
-      <div className="flex flex-col gap-2">
-        <label>Tipo organización</label>
-
-        <input
-          type="text"
-          placeholder="Torneo"
-          className="border border-neutral-300 rounded-xl px-4 py-3 outline-none"
-          {...register("organizationType", {
-            required: "El tipo es obligatorio",
-          })}
-        />
-
-        {errors.organizationType && (
-          <span className="text-sm text-red-500">
-            {errors.organizationType.message}
-          </span>
-        )}
-      </div>
-    </div>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/*                                ROLE CARD                                   */
-/* -------------------------------------------------------------------------- */
-
-type RoleCardProps = {
-  title: string;
-  active: boolean;
-  onClick: () => void;
-};
-
-function RoleCard({ title, active, onClick }: RoleCardProps) {
-  return (
-    <motion.button
-      type="button"
-      whileTap={{ scale: 0.98 }}
-      onClick={onClick}
-      className={`h-40 rounded-2xl border-2 transition-all ${
-        active ? "border-black bg-black text-white" : "border-neutral-300"
-      }`}
-    >
-      <span className="text-lg font-semibold">{title}</span>
-    </motion.button>
   );
 }

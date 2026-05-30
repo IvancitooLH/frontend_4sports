@@ -1,5 +1,8 @@
+/* TYPES */
+import { ComboboxItem } from "@/content/shared/form/dinamicComboBox/types/comboboxItem";
+
 export type DinamicComboboxInternalProps = {
-  items: string[];
+  items: ComboboxItem[];
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;

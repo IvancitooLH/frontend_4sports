@@ -51,7 +51,7 @@ export function DinamicInputNumber<T extends FieldValues>({
             min={min}
             max={max}
             disabled={disabled}
-            className={`w-full text-sm h-fit px-4 py-2 outline-none border bg-background border-line rounded-xl transition-all duration-300 placeholder:text-faint  ${disabled ? "bg-disabled pointer-events-none text-disabled-text" : "bg-transparent hover:bg-surface focus:ring-2 focus:ring-lucide"}`}
+            className={`w-full text-sm h-fit px-4 py-2 outline-none border border-line rounded-xl transition-all duration-300 placeholder:text-faint  ${disabled ? "bg-disabled pointer-events-none text-disabled-text" : "hover:bg-surface focus:ring-2 focus:ring-lucide bg-background"}`}
           />
         )}
       />

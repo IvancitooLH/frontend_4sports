@@ -4,11 +4,16 @@
 import Image from "next/image";
 
 /* HOOKS */
-import { ChangeEvent, useState } from "react";
-import { Controller, FieldValues, useFormContext } from "react-hook-form";
+import { ChangeEvent, useEffect, useMemo } from "react";
+import {
+  Controller,
+  FieldValues,
+  useFormContext,
+  useWatch,
+} from "react-hook-form";
 
 /* ICONS */
-import { UserRound, Image as Imagen } from "lucide-react";
+import { Image as Imagen, Plus } from "lucide-react";
 
 /* TYPES */
 import { DinamicInputFileProps } from "@/content/shared/form/dinamicInputFile/types/dinamicInputFileProps";
@@ -28,11 +33,28 @@ export function DinamicInputFile<T extends FieldValues>({
 
   const error = errors[name];
 
-  const [preview, setPreview] = useState<string | null>(null);
+  const file = useWatch({
+    control,
+    name,
+  }) as File | undefined;
+
+  const preview = useMemo(() => {
+    if (!file) return null;
+
+    return URL.createObjectURL(file);
+  }, [file]);
+
+  useEffect(() => {
+    return () => {
+      if (preview) {
+        URL.revokeObjectURL(preview);
+      }
+    };
+  }, [preview]);
 
   if (variant === "avatar") {
     return (
-      <div className="flex flex-col items-center gap-2 mb-6">
+      <div className="flex flex-col items-center gap-2 p-1">
         {label && <label className="text-sm text-faint">{label}</label>}
 
         <Controller
@@ -50,17 +72,11 @@ export function DinamicInputFile<T extends FieldValues>({
                 placeholder={placeholder}
                 onChange={(e: ChangeEvent<HTMLInputElement>) => {
                   const file = e.target.files?.[0];
-
                   onChange(file);
-
-                  if (file) {
-                    const url = URL.createObjectURL(file);
-                    setPreview(url);
-                  }
                 }}
               />
 
-              <div className="w-52 h-52 rounded-full overflow-hidden border border-line bg-background hover:bg-surface flex items-center justify-center relative transition-all duration-300 group-hover:scale-[1.02]">
+              <div className="w-48 h-48 rounded-full overflow-hidden border border-line bg-background hover:bg-surface flex items-center justify-center relative transition-all duration-300 group-hover:scale-[1.03]">
                 {preview ? (
                   <Image
                     src={preview}
@@ -69,12 +85,12 @@ export function DinamicInputFile<T extends FieldValues>({
                     className="object-cover"
                   />
                 ) : (
-                  <UserRound className="text-lucide size-24" />
+                  <Imagen className="text-lucide size-24" />
                 )}
               </div>
 
               <div className="absolute bottom-1 right-1 w-12 h-12 rounded-full bg-primary text-primary-text flex items-center justify-center border-4 border-background">
-                <Imagen className="size-5" />
+                <Plus className="size-5" />
               </div>
             </label>
           )}
@@ -105,13 +121,7 @@ export function DinamicInputFile<T extends FieldValues>({
             className="w-full text-sm h-fit px-4 py-2 bg-background outline-none border border-line rounded-xl hover:bg-surface transition-all duration-300 placeholder:text-faint focus:ring-2 focus:ring-lucide"
             onChange={(e: ChangeEvent<HTMLInputElement>) => {
               const file = e.target.files?.[0];
-
               onChange(file);
-
-              if (file) {
-                const url = URL.createObjectURL(file);
-                setPreview(url);
-              }
             }}
           />
         )}
