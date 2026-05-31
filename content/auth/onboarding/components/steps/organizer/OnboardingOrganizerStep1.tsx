@@ -32,7 +32,7 @@ export function OnboardingOrganizerFormStep1() {
         {/* NOMBRE */}
         <DinamicInputText<OnboardingForm>
           name="nombreOrganizacion"
-          label="Nombre"
+          label="Nombre de organización"
           type="text"
           placeholder="Ingresa el nombre de la organización"
           rules={{}}

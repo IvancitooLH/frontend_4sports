@@ -6,6 +6,7 @@ import { DinamicInputText } from "@/content/shared/form/dinamicInputText/Dinamic
 import { DinamicButton } from "@/content/shared/form/dinamicButton/DinamicButton";
 
 /* ICONS */
+import { FourSportsIcon } from "@/content/shared/icons/fourSports/FourSportsIcon";
 import { GoogleIcon } from "@/content/shared/icons/google/GoogleIcon";
 import { FacebookIcon } from "@/content/shared/icons/facebook/FacebookIcon";
 
@@ -56,6 +57,10 @@ export function RegisterContent() {
 
   return (
     <FormProvider {...methods}>
+      <div className="w-24 m-auto mb-4">
+        <FourSportsIcon />
+      </div>
+
       <h1 className="font-medium text-lg mb-2 text-center">
         Crear una cuenta nueva
       </h1>

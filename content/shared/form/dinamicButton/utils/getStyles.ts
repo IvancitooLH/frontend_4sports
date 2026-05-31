@@ -37,6 +37,13 @@ export function getNormalStyles(type: ButtonType) {
         color: "var(--disabled-text)",
         border: "2px solid var(--disabled-border)",
       };
+
+    case "success":
+      return {
+        backgroundColor: "var(--success)",
+        color: "#ffffff",
+        border: "2px solid transparent",
+      };
   }
 }
 
@@ -75,6 +82,13 @@ export function getHoverStyles(type: ButtonType) {
         backgroundColor: "var(--disabled)",
         color: "var(--disabled-text)",
         border: "2px solid var(--disabled-border)",
+      };
+
+    case "success":
+      return {
+        backgroundColor: "var(--success-hover)",
+        color: "#ffffff",
+        border: "2px solid transparent",
       };
   }
 }

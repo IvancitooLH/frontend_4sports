@@ -50,6 +50,7 @@
   /* Success — confirmación, completado, primero */
 
   --success: #2e7d4f;
+  --success-hover: #419966;
   --success-bg: #eaf5ef;
   --success-border: rgba(46, 125, 79, 0.35);
 
@@ -110,7 +111,7 @@
 
   --primary: #d4f233; /* Acción primaria, primeros lugares, éxito deportivo */
   --primary-hover: #ecff7f;
-  --primary-background: #252A11; /* Fondo de primary */
+  --primary-background: #252a11; /* Fondo de primary */
   --primary-text: #0d0f0c; /* Texto sobre primary sólido */
 
   --secondary: #ff4b1f; /* Urgencia, en vivo, alertas deportivas */
@@ -148,6 +149,7 @@
   /* Success — confirmación, completado, primero */
 
   --success: #4caf72;
+  --success-hover: #67c48a;
   --success-bg: #142219;
   --success-border: rgba(76, 175, 114, 0.35);
 
@@ -232,6 +234,7 @@
   --color-line-2: var(--line-2);
 
   --color-success: var(--success);
+  --color-success-hover: var(--success-hover);
   --color-success-bg: var(--success-bg);
   --color-success-border: var(--success-border);
 

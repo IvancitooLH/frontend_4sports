@@ -3,4 +3,5 @@ export type ButtonType =
   | "ghost"
   | "destructive"
   | "unfilled"
-  | "disabled";
+  | "disabled"
+  | "success";

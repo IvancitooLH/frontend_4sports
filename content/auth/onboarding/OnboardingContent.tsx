@@ -19,20 +19,27 @@ import {
 } from "react-hook-form";
 
 /* ICONS */
+import { FourSportsIcon } from "@/content/shared/icons/fourSports/FourSportsIcon";
 import { ChevronLeft, ChevronRight, Check } from "lucide-react";
 
 /* LIBS */
 import { AnimatePresence, motion } from "framer-motion";
+
+/* NAVIGATION */
+import { useRouter } from "next/navigation";
 
 /* TYPES */
 import { OnboardingForm } from "@/content/auth/onboarding/types/onboardingForm";
 import { Step } from "@/content/auth/onboarding/types/step";
 
 export function OnboardingContent() {
+  const router = useRouter();
+
   const { setAnnouncement } = useAnnouncement();
 
   const [step, setStep] = useState(0);
   const [saving, setSaving] = useState(false);
+  const [finish, setFinish] = useState(false);
 
   const methods = useForm<OnboardingForm>({
     mode: "onTouched",
@@ -165,24 +172,46 @@ export function OnboardingContent() {
         message: "Datos guardados correctamente",
       });
       setSaving(false);
-    }, 3000);
+      setFinish(true);
+
+      setTimeout(() => {
+        if (cleanData.role === "organizer") {
+          router.push("/organizer-plans");
+        } else {
+          router.push("/player/home");
+        }
+      }, 1000);
+    }, 2000);
   };
 
   return (
     <FormProvider {...methods}>
-      <div className="w-full h-full flex flex-col bg-orange-600">
-        <h1 className="font-medium text-lg mb-2 text-center shrink-0">
+      <motion.div
+        className="w-full h-full flex flex-col"
+        animate={{
+          opacity: finish ? 0 : 1,
+          transition: {
+            duration: 0.7,
+            ease: "easeInOut",
+          },
+        }}
+      >
+        <div className="w-24 m-auto mb-4">
+          <FourSportsIcon />
+        </div>
+
+        <h1 className="font-medium text-lg mb-3 text-center shrink-0">
           Sigue los pasos para completar tu registro
         </h1>
 
         {/* TITLE */}
-        <h2 className="text-2xl font-bold text-center mb-2 shrink-0">
+        <h2 className="text-3xl font-bold text-center mb-2 shrink-0">
           {currentStep.title}
         </h2>
 
         {/* ANIMATED CONTENT */}
-        <div className="flex-1 min-h-0 bg-yellow-600 overflow-hidden relative">
-          <div className="w-full h-full overflow-y-auto overflow-x-hidden p-1">
+        <div className="flex-1 min-h-0 overflow-hidden relative">
+          <div className="w-full h-full md:h-64 overflow-y-auto overflow-x-hidden p-1 md:flex md: items-center">
             <AnimatePresence mode="wait">
               <motion.div
                 key={step}
@@ -201,7 +230,7 @@ export function OnboardingContent() {
                 transition={{
                   duration: 0.3,
                 }}
-                className="w-full min-h-full flex items-center"
+                className="w-full min-h-full md:min-h-fit flex items-center"
               >
                 {currentStep.component}
               </motion.div>
@@ -260,7 +289,7 @@ export function OnboardingContent() {
             />
           )}
         </div>
-      </div>
+      </motion.div>
     </FormProvider>
   );
 }

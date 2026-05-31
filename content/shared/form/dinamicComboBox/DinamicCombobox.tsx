@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 /* HOOKS */
 import { Controller, FieldValues, useFormContext } from "react-hook-form";
@@ -11,6 +11,9 @@ import { Check, ChevronDown } from "lucide-react";
 import { DinamicComboboxProps } from "./types/dinamicComboboxProps";
 import { DinamicComboboxInternalProps } from "./types/dinamicComboboxInternalProps";
 import { ComboboxItem } from "./types/comboboxItem";
+
+/* LIBS */
+import * as Popover from "@radix-ui/react-popover";
 
 export function DinamicCombobox<T extends FieldValues>({
   name,
@@ -58,9 +61,9 @@ function ComboboxInternal({
   placeholder,
 }: DinamicComboboxInternalProps) {
   const [open, setOpen] = useState(false);
+
   const [highlightedIndex, setHighlightedIndex] = useState<number>(-1);
 
-  const ref = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
 
   const selectedIndex = items.findIndex((item) => item.value === value);
@@ -69,34 +72,30 @@ function ComboboxInternal({
 
   const selectItem = (item: ComboboxItem) => {
     onChange(item.value);
+
     setOpen(false);
-  };
-
-  const toggleOpen = () => {
-    const next = !open;
-    setOpen(next);
-
-    if (next) {
-      setHighlightedIndex(selectedIndex >= 0 ? selectedIndex : 0);
-    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (!open) {
       if (e.key === "ArrowDown" || e.key === "Enter") {
         setOpen(true);
+
         e.preventDefault();
       }
+
       return;
     }
 
     if (e.key === "ArrowDown") {
       setHighlightedIndex((prev) => (prev + 1) % items.length);
+
       e.preventDefault();
     }
 
     if (e.key === "ArrowUp") {
       setHighlightedIndex((prev) => (prev <= 0 ? items.length - 1 : prev - 1));
+
       e.preventDefault();
     }
 
@@ -104,6 +103,7 @@ function ComboboxInternal({
       if (highlightedIndex >= 0) {
         selectItem(items[highlightedIndex]);
       }
+
       e.preventDefault();
     }
 
@@ -112,30 +112,16 @@ function ComboboxInternal({
     }
   };
 
-  // Cerrar al hacer click fuera
   useEffect(() => {
-    const handleClick = (e: MouseEvent) => {
-      if (!ref.current?.contains(e.target as Node)) {
-        setOpen(false);
-      }
-    };
+    if (open) {
+      const setHighlighted = () => {
+        setHighlightedIndex(selectedIndex >= 0 ? selectedIndex : 0);
+      };
 
-    document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
-  }, []);
-
-  // Scroll al abrir
-  useEffect(() => {
-    if (open && selectedIndex >= 0 && listRef.current) {
-      const element = listRef.current.children[selectedIndex] as HTMLElement;
-
-      element?.scrollIntoView({
-        block: "nearest",
-      });
+      setHighlighted();
     }
   }, [open, selectedIndex]);
 
-  // Mover con las flechas
   useEffect(() => {
     if (!listRef.current || highlightedIndex < 0) return;
 
@@ -148,50 +134,59 @@ function ComboboxInternal({
   }, [highlightedIndex]);
 
   return (
-    <div ref={ref} className="relative w-full">
-      <div
-        tabIndex={0}
-        onClick={toggleOpen}
-        onKeyDown={handleKeyDown}
-        className="w-full py-2 pl-4 pr-1 border border-line rounded-xl cursor-pointer flex items-center justify-between outline-none focus:ring-2 focus:ring-lucide text-sm transition-all duration-300 bg-background hover:bg-surface"
-      >
-        <span
-          className={`truncate ${selectedItem ? "text-ink" : "text-faint"}`}
+    <Popover.Root open={open} onOpenChange={setOpen}>
+      <Popover.Trigger asChild>
+        <button
+          type="button"
+          onKeyDown={handleKeyDown}
+          className="w-full py-2 pl-4 pr-1 border border-line rounded-xl cursor-pointer flex items-center justify-between outline-none focus:ring-2 focus:ring-lucide text-sm transition-all duration-300 bg-background hover:bg-surface"
         >
-          {selectedItem?.label || placeholder || "Seleccionar"}
-        </span>
+          <span
+            className={`truncate ${selectedItem ? "text-ink" : "text-faint"}`}
+          >
+            {selectedItem?.label || placeholder || "Seleccionar"}
+          </span>
 
-        <div className="px-1 rounded-md hover:bg-surface">
-          <ChevronDown className="size-4 text-faint" />
-        </div>
-      </div>
+          <div className="px-1 rounded-md hover:bg-surface">
+            <ChevronDown className="size-4 text-faint" />
+          </div>
+        </button>
+      </Popover.Trigger>
 
-      {open && (
-        <div
-          ref={listRef}
-          className="absolute top-full left-0 p-2 mt-1 w-full bg-surface border border-line rounded-lg shadow-lg max-h-30 overflow-y-auto scrollbar-none z-10"
+      <Popover.Portal>
+        <Popover.Content
+          sideOffset={8}
+          align="start"
+          className="z-50 w-(--radix-popover-trigger-width) rounded-xl border border-line bg-surface p-2 shadow-lg"
         >
-          {items.map((item, index) => {
-            const isSelected = item.value === value;
-            const isHighlighted = index === highlightedIndex;
+          <div
+            ref={listRef}
+            className="max-h-60 overflow-y-auto scrollbar-none"
+          >
+            {items.map((item, index) => {
+              const isSelected = item.value === value;
 
-            return (
-              <div
-                key={item.value}
-                onClick={() => selectItem(item)}
-                onMouseEnter={() => setHighlightedIndex(index)}
-                className={`px-4 py-2 flex rounded-lg items-center truncate justify-between cursor-pointer text-sm transition-colors
+              const isHighlighted = index === highlightedIndex;
+
+              return (
+                <button
+                  key={item.value}
+                  type="button"
+                  onClick={() => selectItem(item)}
+                  onMouseEnter={() => setHighlightedIndex(index)}
+                  className={`w-full px-4 py-2 flex rounded-lg items-center justify-between text-left cursor-pointer text-sm transition-colors
                   ${isHighlighted ? "bg-lucide" : ""}
                 `}
-              >
-                {item.label}
+                >
+                  <span className="truncate">{item.label}</span>
 
-                {isSelected && <Check className="size-3" />}
-              </div>
-            );
-          })}
-        </div>
-      )}
-    </div>
+                  {isSelected && <Check className="size-3 shrink-0" />}
+                </button>
+              );
+            })}
+          </div>
+        </Popover.Content>
+      </Popover.Portal>
+    </Popover.Root>
   );
 }

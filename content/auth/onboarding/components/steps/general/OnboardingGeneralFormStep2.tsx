@@ -65,7 +65,7 @@ export function OnboardingGeneralFormStep2() {
   }, [selectedState, setValue]);
 
   return (
-    <div className="w-full h-fit flex md:items-center md:flex-row flex-col gap-2 md:gap-0">
+    <div className="w-full h-fit flex md:items-center flex-col gap-2 md:gap-0">
       <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4 w-full h-fit">
         {/* LADAS */}
         <DinamicCombobox<OnboardingForm>

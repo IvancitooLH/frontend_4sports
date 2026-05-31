@@ -43,7 +43,7 @@ export function Announcement() {
       className={`
       fixed top-4 right-4 z-100 
       flex items-center justify-center
-      w-full md:w-95
+      w-[calc(100%-2rem)] md:w-95
       p-4 rounded-xl 
       border 
       ${announcement.announceType === "ok" ? "bg-success-bg text-success border-success-border" : announcement.announceType === "warning" ? "bg-warn-bg text-warn border-warn-border" : announcement.announceType === "info" ? "bg-info-bg text-info border-info-border" : "bg-danger-bg text-danger border-danger-border"}
