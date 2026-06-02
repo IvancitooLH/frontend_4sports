@@ -66,13 +66,13 @@ export function DinamicButton({
         ) : (
           <>
             {icon && icon}
-            <span className="font-medium">{label}</span>
+            <span className="font-semibold">{label}</span>
           </>
         )
       ) : (
         <>
           {icon && icon}
-          <span className="font-medium">{label}</span>
+          <span className="font-semibold">{label}</span>
         </>
       )}
     </motion.button>

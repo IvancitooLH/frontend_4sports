@@ -9,7 +9,7 @@ import Image from "next/image";
 import { House } from "lucide-react";
 
 /* IMAGES */
-import cancha from "@/content/auth/images/cancha.png";
+import balls1 from "@/content/auth/images/balls1.jpg";
 
 /* NAVIGATION */
 import { usePathname } from "next/navigation";
@@ -40,7 +40,7 @@ export default function AuthLayout({
           className={`h-full md:block hidden transition-all duration-1000 ${pathname === "/organizer-plans" ? "w-0" : "w-full"}`}
         >
           <Image
-            src={cancha}
+            src={balls1}
             alt="Cancha de fútbol"
             quality={70}
             preload

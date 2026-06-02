@@ -7,7 +7,11 @@ import { FourSports } from "@/content/shared/icons/fourSports/FourSports";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
-export function FourSportsIcon() {
+export function FourSportsIcon({
+  wantSpecific,
+}: {
+  wantSpecific?: { color1: string; color2: string };
+}) {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -23,8 +27,20 @@ export function FourSportsIcon() {
 
   return (
     <FourSports
-      primaryColor={resolvedTheme === "dark" ? "#d4f233" : "#5a8a00"}
-      secondaryColor={resolvedTheme === "dark" ? "#ff4b1f" : "#c93a12"}
+      primaryColor={
+        wantSpecific
+          ? wantSpecific.color1
+          : resolvedTheme === "dark"
+            ? "#d4f233"
+            : "#5a8a00"
+      }
+      secondaryColor={
+        wantSpecific
+          ? wantSpecific.color2
+          : resolvedTheme === "dark"
+            ? "#ff4b1f"
+            : "#c93a12"
+      }
     />
   );
 }
