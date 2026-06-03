@@ -83,7 +83,7 @@ export function ParticlesShapes({
                 type: ["polygon"],
                 options: {
                   polygon: {
-                    sides: 6,
+                    sides: 4,
                     rotate: 30,
                   },
                 },

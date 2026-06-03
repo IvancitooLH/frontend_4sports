@@ -4,8 +4,7 @@ import Link from "next/link";
 
 export function Hero() {
   return (
-    <div className="relative w-full h-full">
-      <div className="w-full h-full absolute top-0 left-0 z-10 bg-linear-to-b from-transparent to-transparent" />
+    <div className="relative w-full h-dvh">
       <div className="w-full h-full absolute top-0 left-0 z-10 bg-linear-to-r from-black/60 via-black/30 to-transparent" />
 
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -34,7 +33,7 @@ export function Hero() {
         <p className="max-w-2xl text-lg text-[#f0efe9] text-center">
           4Sports une jugadores, equipos y organizadores con torneos,
           estadísticas y planes pensados para hacer simple cada partido y cada
-          evento.
+          evento
         </p>
 
         <div className="flex gap-4 mt-6">

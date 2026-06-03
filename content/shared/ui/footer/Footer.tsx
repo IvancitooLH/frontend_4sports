@@ -1,31 +1,62 @@
-export default function Footer() {
+"use client";
+
+import { FacebookColorless } from "./icons/facebook/FacebookColorless";
+import { InstagramColorless } from "./icons/instagram/InstagramColorless";
+import { TwitterColorless } from "./icons/twitter/TwitterColorless";
+import { FourSportsIcon } from "../../icons/fourSports/FourSportsIcon";
+import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
+
+export function Footer() {
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const changeTheme = () => {
+      setMounted(true);
+    };
+
+    changeTheme();
+  }, []);
+
+  if (!mounted) return null;
+
   return (
-    <footer className="border-t border-green-200/60 bg-background text-foreground">
-      <div className="mx-auto max-w-7xl px-6 py-12">
-        <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-center">
-          <div className="space-y-3">
-            <div className="text-2xl font-bold text-green-800">4Sports</div>
-            <p className="max-w-xl text-sm leading-6 text-slate-600">
-              En 4Sports conectamos jugadores, organizadores y equipos para
-              construir experiencias competitivas y comunitarias con seguridad y
-              estilo.
-            </p>
+    <footer className="bg-surface min-h-[50dvh] w-full flex flex-col">
+      <div className="flex justify-between py-12 px-24 items-center flex-1">
+        <div className="flex flex-col gap-6 w-fit">
+          <div className="w-40">
+            <FourSportsIcon />
           </div>
-          <div className="space-y-2 text-right">
-            <div className="text-sm font-semibold text-green-800">
-              ¡Síguenos!
-            </div>
-            <div className="flex justify-end gap-3">
-              <span className="h-9 w-9 rounded-full border border-green-200/80 bg-green-50"></span>
-              <span className="h-9 w-9 rounded-full border border-green-200/80 bg-green-50"></span>
-              <span className="h-9 w-9 rounded-full border border-green-200/80 bg-green-50"></span>
-            </div>
-          </div>
+
+          <p className="text-body text-sm max-w-1/2">
+            En 4Sports conectamos jugadores, organizadores y equipos para
+            construir experiencias competitivas y comunitarias con seguridad,
+            estilo y estadísticas en tiempo real.
+          </p>
         </div>
 
-        <div className="mt-10 border-t border-green-100/90 pt-6 text-center text-xs text-slate-500">
-          © 2026 Todos los derechos reservados.
+        <div className="flex flex-col gap-4 items-center">
+          <h2 className="font-bebas text-primary text-4xl font-bold">
+            ¡Síguenos!
+          </h2>
+
+          <div className="flex gap-6">
+            <div className="w-6 h-6 min-w-6 min-h-6 fill-muted transition-colors duration-300 hover:fill-primary cursor-pointer">
+              <FacebookColorless />
+            </div>
+            <div className="w-6 h-6 min-w-6 min-h-6 fill-muted transition-colors duration-300 hover:fill-primary cursor-pointer">
+              <InstagramColorless />
+            </div>
+            <div className="w-6 h-6 min-w-6 min-h-6 fill-muted transition-colors duration-300 hover:fill-primary cursor-pointer">
+              <TwitterColorless />
+            </div>
+          </div>
         </div>
+      </div>
+
+      <div className="border-t border-line py-8 text-center text-xs font-medium text-muted">
+        <p>© 2026 4Sports. Todos los derechos reservados.</p>
       </div>
     </footer>
   );

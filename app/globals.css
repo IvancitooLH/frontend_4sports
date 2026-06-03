@@ -128,8 +128,8 @@
   --background: #0d0f0c; /* Fondo de página */
   --surface: #141610; /* Fondos de secciones, sidebars */
   --surface-hover: #22251c;
-  --card: oklch(0.205 0 0); /* Tarjetas, modales, dropdowns */
-  --card-2: #212420; /* Fondos secundarios dentro de cards */
+  --card: #1f2218; /* Tarjetas, modales, dropdowns */
+  --card-2: #2f3424; /* Fondos secundarios dentro de cards */
 
   /* TOKENS DE TEXTO */
 

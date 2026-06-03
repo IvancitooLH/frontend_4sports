@@ -1,7 +1,23 @@
+"use client";
+
+import { AboutHero } from "./components/AboutHero";
+import { motion } from "framer-motion";
+import { AboutMisionVision } from "./components/AboutMisionVision";
+
 export function AboutContent() {
   return (
-    <div className="max-h-dvh h-dvh w-full flex items-center justify-center flex-col gap-4">
-      <h1>Sobre nosotros</h1>
-    </div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{
+        opacity: 1,
+        transition: {
+          duration: 0.3,
+          ease: "easeInOut",
+        },
+      }}
+    >
+      <AboutHero />
+      <AboutMisionVision />
+    </motion.div>
   );
 }

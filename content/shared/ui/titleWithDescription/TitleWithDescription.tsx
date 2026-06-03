@@ -5,11 +5,11 @@ export function TitleWithDescription({
   title,
   subtitle,
   description,
-  center = true,
+  position = "center",
 }: TitleProps) {
   return (
     <div
-      className={`space-y-3 ${center ? "text-center mx-auto max-w-3xl" : "text-left"}`}
+      className={`space-y-3 ${position === "left" ? "text-left" : position === "right" ? "text-right" : "text-center mx-auto max-w-3xl"}`}
     >
       {subtitle && (
         <h3 className="text-sm font-black uppercase tracking-widest text-primary">

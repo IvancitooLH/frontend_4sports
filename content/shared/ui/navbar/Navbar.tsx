@@ -36,6 +36,22 @@ export function Navbar() {
     return `${isActive ? "text-primary-text bg-primary" : "text-body hover:bg-lucide"}`;
   };
 
+  const buttonClassesLogin = () => {
+    if (pathname === "/") {
+      return `${scrolled ? "border-primary text-primary" : "border-[#d4f233] text-[#d4f233]"}`;
+    }
+
+    return "border-primary text-primary";
+  };
+
+  const buttonClassesRegister = () => {
+    if (pathname === "/") {
+      return `${scrolled ? "border-primary bg-primary text-primary-text" : "border-[#d4f233] text-[#0d0f0c] bg-[#d4f233]"}`;
+    }
+
+    return "border-primary bg-primary text-primary-text";
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -87,13 +103,13 @@ export function Navbar() {
       <div className="flex gap-4">
         <Link
           href={"/login"}
-          className={`w-full h-fit py-2 px-4 text-sm rounded-xl font-semibold border-2 backdrop-blur-lg bg-transparent ${scrolled ? "border-primary text-primary" : "border-[#d4f233] text-[#d4f233]"}`}
+          className={`w-full h-fit py-2 px-4 text-sm rounded-xl font-semibold border-2 backdrop-blur-lg bg-transparent ${buttonClassesLogin()}`}
         >
           Ingresar
         </Link>
         <Link
           href={"/register"}
-          className={`w-full h-fit py-2 px-4 text-sm rounded-xl font-semibold border-2 ${scrolled ? "border-primary bg-primary text-primary-text" : "border-[#d4f233] text-[#0d0f0c] bg-[#d4f233]"}`}
+          className={`w-full h-fit py-2 px-4 text-sm rounded-xl font-semibold border-2 ${buttonClassesRegister()}`}
         >
           Registrarse
         </Link>
