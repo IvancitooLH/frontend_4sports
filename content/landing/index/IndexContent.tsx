@@ -1,4 +1,3 @@
-import { Footer } from "@/content/shared/ui/footer/Footer";
 import { Features } from "./components/features/Features";
 import { Hero } from "./components/hero/Hero";
 import { Teams } from "./components/teams/Teams";

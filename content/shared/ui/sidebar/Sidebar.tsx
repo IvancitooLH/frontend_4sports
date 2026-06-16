@@ -131,53 +131,50 @@ export function Sidebar({ links }: { links: LinkSidebar[] }) {
             className="h-full overflow-y-auto flex flex-col gap-2 items-center w-full overflow-x-hidden max-h-full"
           >
             <Tooltip.Provider delayDuration={100}>
-              {links.map(
-                (link) =>
-                  link.href !== "/organizer/profile" && (
-                    <Tooltip.Root
-                      key={link.href}
-                      open={!expanded ? openTooltip === link.href : false}
-                      onOpenChange={(open) => {
-                        if (!expanded) {
-                          setOpenTooltip(open ? link.href : null);
-                        }
-                      }}
+              {links.map((link) => (
+                <Tooltip.Root
+                  key={link.href}
+                  open={!expanded ? openTooltip === link.href : false}
+                  onOpenChange={(open) => {
+                    if (!expanded) {
+                      setOpenTooltip(open ? link.href : null);
+                    }
+                  }}
+                >
+                  <Tooltip.Trigger asChild>
+                    <Link
+                      href={link.href}
+                      className={`px-[0.70rem] py-2 rounded-xl flex relative group transition-all items-center duration-300 w-full ${expanded ? "gap-6" : "lg:gap-0 gap-6"} ${linkClasses(
+                        link.href,
+                      )}`}
                     >
-                      <Tooltip.Trigger asChild>
-                        <Link
-                          href={link.href}
-                          className={`px-[0.70rem] py-2 rounded-xl flex relative group transition-all items-center duration-300 w-full ${expanded ? "gap-6" : "lg:gap-0 gap-6"} ${linkClasses(
-                            link.href,
-                          )}`}
-                        >
-                          <link.icon className="size-4 min-w-4 min-h-4" />
+                      <link.icon className="size-4 min-w-4 min-h-4" />
 
-                          <span
-                            className={`transition-all duration-300 text-sm ${
-                              expanded
-                                ? "w-full opacity-100"
-                                : "lg:w-0 w-fit lg:opacity-0 opacity-100 pointer-events-none"
-                            }`}
-                          >
-                            {link.label}
-                          </span>
-                        </Link>
-                      </Tooltip.Trigger>
+                      <span
+                        className={`transition-all duration-300 text-sm ${
+                          expanded
+                            ? "w-full opacity-100"
+                            : "lg:w-0 w-fit lg:opacity-0 opacity-100 pointer-events-none"
+                        }`}
+                      >
+                        {link.label}
+                      </span>
+                    </Link>
+                  </Tooltip.Trigger>
 
-                      {!expanded && (
-                        <Tooltip.Portal>
-                          <Tooltip.Content
-                            side="right"
-                            sideOffset={25}
-                            className="z-70 rounded-full bg-background px-3 py-1 text-sm font-medium text-ink border border-line"
-                          >
-                            {link.label}
-                          </Tooltip.Content>
-                        </Tooltip.Portal>
-                      )}
-                    </Tooltip.Root>
-                  ),
-              )}
+                  {!expanded && (
+                    <Tooltip.Portal>
+                      <Tooltip.Content
+                        side="right"
+                        sideOffset={25}
+                        className="z-70 rounded-full bg-background px-3 py-1 text-sm font-medium text-ink border border-line"
+                      >
+                        {link.label}
+                      </Tooltip.Content>
+                    </Tooltip.Portal>
+                  )}
+                </Tooltip.Root>
+              ))}
             </Tooltip.Provider>
           </motion.div>
         </div>
@@ -220,7 +217,7 @@ export function Sidebar({ links }: { links: LinkSidebar[] }) {
                     animate={{ opacity: 1, scale: 1, y: -12 }}
                     exit={{ opacity: 0, scale: 0.95, y: -6 }}
                     transition={{ duration: 0.15 }}
-                    className="z-100 min-w-56 rounded-2xl border border-line p-2 shadow-md"
+                    className="z-100 min-w-56 rounded-2xl border border-line p-2 shadow-md bg-background"
                   >
                     <DropdownMenu.Item
                       onClick={() => router.push("/organizer/profile")}

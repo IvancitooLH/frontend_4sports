@@ -25,7 +25,7 @@ export function Teams() {
       <div className="space-y-16 max-w-5xl mx-auto">
         <div className="flex flex-col gap-16">
           <div className="flex items-center gap-8">
-            <div className="h-96 w-96 relative min-w-96 min-h-96">
+            <div className="h-64 w-64 relative min-w-64 min-h-64">
               <Image
                 src={teams}
                 alt="Equipos"
@@ -36,7 +36,7 @@ export function Teams() {
               />
             </div>
 
-            <div className="flex flex-col gap-2 text-left">
+            <div className="flex flex-col gap-2 text-center">
               <h3 className="text-2xl font-bold text-ink">
                 Equipos
               </h3>
@@ -60,7 +60,7 @@ export function Teams() {
               </p>
             </div>
 
-            <div className="h-96 w-96 relative min-w-96 min-h-96">
+            <div className="h-64 w-64 relative min-w-64 min-h-64">
               <Image
                 src={stats}
                 alt="Estadísticas"

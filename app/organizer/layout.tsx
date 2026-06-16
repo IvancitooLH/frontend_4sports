@@ -2,7 +2,6 @@
 
 /* COMPONENTS */
 import { Sidebar } from "@/content/shared/ui/sidebar/Sidebar";
-import { RouteTitle } from "@/content/shared/ui/routeTitle/RouteTitle";
 
 /* DATA */
 import { organizerSidebarLinks } from "@/content/shared/ui/sidebar/data/organizerSidebarLinks";
@@ -21,7 +20,7 @@ export default function OrganizerLayout({
   const { expanded } = useSidebarStore();
 
   return (
-    <motion.div
+    <motion.main
       className="flex min-h-dvh overflow-y-hidden overflow-x-hidden"
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
@@ -36,9 +35,8 @@ export default function OrganizerLayout({
             : "lg:left-16 lg:w-[calc(100%-4rem)] z-40"
         }`}
       >
-        <RouteTitle links={organizerSidebarLinks} />
-        <main className={`overflow-y-auto flex-1`}>{children}</main>
+        {children}
       </div>
-    </motion.div>
+    </motion.main>
   );
 }
