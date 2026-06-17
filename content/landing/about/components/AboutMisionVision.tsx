@@ -1,6 +1,11 @@
+/* COMPONENTS */
+import Image from "next/image";
+
+/* ICONS */
 import { Goal, TrendingUp } from "lucide-react";
-import Image from 'next/image'
-import back from './images/back.jpg'
+
+/* IMAGES */
+import back from "./images/back.jpg";
 
 export function AboutMisionVision() {
   return (

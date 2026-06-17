@@ -1,4 +1,7 @@
+/* COMPONENTS */
 import { FeatureCard } from "../shared/FeatureCard";
+
+/* ICONS */
 import { Calendar, BarChart3, UsersRound } from "lucide-react";
 
 type PlanItem = {

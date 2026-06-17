@@ -1,5 +1,4 @@
 /* TYPES */
-
 import { FieldValues, Path, RegisterOptions } from "react-hook-form";
 
 type CheckboxOption = {

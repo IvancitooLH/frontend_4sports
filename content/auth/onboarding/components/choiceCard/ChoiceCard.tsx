@@ -7,13 +7,11 @@ import { Check } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function ChoiceCard({
-  icon,
   title,
   dots,
   action,
   active,
 }: {
-  icon: React.ReactNode;
   title: string;
   dots: string[];
   action: () => void;

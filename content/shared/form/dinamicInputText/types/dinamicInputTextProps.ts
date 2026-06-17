@@ -1,3 +1,4 @@
+/* TYPES */
 import { RegisterOptions, FieldValues, Path } from "react-hook-form";
 
 export type DinamicInputTextProps<T extends FieldValues> = {

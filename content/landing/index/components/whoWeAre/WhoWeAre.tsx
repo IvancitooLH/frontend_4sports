@@ -1,8 +1,13 @@
 "use client";
 
-import { FourSportsIcon } from "@/content/shared/icons/fourSports/FourSportsIcon";
+/* COMPONENTS */
 import { TitleWithDescription } from "@/content/shared/ui/titleWithDescription/TitleWithDescription";
 import { ParticlesShapes } from "../../../shared/ParticlesShapes";
+
+/* ICONS */
+import { FourSportsIcon } from "@/content/shared/icons/fourSports/FourSportsIcon";
+
+/* THEME */
 import { useTheme } from "next-themes";
 
 export function WhoWeAre() {
@@ -31,7 +36,6 @@ export function WhoWeAre() {
 
           <TitleWithDescription
             title="¿Quiénes somos?"
-            center
             description="4Sports nace de la pasión por el deporte y la idea de conectar a jugadores, equipos y organizadores en un solo lugar. Este espacio simplifica la gestión de torneos, estadísticas y competencias, permitiendo que cada partido, resultado y logro cobre vida. "
           />
         </div>

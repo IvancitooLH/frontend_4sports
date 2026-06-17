@@ -1,3 +1,4 @@
+/* COMPONENTS */
 import { Features } from "./components/features/Features";
 import { Hero } from "./components/hero/Hero";
 import { Teams } from "./components/teams/Teams";
@@ -5,6 +6,8 @@ import { Tournaments } from "./components/tournaments/Tournaments";
 import { WhoWeAre } from "./components/whoWeAre/WhoWeAre";
 import { WhoYouAre } from "./components/whoYouAre/WhoYouAre";
 import Image from "next/image";
+
+/* IMAGES */
 import imagen from "./image.jpg";
 
 export function IndexContent() {

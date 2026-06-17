@@ -1,4 +1,7 @@
+/* COMPONENTS */
 import FeatureCardLittle from "../shared/FeatureCardLittle";
+
+/* ICONS */
 import { Trophy, UserPlus, Activity, Medal } from "lucide-react";
 
 type TournamentItem = {

@@ -1,6 +1,9 @@
+/* COMPONENTS */
+import Image from "next/image";
+
+/* IMAGES */
 import teams from "./images/teams.jpg";
 import stats from "./images/stats.jpg";
-import Image from "next/image";
 
 export function Teams() {
   return (
@@ -37,9 +40,7 @@ export function Teams() {
             </div>
 
             <div className="flex flex-col gap-2 text-center">
-              <h3 className="text-2xl font-bold text-ink">
-                Equipos
-              </h3>
+              <h3 className="text-2xl font-bold text-ink">Equipos</h3>
               <p className="text-body">
                 Crea equipos sólidos, administra miembros y mantén una visión
                 clara de tus agrupaciones con herramientas optimizadas para
@@ -50,9 +51,7 @@ export function Teams() {
 
           <div className="flex items-center gap-8">
             <div className="flex flex-col gap-2 text-center">
-              <h3 className="text-2xl text-ink font-bold">
-                Estadísticas
-              </h3>
+              <h3 className="text-2xl text-ink font-bold">Estadísticas</h3>
               <p className="text-body">
                 Consulta logros, rendimiento y resultados con paneles claros
                 para todos los perfiles, haciendo que la toma de decisiones sea

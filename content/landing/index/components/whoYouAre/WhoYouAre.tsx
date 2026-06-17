@@ -1,6 +1,11 @@
+/* COMPONENTS */
 import { RoleCard } from "../shared/RoleCard";
-import ball from "./images/field.jpg";
+
+/* ICONS */
 import { ClipboardList, SportShoe } from "lucide-react";
+
+/* IMAGES */
+import ball from "./images/field.jpg";
 
 const roles = [
   {

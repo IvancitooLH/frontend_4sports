@@ -1,15 +1,26 @@
 "use client";
 
-import { LoginForm } from "@/content/auth/login/types/LoginForm";
+/* COMPONENTS */
 import { DinamicButton } from "@/content/shared/form/dinamicButton/DinamicButton";
 import { DinamicInputText } from "@/content/shared/form/dinamicInputText/DinamicInputText";
 import { DinamicTextArea } from "@/content/shared/form/dinamicTextArea/DinamicTextArea";
-import { FourSportsIcon } from "@/content/shared/icons/fourSports/FourSportsIcon";
-import { useAnnouncement } from "@/content/shared/ui/annoucement/stores/announcementStore";
 import { TitleWithDescription } from "@/content/shared/ui/titleWithDescription/TitleWithDescription";
-import { useState } from "react";
+
+/* HOOKS */
 import { FormProvider, useForm } from "react-hook-form";
+import { useState } from "react";
+
+/* ICONS */
+import { FourSportsIcon } from "@/content/shared/icons/fourSports/FourSportsIcon";
+
+/* LIBS */
 import { motion } from "framer-motion";
+
+/* STORES */
+import { useAnnouncement } from "@/content/shared/ui/annoucement/stores/announcementStore";
+
+/* TYPES */
+import { LoginForm } from "@/content/auth/login/types/LoginForm";
 
 export function ContactContent() {
   const { setAnnouncement } = useAnnouncement();

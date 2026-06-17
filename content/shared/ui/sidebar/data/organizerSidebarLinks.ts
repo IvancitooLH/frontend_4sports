@@ -1,5 +1,5 @@
 /* ICONS */
-import { Home, Trophy, UsersRound, Building2 } from "lucide-react";
+import { Home, Trophy, Building2 } from "lucide-react";
 
 /* TYPES */
 import { LinkSidebar } from "@/content/shared/ui/sidebar/types/LinkSidebar";
@@ -20,29 +20,4 @@ export const organizerSidebarLinks: LinkSidebar[] = [
     href: "/organizer/tournaments",
     icon: Trophy,
   },
-  {
-    label: "Equipos",
-    href: "/organizer/teams",
-    icon: UsersRound,
-  },
-  /* {
-    label: "Canchas",
-    href: "/organizer/fields",
-    icon: LandPlot,
-  }, */
-  /* {
-    label: "Match",
-    href: "/organizer/match",
-    icon: Handshake,
-  }, */
-  /* {
-    label: "Reportes",
-    href: "/organizer/reports",
-    icon: ClipboardList,
-  }, */
-  /* {
-    label: "Pagos",
-    href: "/organizer/payments",
-    icon: CreditCard,
-  }, */
 ];

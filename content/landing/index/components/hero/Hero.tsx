@@ -1,6 +1,9 @@
+/* COMPONENTS */
 import Image from "next/image";
-import cancha from "./images/cancha.jpg";
 import Link from "next/link";
+
+/* IMAGES */
+import cancha from "./images/cancha.jpg";
 
 export function Hero() {
   return (

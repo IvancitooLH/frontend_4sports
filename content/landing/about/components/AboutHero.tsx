@@ -1,5 +1,6 @@
 "use client";
 
+/* COMPONENTS */
 import { TitleWithDescription } from "@/content/shared/ui/titleWithDescription/TitleWithDescription";
 
 /* ICONS */

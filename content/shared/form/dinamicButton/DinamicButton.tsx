@@ -1,19 +1,8 @@
-"use client";
-
 /* ICONS */
 import { Loader } from "lucide-react";
 
-/* LIBS */
-import { motion } from "framer-motion";
-
 /* TYPES */
 import { ButtonType } from "@/content/shared/form/dinamicButton/types/buttonType";
-
-/* UTILS */
-import {
-  getNormalStyles,
-  getHoverStyles,
-} from "@/content/shared/form/dinamicButton/utils/getStyles";
 
 export function DinamicButton({
   action,
@@ -34,19 +23,28 @@ export function DinamicButton({
   icon?: React.ReactNode;
   spinFromText: boolean;
 }) {
+  const getBackground = (type: ButtonType) => {
+    switch (type) {
+      case "filled":
+        return "bg-primary text-primary-text border-transparent hover:bg-primary-hover";
+
+      case "ghost":
+        return "bg-background text-primary border-primary hover:bg-surface";
+
+      case "unfilled":
+        return "bg-surface text-ink border-transparent hover:bg-surface-hover";
+
+      case "destructive":
+        return "bg-secondary text-secondary-text border-transparent hover:bg-secondary-hover";
+
+      case "success":
+        return "bg-success text-white border-transparent hover:bg-success-hover";
+    }
+  };
+
   return (
-    <motion.button
-      className={`flex items-center justify-center ${disabled ? "cursor-default" : "cursor-pointer"} ${twClassName} ${label === "" ? "gap-0" : "gap-3"}`}
-      animate={getNormalStyles(type)}
-      whileHover={getHoverStyles(type)}
-      whileTap={disabled ? {} : { scale: 0.95 }}
-      transition={{
-        type: "spring",
-        stiffness: 300,
-        damping: 20,
-        backgroundColor: { duration: 0.3 },
-        color: { duration: 0.3 },
-      }}
+    <button
+      className={`flex items-center justify-center border-2 transition-all duration-300 ${disabled ? "cursor-default" : "cursor-pointer"} ${twClassName} ${label === "" ? "gap-0" : "gap-2"} ${getBackground(type)}`}
       onClick={disabled ? () => {} : action}
       disabled={disabled}
     >
@@ -75,6 +73,6 @@ export function DinamicButton({
           <span className="font-semibold">{label}</span>
         </>
       )}
-    </motion.button>
+    </button>
   );
 }

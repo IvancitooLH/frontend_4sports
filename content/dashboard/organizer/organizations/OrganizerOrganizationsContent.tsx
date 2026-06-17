@@ -2,46 +2,49 @@
 
 /* COMPONENTS */
 import { SectionContainer } from "@/content/shared/ui/sectionContainer/SectionContainer";
+import { OrganizationCard } from "./components/organizationCard/OrganizationCard";
 import { DinamicButton } from "@/content/shared/form/dinamicButton/DinamicButton";
-import { TournamentCard } from "./components/tournamentCard/TournamentCard";
 
 /* ICONS */
 import { Plus } from "lucide-react";
 
 /* IMAGES */
-import tournament1 from "./images/tournament1.png";
-import tournament2 from "./images/tournament2.png";
-import tournament3 from "./images/tournament3.png";
+import organization1 from "./images/organization1.png";
+import organization2 from "./images/organization2.png";
+import organization3 from "./images/organization3.png";
 
 /* TYPES */
-import { TournamentCardType } from "./components/tournamentCard/types/TournamentCardType";
+import { OrganizationCardType } from "./components/organizationCard/types/OrganizationCardType";
 
-const tournaments: TournamentCardType[] = [
+const organizations: OrganizationCardType[] = [
   {
     name: "Sede Deportes",
     description: "La mejor sede de deportes en todo Sonora, México",
-    image: tournament1,
+    image: organization1,
+    isSelected: true,
   },
   {
     name: "Fix Mobile",
     description:
       "Organización para gestionar los torneos internos de nuestros empleados",
-    image: tournament2,
+    image: organization2,
+    isSelected: false,
   },
   {
     name: "Gran Maq",
     description: "Organizamos los mejores torneos de la zona sur de Nogales",
-    image: tournament3,
+    image: organization3,
+    isSelected: false,
   },
 ];
 
-export function OrganizerTournamentsContent() {
+export function OrganizerOrganizationsContent() {
   return (
     <SectionContainer>
       <div className="p-6 flex flex-col">
         <div className="flex justify-between items-center mb-6">
           <p className="text-muted">
-            Selecciona el torneo que deseas gestionar
+            Selecciona la organización que deseas gestionar
           </p>
 
           <DinamicButton
@@ -50,19 +53,20 @@ export function OrganizerTournamentsContent() {
             disabled={false}
             disabledSpinner={false}
             type={"filled"}
-            label="Nuevo torneo"
+            label="Nueva organización"
             spinFromText
             icon={<Plus className="size-4 min-h-4 min-w-4" />}
           />
         </div>
 
-        <div className="grid gap-6 grid-cols-3">
-          {tournaments.map((o, i) => (
-            <TournamentCard
+        <div className="grid gap-6 grid-cols-2">
+          {organizations.map((o, i) => (
+            <OrganizationCard
               key={i}
               name={o.name}
               description={o.description}
               image={o.image}
+              isSelected={o.isSelected}
             />
           ))}
         </div>

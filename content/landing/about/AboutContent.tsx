@@ -1,8 +1,11 @@
 "use client";
 
+/* COMPONENTS */
 import { AboutHero } from "./components/AboutHero";
-import { motion } from "framer-motion";
 import { AboutMisionVision } from "./components/AboutMisionVision";
+
+/* HOOKS */
+import { motion } from "framer-motion";
 
 export function AboutContent() {
   return (

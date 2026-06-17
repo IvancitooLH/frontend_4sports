@@ -1,5 +1,6 @@
 "use client";
 
+/* HOOKS */
 import { useEffect, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadPolygonShape } from "@tsparticles/shape-polygon";
