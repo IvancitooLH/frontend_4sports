@@ -21,7 +21,7 @@ export function RouteTitle({
   return (
     <header className="w-full p-4 border-b border-b-line bg-background">
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           <button
             onClick={toggleSidebar}
             className={`p-1 hover:bg-surface rounded transition-all duration-300 lg:hidden cursor-pointer`}
@@ -30,12 +30,12 @@ export function RouteTitle({
           </button>
 
           {links.map((link, index) => (
-            <div key={index} className="flex">
+            <div key={index} className="flex items-center gap-2">
               <Link className="font-light" href={link.href}>
                 {link.label}
               </Link>
               {index < links.length - 1 && (
-                <ChevronRight className="size-3 text-primary hidden md:block" />
+                <ChevronRight className="size-3 text-primary" />
               )}
             </div>
           ))}

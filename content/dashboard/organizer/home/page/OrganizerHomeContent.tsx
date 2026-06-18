@@ -54,11 +54,10 @@ export function OrganizerHomeContent() {
         <h1 className="text-5xl font-extralight font-bebas mb-2">
           Hola <span className="text-primary font-normal">Pirita</span>
         </h1>
-        <p className="text-muted mb-4">Para el día de hoy</p>
 
         <div className="flex flex-col">
           <p className="text-xl font-extralight mb-4">
-            <span className="text-primary">3</span> Partidos
+            <span className="text-primary">3</span> Partidos para hoy
           </p>
 
           <div className="flex gap-4">

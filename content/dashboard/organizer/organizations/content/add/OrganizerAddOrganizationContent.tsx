@@ -1,10 +1,12 @@
 /* COMPONENTS */
 import { SectionContainer } from "@/content/shared/ui/sectionContainer/SectionContainer";
 
-export function OrganizerFieldsContent() {
+export function OrganizerAddOrganizationContent() {
   return (
     <SectionContainer>
-      <h1 className="m-6">Organizador Canchas</h1>
+      <div className="p-6 flex flex-col">
+        
+      </div>
     </SectionContainer>
   );
 }

@@ -1,5 +1,5 @@
 /* CONTENT */
-import { OrganizerHomeContent } from "@/content/dashboard/organizer/home/OrganizerHomeContent";
+import { OrganizerHomeContent } from "@/content/dashboard/organizer/home/page/OrganizerHomeContent";
 import { RouteTitle } from "@/content/shared/ui/routeTitle/RouteTitle";
 
 export default function OrganizerHomePage() {

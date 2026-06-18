@@ -13,6 +13,9 @@ import organization1 from "./images/organization1.png";
 import organization2 from "./images/organization2.png";
 import organization3 from "./images/organization3.png";
 
+/* NAVIGATION */
+import { useRouter } from "next/navigation";
+
 /* TYPES */
 import { OrganizationCardType } from "./components/organizationCard/types/OrganizationCardType";
 
@@ -39,16 +42,18 @@ const organizations: OrganizationCardType[] = [
 ];
 
 export function OrganizerOrganizationsContent() {
+  const router = useRouter();
+
   return (
     <SectionContainer>
       <div className="p-6 flex flex-col">
         <div className="flex justify-between items-center mb-6">
-          <p className="text-muted">
-            Selecciona la organización que deseas gestionar
+          <p className="font-bebas text-5xl">
+            Mis <span className="text-primary">Organizaciones</span>
           </p>
 
           <DinamicButton
-            action={() => {}}
+            action={() => router.push("/organizer/organizations/add")}
             twClassName="w-fit h-fit py-1 px-4 rounded-xl text-sm"
             disabled={false}
             disabledSpinner={false}
