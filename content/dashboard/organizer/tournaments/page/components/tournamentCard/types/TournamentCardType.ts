@@ -2,6 +2,7 @@
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
 export type TournamentCardType = {
+  slug: string,
   image: StaticImport;
   name: string;
   description: string;
@@ -11,5 +12,6 @@ export type TournamentCardType = {
   teams: { image: StaticImport }[];
   teamsQuantity: number,
   type: "Todos contra todos" | "Eliminatoria directa",
-  banner: StaticImport
+  banner: StaticImport,
+  location: string
 };

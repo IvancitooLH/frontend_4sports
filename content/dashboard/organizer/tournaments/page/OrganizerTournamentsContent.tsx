@@ -24,6 +24,7 @@ import { TournamentCardType } from "./components/tournamentCard/types/Tournament
 
 const tournaments: TournamentCardType[] = [
   {
+    slug: "torneo-verano-ii",
     name: "Torneo Verano II",
     description: "Pre Elecciones de Verano II",
     image: tournament1,
@@ -39,11 +40,12 @@ const tournaments: TournamentCardType[] = [
     teamsQuantity: 20,
     type: "Eliminatoria directa",
     banner: banner1,
+    location: "Nogales, Sonora. México",
   },
   {
+    slug: "casa-de-plata",
     name: "Casa de Plata",
-    description:
-      "Reuniendo los mejores equipos 2026",
+    description: "Reuniendo los mejores equipos 2026",
     image: tournament2,
     state: "Jugando",
     sex: "Femenino",
@@ -57,8 +59,10 @@ const tournaments: TournamentCardType[] = [
     teamsQuantity: 9,
     type: "Todos contra todos",
     banner: banner2,
+    location: "Nogales, Sonora. México",
   },
   {
+    slug: "tronos",
     name: "Tronos",
     description: "Práctica de equipos Nogalenses",
     image: tournament3,
@@ -69,6 +73,7 @@ const tournaments: TournamentCardType[] = [
     teamsQuantity: 3,
     type: "Eliminatoria directa",
     banner: banner1,
+    location: "Nogales, Sonora. México",
   },
 ];
 
@@ -99,9 +104,10 @@ export function OrganizerTournamentsContent() {
         </p>
 
         <div className="grid gap-6 grid-cols-3">
-          {tournaments.map((t, i) => (
+          {tournaments.map((t) => (
             <TournamentCard
-              key={i}
+              key={t.slug}
+              slug={t.slug}
               name={t.name}
               description={t.description}
               image={t.image}
@@ -112,6 +118,7 @@ export function OrganizerTournamentsContent() {
               teamsQuantity={t.teamsQuantity}
               type={t.type}
               banner={t.banner}
+              location={t.location}
             />
           ))}
         </div>

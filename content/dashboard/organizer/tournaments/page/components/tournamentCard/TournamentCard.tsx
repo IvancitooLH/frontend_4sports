@@ -1,12 +1,10 @@
 "use client";
 
 /* COMPONENTS */
-import { DinamicButton } from "@/content/shared/form/dinamicButton/DinamicButton";
 import Image from "next/image";
 
 /* ICONS */
 import {
-  SquarePen,
   Merge,
   Grid2x2,
   LoaderPinwheel,
@@ -14,12 +12,20 @@ import {
   Mars,
   VenusAndMars,
   ChartNoAxesGantt,
+  MapPin,
 } from "lucide-react";
+
+/* LIBS */
+import { motion } from "framer-motion";
+
+/* NAVIGATION */
+import { useRouter } from "next/navigation";
 
 /* TYPES */
 import { TournamentCardType } from "./types/TournamentCardType";
 
 export function TournamentCard({
+  slug,
   image,
   name,
   state,
@@ -29,7 +35,10 @@ export function TournamentCard({
   teamsQuantity,
   type,
   banner,
+  location,
 }: TournamentCardType) {
+  const router = useRouter();
+
   const getBgColor = (state: "Inscribiendo" | "Jugando" | "Finalizado") => {
     switch (state) {
       case "Inscribiendo":
@@ -44,7 +53,19 @@ export function TournamentCard({
   };
 
   return (
-    <div className={`flex flex-col rounded-xl border border-line`}>
+    <motion.button
+      onClick={() => router.push(`/organizer/tournaments/${slug}`)}
+      className="flex flex-col rounded-xl border border-line cursor-pointer"
+      animate={{ scale: 1 }}
+      whileHover={{ scale: 1.03 }}
+      whileTap={{ scale: 0.95 }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        damping: 20,
+        scale: { duration: 0.3 },
+      }}
+    >
       <div className="w-full h-28 min-h-28 rounded-t-xl relative">
         <div className="absolute inset-0 bg-linear-to-b from-black/50 to-transparent rounded-t-xl" />
 
@@ -63,7 +84,7 @@ export function TournamentCard({
       </div>
 
       <div className="flex flex-col p-6 gap-6">
-        <div className="flex gap-6 items-center">
+        <div className="flex gap-6 items-center w-full">
           <Image
             alt="Equipo"
             src={image}
@@ -72,7 +93,7 @@ export function TournamentCard({
           />
 
           <div className="w-full h-fit">
-            <p className="text-lg font-bold truncate">{name}</p>
+            <p className="text-lg font-bold truncate text-left">{name}</p>
 
             <div className="flex gap-2 items-center">
               {type === "Eliminatoria directa" ? (
@@ -85,7 +106,7 @@ export function TournamentCard({
           </div>
         </div>
 
-        <div className="flex w-full justify-between">
+        <div className="flex w-full justify-between items-center">
           <div className="flex gap-2 items-center">
             {sex === "Femenino" ? (
               <Venus className="size-4 min-w-4 min-h-4 text-muted" />
@@ -103,7 +124,7 @@ export function TournamentCard({
           </div>
         </div>
 
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between w-full">
           <div className="flex gap-2 items-center">
             <ChartNoAxesGantt className="size-4 min-w-4 min-h-4 text-muted" />
             <p className="text-muted">Equipos</p>
@@ -135,17 +156,11 @@ export function TournamentCard({
           </div>
         </div>
 
-        <DinamicButton
-          action={() => {}}
-          twClassName="w-fit h-fit py-1 px-4 rounded-xl text-sm"
-          disabled={false}
-          disabledSpinner={false}
-          type={"unfilled"}
-          label="Gestionar"
-          spinFromText
-          icon={<SquarePen className="size-4 min-h-4 min-w-4" />}
-        />
+        <div className="flex gap-2 items-center justify-center w-full">
+          <MapPin className="size-4 min-w-4 min-h-4 text-muted" />
+          <p className="text-muted">{location}</p>
+        </div>
       </div>
-    </div>
+    </motion.button>
   );
 }
