@@ -16,16 +16,16 @@ export function OrganizationCard({
 }: OrganizationCardType) {
   return (
     <div
-      className={`flex relative rounded-xl border border-line justify-between h-48 ${isSelected ? "bg-primary-background" : "bg-transparent"}`}
+      className={`flex relative rounded-xl border border-line justify-between h-52 ${isSelected ? "bg-primary-background" : "bg-transparent"}`}
     >
       <Image
         alt="Equipo"
         src={image}
         quality={70}
-        className="w-48 min-w-48 h-full rounded-l-xl object-cover object-center"
+        className="w-52 min-w-52 h-full rounded-l-xl object-cover object-center"
       />
 
-      <div className="p-4 flex flex-col gap-4 w-full min-w-0">
+      <div className="p-6 flex flex-col gap-4 w-full min-w-0">
         <div className="flex justify-between items-center">
           <p className="font-bold text-lg">{name}</p>
 

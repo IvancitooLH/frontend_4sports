@@ -1,5 +1,5 @@
 /* CONTENT */
-import { OrganizerTournamentsContent } from "@/content/dashboard/organizer/tournaments/OrganizerTournamentsContent";
+import { OrganizerTournamentsContent } from "@/content/dashboard/organizer/tournaments/page/OrganizerTournamentsContent";
 import { RouteTitle } from "@/content/shared/ui/routeTitle/RouteTitle";
 
 export default function OrganizerTournamentsPage() {

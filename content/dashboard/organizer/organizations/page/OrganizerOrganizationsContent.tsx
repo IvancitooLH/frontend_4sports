@@ -47,7 +47,7 @@ export function OrganizerOrganizationsContent() {
   return (
     <SectionContainer>
       <div className="p-6 flex flex-col">
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex justify-between items-center mb-2">
           <p className="font-bebas text-5xl">
             Mis <span className="text-primary">Organizaciones</span>
           </p>
@@ -63,6 +63,8 @@ export function OrganizerOrganizationsContent() {
             icon={<Plus className="size-4 min-h-4 min-w-4" />}
           />
         </div>
+
+        <p className="text-xl font-extralight mb-4">Selecciona la organización para gestionar sus torneos</p>
 
         <div className="grid gap-6 grid-cols-2">
           {organizations.map((o, i) => (

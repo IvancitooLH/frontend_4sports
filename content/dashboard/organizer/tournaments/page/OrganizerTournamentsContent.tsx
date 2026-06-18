@@ -1,0 +1,121 @@
+"use client";
+
+/* COMPONENTS */
+import { SectionContainer } from "@/content/shared/ui/sectionContainer/SectionContainer";
+import { DinamicButton } from "@/content/shared/form/dinamicButton/DinamicButton";
+import { TournamentCard } from "./components/tournamentCard/TournamentCard";
+
+/* ICONS */
+import { Plus } from "lucide-react";
+
+/* IMAGES */
+import tournament1 from "./images/tournament1.png";
+import tournament2 from "./images/tournament2.png";
+import tournament3 from "./images/tournament3.png";
+import team1 from "./images/team1.jpg";
+import team2 from "./images/team2.jpg";
+import team3 from "./images/team3.jpg";
+import team4 from "./images/team4.jpg";
+import banner1 from "./images/banner1.jpg";
+import banner2 from "./images/banner2.jpg";
+
+/* TYPES */
+import { TournamentCardType } from "./components/tournamentCard/types/TournamentCardType";
+
+const tournaments: TournamentCardType[] = [
+  {
+    name: "Torneo Verano II",
+    description: "Pre Elecciones de Verano II",
+    image: tournament1,
+    state: "Inscribiendo",
+    sex: "Femenino",
+    sport: "Básquetbol",
+    teams: [
+      { image: team1 },
+      { image: team2 },
+      { image: team3 },
+      { image: team4 },
+    ],
+    teamsQuantity: 20,
+    type: "Eliminatoria directa",
+    banner: banner1,
+  },
+  {
+    name: "Casa de Plata",
+    description:
+      "Reuniendo los mejores equipos 2026",
+    image: tournament2,
+    state: "Jugando",
+    sex: "Femenino",
+    sport: "Básquetbol",
+    teams: [
+      { image: team1 },
+      { image: team2 },
+      { image: team3 },
+      { image: team4 },
+    ],
+    teamsQuantity: 9,
+    type: "Todos contra todos",
+    banner: banner2,
+  },
+  {
+    name: "Tronos",
+    description: "Práctica de equipos Nogalenses",
+    image: tournament3,
+    state: "Finalizado",
+    sex: "Femenino",
+    sport: "Básquetbol",
+    teams: [{ image: team1 }, { image: team2 }, { image: team3 }],
+    teamsQuantity: 3,
+    type: "Eliminatoria directa",
+    banner: banner1,
+  },
+];
+
+export function OrganizerTournamentsContent() {
+  return (
+    <SectionContainer>
+      <div className="p-6 flex flex-col">
+        <div className="flex justify-between items-center mb-2">
+          <p className="font-bebas text-5xl">
+            Mis <span className="text-primary">Torneos</span>
+          </p>
+
+          <DinamicButton
+            action={() => {}}
+            twClassName="w-fit h-fit py-1 px-4 rounded-xl text-sm"
+            disabled={false}
+            disabledSpinner={false}
+            type={"filled"}
+            label="Nuevo torneo"
+            spinFromText
+            icon={<Plus className="size-4 min-h-4 min-w-4" />}
+          />
+        </div>
+
+        <p className="text-xl font-extralight mb-4">
+          Gestionado torneos de la organización:{" "}
+          <span className="font-bold text-primary">Sede Deportes</span>
+        </p>
+
+        <div className="grid gap-6 grid-cols-3">
+          {tournaments.map((t, i) => (
+            <TournamentCard
+              key={i}
+              name={t.name}
+              description={t.description}
+              image={t.image}
+              state={t.state}
+              sex={t.sex}
+              sport={t.sport}
+              teams={t.teams}
+              teamsQuantity={t.teamsQuantity}
+              type={t.type}
+              banner={t.banner}
+            />
+          ))}
+        </div>
+      </div>
+    </SectionContainer>
+  );
+}
