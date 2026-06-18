@@ -18,9 +18,11 @@ import team3 from "./images/team3.jpg";
 import team4 from "./images/team4.jpg";
 import banner1 from "./images/banner1.jpg";
 import banner2 from "./images/banner2.jpg";
+import organization1 from "./images/organization1.png";
 
 /* TYPES */
 import { TournamentCardType } from "./components/tournamentCard/types/TournamentCardType";
+import Image from "next/image";
 
 const tournaments: TournamentCardType[] = [
   {
@@ -98,10 +100,21 @@ export function OrganizerTournamentsContent() {
           />
         </div>
 
-        <p className="text-xl font-extralight mb-4">
-          Gestionado torneos de la organización:{" "}
-          <span className="font-bold text-primary">Sede Deportes</span>
-        </p>
+        <div className="w-full flex gap-4 items-center mb-4">
+          <p className="text-xl font-extralight">
+            Gestionado torneos de la organización:
+          </p>
+
+          <div className="flex items-center gap-2">
+            <Image
+              alt="Organización"
+              src={organization1}
+              quality={70}
+              className="w-6 h-6 min-w-6 min-h-6 rounded-full object-cover object-center border border-line"
+            />
+            <p className="font-semibold text-xl">Sede Deportes</p>
+          </div>
+        </div>
 
         <div className="grid gap-6 grid-cols-3">
           {tournaments.map((t) => (

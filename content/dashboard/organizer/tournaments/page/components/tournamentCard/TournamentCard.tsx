@@ -55,15 +55,24 @@ export function TournamentCard({
   return (
     <motion.button
       onClick={() => router.push(`/organizer/tournaments/${slug}`)}
-      className="flex flex-col rounded-xl border border-line cursor-pointer"
-      animate={{ scale: 1 }}
-      whileHover={{ scale: 1.03 }}
+      className="flex flex-col rounded-xl border cursor-pointer"
+      style={{
+        backgroundColor: "var(--background)",
+        borderColor: "var(--line)",
+      }}
+      whileHover={{
+        scale: 1.03,
+        backgroundColor: "var(--surface)",
+        borderColor: "var(--primary)",
+      }}
       whileTap={{ scale: 0.95 }}
       transition={{
         type: "spring",
         stiffness: 300,
         damping: 20,
         scale: { duration: 0.3 },
+        backgroundColor: { duration: 0.3 },
+        borderColor: { duration: 0.3 },
       }}
     >
       <div className="w-full h-28 min-h-28 rounded-t-xl relative">
@@ -97,9 +106,9 @@ export function TournamentCard({
 
             <div className="flex gap-2 items-center">
               {type === "Eliminatoria directa" ? (
-                <Merge className="size-4 min-w-4 min-h-4 text-muted" />
+                <Merge className="size-4 min-w-4 min-h-4" />
               ) : (
-                <Grid2x2 className="size-4 min-w-4 min-h-4 text-muted" />
+                <Grid2x2 className="size-4 min-w-4 min-h-4" />
               )}
               <p className="truncate text-muted">{type}</p>
             </div>
@@ -109,24 +118,24 @@ export function TournamentCard({
         <div className="flex w-full justify-between items-center">
           <div className="flex gap-2 items-center">
             {sex === "Femenino" ? (
-              <Venus className="size-4 min-w-4 min-h-4 text-muted" />
+              <Venus className="size-4 min-w-4 min-h-4" />
             ) : sex === "Masculino" ? (
-              <Mars className="size-4 min-w-4 min-h-4 text-muted" />
+              <Mars className="size-4 min-w-4 min-h-4" />
             ) : (
-              <VenusAndMars className="size-4 min-w-4 min-h-4 text-muted" />
+              <VenusAndMars className="size-4 min-w-4 min-h-4" />
             )}
             <p className="truncate text-muted text-center">{sex}</p>
           </div>
 
           <div className="flex gap-2 items-center">
-            <LoaderPinwheel className="size-4 min-w-4 min-h-4 text-muted" />
+            <LoaderPinwheel className="size-4 min-w-4 min-h-4" />
             <p className="truncate text-muted text-center">{sport}</p>
           </div>
         </div>
 
         <div className="flex items-center justify-between w-full">
           <div className="flex gap-2 items-center">
-            <ChartNoAxesGantt className="size-4 min-w-4 min-h-4 text-muted" />
+            <ChartNoAxesGantt className="size-4 min-w-4 min-h-4" />
             <p className="text-muted">Equipos</p>
           </div>
 
@@ -157,7 +166,7 @@ export function TournamentCard({
         </div>
 
         <div className="flex gap-2 items-center justify-center w-full">
-          <MapPin className="size-4 min-w-4 min-h-4 text-muted" />
+          <MapPin className="size-4 min-w-4 min-h-4" />
           <p className="text-muted">{location}</p>
         </div>
       </div>

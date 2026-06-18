@@ -1,8 +1,12 @@
 /* ICONS */
 import { Loader } from "lucide-react";
 
+/* LIBS */
+import { twMerge } from "tailwind-merge";
+
 /* TYPES */
 import { ButtonType } from "@/content/shared/form/dinamicButton/types/buttonType";
+import { DinamicButtontype } from "./types/dinamicButtonType";
 
 export function DinamicButton({
   action,
@@ -13,16 +17,7 @@ export function DinamicButton({
   label,
   icon,
   spinFromText,
-}: {
-  action: () => void;
-  type: ButtonType;
-  twClassName: string;
-  disabled: boolean;
-  disabledSpinner: boolean;
-  label: string;
-  icon?: React.ReactNode;
-  spinFromText: boolean;
-}) {
+}: DinamicButtontype) {
   const getBackground = (type: ButtonType) => {
     switch (type) {
       case "filled":
@@ -44,8 +39,11 @@ export function DinamicButton({
 
   return (
     <button
-      className={`flex items-center justify-center border-2 transition-all duration-300 ${disabled ? "cursor-default" : "cursor-pointer"} ${twClassName} ${label === "" ? "gap-0" : "gap-2"} ${getBackground(type)}`}
-      onClick={disabled ? () => {} : action}
+      className={twMerge(
+        `w-full h-fit flex items-center justify-center border-2 transition-all duration-300 rounded-lg pt-2 pb-2 pr-4 pl-4 ${disabled ? "cursor-default" : "cursor-pointer"} ${label && "gap-2"} ${getBackground(type)}`,
+        twClassName,
+      )}
+      onClick={disabled ? undefined : action}
       disabled={disabled}
     >
       {disabled ? (

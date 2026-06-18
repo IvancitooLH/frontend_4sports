@@ -1,9 +1,14 @@
+"use client";
+
 /* COMPONENTS */
 import { DinamicButton } from "@/content/shared/form/dinamicButton/DinamicButton";
 import Image from "next/image";
 
 /* ICONS */
 import { SquarePen, Trash2, UsersRound } from "lucide-react";
+
+/* LIBS */
+import { motion } from "framer-motion";
 
 /* TYPES */
 import { OrganizationCardType } from "./types/OrganizationCardType";
@@ -15,66 +20,96 @@ export function OrganizationCard({
   description,
 }: OrganizationCardType) {
   return (
-    <div
-      className={`flex relative rounded-xl border border-line justify-between h-52 ${isSelected ? "bg-primary-background" : "bg-transparent"}`}
+    <motion.div
+      onClick={
+        !isSelected
+          ? () => {
+              alert("Seleccionada");
+            }
+          : undefined
+      }
+      className="flex relative rounded-xl border justify-between w-full h-fit items-center p-8 gap-4"
+      style={
+        isSelected
+          ? {
+              backgroundColor: "var(--primary-background)",
+              borderColor: "var(--primary)",
+            }
+          : {
+              backgroundColor: "var(--background)",
+              borderColor: "var(--line)",
+              cursor: "pointer",
+            }
+      }
+      whileHover={
+        isSelected
+          ? {}
+          : {
+              scale: 1.03,
+              backgroundColor: "var(--surface)",
+              borderColor: "var(--primary)",
+            }
+      }
+      whileTap={isSelected ? {} : { scale: 0.95 }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        damping: 20,
+        scale: { duration: 0.3 },
+        backgroundColor: { duration: 0.3 },
+        borderColor: { duration: 0.3 },
+      }}
     >
-      <Image
-        alt="Equipo"
-        src={image}
-        quality={70}
-        className="w-52 min-w-52 h-full rounded-l-xl object-cover object-center"
-      />
-
-      <div className="p-6 flex flex-col gap-4 w-full min-w-0">
-        <div className="flex justify-between items-center">
-          <p className="font-bold text-lg">{name}</p>
-
-          <DinamicButton
-            action={() => {}}
-            twClassName="w-fit h-fit py-1 px-4 rounded-xl text-sm"
-            disabled={false}
-            disabledSpinner={false}
-            type={isSelected ? "filled" : "ghost"}
-            label={isSelected ? "Seleccionada" : "Seleccionar"}
-            spinFromText
-          />
+      {isSelected && (
+        <div className="w-fit h-fit py-1 px-4 rounded-xl text-sm absolute top-0 right-4 -translate-y-1/2 flex items-center bg-primary text-primary-text">
+          <p className="font-bold">Seleccionada</p>
         </div>
+      )}
 
-        <p className="text-sm line-clamp-2 h-fit min-h-fit">{description}</p>
+      <div className="flex gap-6 items-center min-w-0">
+        <Image
+          alt="Organización"
+          src={image}
+          quality={70}
+          className="w-12 h-12 min-w-12 min-h-12 rounded-full object-cover object-center"
+        />
 
-        <div className="flex gap-2 h-full justify-end items-end">
-          <DinamicButton
-            action={() => {}}
-            twClassName="w-fit h-fit p-2 rounded-full text-sm"
-            disabled={false}
-            disabledSpinner={false}
-            type={"unfilled"}
-            label=""
-            spinFromText
-            icon={<SquarePen className="size-4 min-h-4 min-w-4" />}
-          />
-          <DinamicButton
-            action={() => {}}
-            twClassName="w-fit h-fit p-2 rounded-full text-sm"
-            disabled={false}
-            disabledSpinner={false}
-            type={"unfilled"}
-            label=""
-            spinFromText
-            icon={<UsersRound className="size-4 min-h-4 min-w-4" />}
-          />
-          <DinamicButton
-            action={() => {}}
-            twClassName="w-fit h-fit p-2 rounded-full text-sm"
-            disabled={false}
-            disabledSpinner={false}
-            type={"destructive"}
-            label=""
-            spinFromText
-            icon={<Trash2 className="size-4 min-h-4 min-w-4" />}
-          />
+        <div className="min-w-0">
+          <p className="font-bold text-lg text-left">{name}</p>
+          <p className="text-sm truncate">{description}</p>
         </div>
       </div>
-    </div>
+
+      <div className="flex gap-2">
+        <DinamicButton
+          action={(e) => {
+            e.stopPropagation();
+            alert("Editar");
+          }}
+          type="unfilled"
+          twClassName="w-fit p-2 rounded-full border border-line"
+          icon={<SquarePen className="size-4 min-h-4 min-w-4" />}
+        />
+
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            alert("Miembros");
+          }}
+          className="w-fit h-fit p-2 rounded-full border border-line bg-surface text-ink hover:border-primary transition-all duration-300 cursor-pointer"
+        >
+          <UsersRound className="size-4 min-h-4 min-w-4" />
+        </button>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            alert("Eliminar");
+          }}
+          className="w-fit h-fit p-2 rounded-full border border-line bg-secondary text-secondary-text hover:border-primary transition-all duration-300 cursor-pointer"
+        >
+          <Trash2 className="size-4 min-h-4 min-w-4" />
+        </button>
+      </div>
+    </motion.div>
   );
 }

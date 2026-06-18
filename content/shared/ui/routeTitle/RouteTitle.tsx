@@ -43,11 +43,11 @@ export function RouteTitle({
 
         <button
           onClick={toggleNotificationsSidebar}
-          className={`p-1 hover:bg-surface rounded transition-all duration-300 cursor-pointer relative`}
+          className={`p-2 bg-surface rounded-full transition-all duration-300 cursor-pointer relative border border-line`}
         >
           <Bell className="size-6 text-primary" />
-          <div className="absolute top-0 right-0 w-5 h-5 rounded-full bg-secondary translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
-            <p className="text-[8px] text-white">2</p>
+          <div className="absolute py-0.5 px-1.5 top-0 right-0 rounded-full bg-secondary translate-x-1/2 -translate-y-1/2">
+            <p className="text-xs text-white font-bold">2</p>
           </div>
         </button>
       </div>

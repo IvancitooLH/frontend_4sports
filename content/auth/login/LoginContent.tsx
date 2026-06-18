@@ -94,7 +94,7 @@ export function LoginContent() {
 
       <DinamicButton
         action={methods.handleSubmit(onSubmit)}
-        twClassName="w-full h-fit py-2 px-4 rounded-xl mb-4"
+        twClassName="mb-4"
         disabled={saving}
         disabledSpinner={true}
         type={saving ? "disabled" : "filled"}
@@ -111,9 +111,7 @@ export function LoginContent() {
       <div className="flex gap-4 mb-6">
         <DinamicButton
           action={methods.handleSubmit(onSubmit)}
-          twClassName="w-full h-fit py-2 px-4 rounded-xl"
           disabled={saving}
-          disabledSpinner={false}
           type={saving ? "disabled" : "unfilled"}
           label="Google"
           spinFromText
@@ -126,9 +124,7 @@ export function LoginContent() {
 
         <DinamicButton
           action={methods.handleSubmit(onSubmit)}
-          twClassName="w-full h-fit py-2 px-4 rounded-xl"
           disabled={saving}
-          disabledSpinner={false}
           type={saving ? "disabled" : "unfilled"}
           label="Ingresar"
           spinFromText

@@ -54,17 +54,14 @@ export function OrganizerOrganizationsContent() {
 
           <DinamicButton
             action={() => router.push("/organizer/organizations/add")}
-            twClassName="w-fit h-fit py-1 px-4 rounded-xl text-sm"
-            disabled={false}
-            disabledSpinner={false}
+            twClassName="w-fit pt-1 pb-1 text-sm"
             type={"filled"}
             label="Nueva organización"
-            spinFromText
             icon={<Plus className="size-4 min-h-4 min-w-4" />}
           />
         </div>
 
-        <p className="text-xl font-extralight mb-4">Selecciona la organización para gestionar sus torneos</p>
+        <p className="text-xl font-extralight mb-6">Selecciona una organización para gestionar sus torneos</p>
 
         <div className="grid gap-6 grid-cols-2">
           {organizations.map((o, i) => (

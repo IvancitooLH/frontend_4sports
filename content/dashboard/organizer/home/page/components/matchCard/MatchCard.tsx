@@ -1,11 +1,16 @@
+"use client";
+
 /* COMPONENTS */
 import Image from "next/image";
 
 /* ICONS */
-import { Clock, MapPin } from "lucide-react";
+import { Clock, LandPlot, MapPin } from "lucide-react";
+
+/* LIBS */
+import { motion } from "framer-motion";
 
 /* TYPES */
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import { MatchCardType } from "./types/matchCardType";
 
 export function MatchCard({
   team1Img,
@@ -14,16 +19,32 @@ export function MatchCard({
   team2Name,
   hora,
   cancha,
-}: {
-  team1Img: StaticImport;
-  team1Name: string;
-  team2Img: StaticImport;
-  team2Name: string;
-  hora: string;
-  cancha: string;
-}) {
+  tournament,
+  tournament_image,
+  tournament_location,
+}: MatchCardType) {
   return (
-    <div className="border border-line p-6 rounded-lg flex flex-col items-center gap-4 w-full">
+    <motion.div
+      className="border p-6 rounded-xl flex flex-col items-center gap-4 w-full cursor-pointer"
+      style={{
+        backgroundColor: "var(--background)",
+        borderColor: "var(--line)",
+      }}
+      whileHover={{
+        scale: 1.03,
+        backgroundColor: "var(--surface)",
+        borderColor: "var(--primary)",
+      }}
+      whileTap={{ scale: 0.95 }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        damping: 20,
+        scale: { duration: 0.3 },
+        backgroundColor: { duration: 0.3 },
+        borderColor: { duration: 0.3 },
+      }}
+    >
       <div className="flex gap-4 items-center w-full">
         <div className="flex flex-col gap-4 items-center w-full min-w-0">
           <Image
@@ -33,7 +54,9 @@ export function MatchCard({
             className="w-24 h-24 min-w-24 min-h-24 rounded-full"
           />
 
-          <p className="w-full truncate text-center font-bold text-lg">{team1Name}</p>
+          <p className="w-full truncate text-center font-bold text-lg">
+            {team1Name}
+          </p>
         </div>
 
         <p className="text-primary italic font-bebas text-2xl">vs</p>
@@ -46,7 +69,9 @@ export function MatchCard({
             className="w-24 h-24 min-w-24 min-h-24 rounded-full"
           />
 
-          <p className="w-full truncate text-center font-bold text-lg">{team2Name}</p>
+          <p className="w-full truncate text-center font-bold text-lg">
+            {team2Name}
+          </p>
         </div>
       </div>
 
@@ -57,10 +82,25 @@ export function MatchCard({
         </div>
 
         <div className="flex gap-2 items-center min-w-0">
-          <MapPin className="size-4 min-w-4 min-h-4" />
+          <LandPlot className="size-4 min-w-4 min-h-4" />
           <p className="text-muted truncate">{cancha}</p>
         </div>
       </div>
-    </div>
+
+      <div className="flex gap-2 items-center min-w-fit">
+        <Image
+          alt="Equipo"
+          src={tournament_image}
+          quality={70}
+          className="w-6 h-6 min-w-6 min-h-6 rounded-full"
+        />
+        <p>{tournament}</p>
+      </div>
+
+      <div className="flex gap-2 items-center justify-center w-full">
+        <MapPin className="size-4 min-w-4 min-h-4" />
+        <p className="text-muted">{tournament_location}</p>
+      </div>
+    </motion.div>
   );
 }

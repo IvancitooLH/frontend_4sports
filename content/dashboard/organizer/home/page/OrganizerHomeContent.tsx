@@ -9,18 +9,12 @@ import team3 from "./images/team3.jpg";
 import team4 from "./images/team4.jpg";
 import team5 from "./images/team5.jpg";
 import team6 from "./images/team6.jpg";
+import tournament1 from "./images/tournament1.png";
 
 /* TYPES */
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import { MatchCardType } from "./components/matchCard/types/matchCardType";
 
-const matches: {
-  team1Img: StaticImport;
-  team1Name: string;
-  team2Img: StaticImport;
-  team2Name: string;
-  hora: string;
-  cancha: string;
-}[] = [
+const matches: MatchCardType[] = [
   {
     team1Img: team1,
     team1Name: "Danzantes",
@@ -28,6 +22,9 @@ const matches: {
     team2Name: "Las Avispas",
     hora: "6:00 PM",
     cancha: "La Vista",
+    tournament: "Torneo Verano II",
+    tournament_image: tournament1,
+    tournament_location: "Nogales, Sonora. México",
   },
   {
     team1Img: team3,
@@ -36,6 +33,9 @@ const matches: {
     team2Name: "Mariposas Z",
     hora: "7:00 PM",
     cancha: "La Vista",
+    tournament: "Torneo Verano II",
+    tournament_image: tournament1,
+    tournament_location: "Nogales, Sonora. México",
   },
   {
     team1Img: team5,
@@ -44,6 +44,9 @@ const matches: {
     team2Name: "Amazonas",
     hora: "8:00 PM",
     cancha: "La Vista",
+    tournament: "Torneo Verano II",
+    tournament_image: tournament1,
+    tournament_location: "Nogales, Sonora. México",
   },
 ];
 
@@ -68,6 +71,9 @@ export function OrganizerHomeContent() {
                 team2Name={m.team2Name}
                 hora={m.hora}
                 cancha={m.cancha}
+                tournament={m.tournament}
+                tournament_image={m.tournament_image}
+                tournament_location={m.tournament_location}
               />
             ))}
           </div>
