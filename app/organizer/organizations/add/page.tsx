@@ -1,6 +1,6 @@
 /* COMPONENTS */
 import { RouteTitle } from "@/content/shared/ui/routeTitle/RouteTitle";
-import { OrganizerAddOrganizationContent } from "@/content/dashboard/organizer/organizations/content/add/OrganizerAddOrganizationContent";
+import { OrganizerAddOrganizationContent } from "@/content/dashboard/organizer/organizations/content/add/page/OrganizerAddOrganizationContent";
 
 export default function OrganizerAddOrganizationPage() {
   return (

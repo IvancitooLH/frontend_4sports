@@ -3,14 +3,6 @@
 /* HOOKS */
 import { useEffect } from "react";
 
-/* ICONS */
-import {
-  CircleCheckBig,
-  CircleOff,
-  TriangleAlert,
-  CircleAlert,
-} from "lucide-react";
-
 /* STORES */
 import { useAnnouncement } from "@/content/shared/ui/annoucement/stores/announcementStore";
 
@@ -66,19 +58,7 @@ export function Announcement() {
         },
       }}
     >
-      <div className="flex items-center gap-2">
-        {announcement.announceType === "ok" ? (
-          <CircleCheckBig className="size-4 shrink-0" />
-        ) : announcement.announceType === "warning" ? (
-          <TriangleAlert className="size-4 shrink-0" />
-        ) : announcement.announceType === "info" ? (
-          <CircleAlert className="size-4 shrink-0" />
-        ) : (
-          <CircleOff className="size-4 shrink-0" />
-        )}
-
-        <p className="text-sm font-medium">{announcement.message}</p>
-      </div>
+      <p className="text-sm font-medium">{announcement.message}</p>
     </motion.div>
   );
 }
