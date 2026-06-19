@@ -87,28 +87,27 @@ export function OrganizationCard({
             alert("Editar");
           }}
           type="unfilled"
-          twClassName="w-fit p-2 rounded-full border border-line"
+          twClassName="w-fit p-2 rounded-full border border-line hover:border-primary"
           icon={<SquarePen className="size-4 min-h-4 min-w-4" />}
         />
-
-        <button
-          onClick={(e) => {
+        <DinamicButton
+          action={(e) => {
             e.stopPropagation();
             alert("Miembros");
           }}
-          className="w-fit h-fit p-2 rounded-full border border-line bg-surface text-ink hover:border-primary transition-all duration-300 cursor-pointer"
-        >
-          <UsersRound className="size-4 min-h-4 min-w-4" />
-        </button>
-        <button
-          onClick={(e) => {
+          type="unfilled"
+          twClassName="w-fit p-2 rounded-full border border-line hover:border-primary"
+          icon={<UsersRound className="size-4 min-h-4 min-w-4" />}
+        />
+        <DinamicButton
+          action={(e) => {
             e.stopPropagation();
             alert("Eliminar");
           }}
-          className="w-fit h-fit p-2 rounded-full border border-line bg-secondary text-secondary-text hover:border-primary transition-all duration-300 cursor-pointer"
-        >
-          <Trash2 className="size-4 min-h-4 min-w-4" />
-        </button>
+          type="destructive"
+          twClassName="w-fit p-2 rounded-full border border-line hover:border-primary hover:bg-secondary"
+          icon={<Trash2 className="size-4 min-h-4 min-w-4" />}
+        />
       </div>
     </motion.div>
   );

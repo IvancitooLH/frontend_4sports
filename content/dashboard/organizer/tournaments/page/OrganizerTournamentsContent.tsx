@@ -84,7 +84,7 @@ export function OrganizerTournamentsContent() {
     <SectionContainer>
       <div className="p-6 flex flex-col">
         <div className="flex justify-between items-center mb-2">
-          <p className="font-bebas text-5xl">
+          <p className="font-bebas text-5xl text-ink">
             Mis <span className="text-primary">Torneos</span>
           </p>
 

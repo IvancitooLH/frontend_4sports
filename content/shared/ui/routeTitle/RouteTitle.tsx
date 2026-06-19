@@ -43,7 +43,7 @@ export function RouteTitle({
 
         <button
           onClick={toggleNotificationsSidebar}
-          className={`p-2 bg-surface rounded-full transition-all duration-300 cursor-pointer relative border border-line`}
+          className={`p-2 bg-surface rounded-full transition-all duration-300 cursor-pointer relative border border-line hover:border-primary`}
         >
           <Bell className="size-6 text-primary" />
           <div className="absolute py-0.5 px-1.5 top-0 right-0 rounded-full bg-secondary translate-x-1/2 -translate-y-1/2">

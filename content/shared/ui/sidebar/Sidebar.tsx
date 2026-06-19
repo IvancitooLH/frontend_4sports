@@ -2,9 +2,13 @@
 
 /* COMPONENTS */
 import { ThemeToggleButtons } from "@/content/shared/ui/sidebar/components/theme/ThemeToogleButtons";
+import Image from "next/image";
 
 /* HOOKS */
 import { useState, useEffect } from "react";
+
+/* IMAGES */
+import user1 from "./images/user1.jpg";
 
 /* ICONS */
 import {
@@ -34,6 +38,7 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
 export function Sidebar({ links }: { links: LinkSidebar[] }) {
   const router = useRouter();
+  const pathname = usePathname();
 
   const { expanded, toggleSidebar } = useSidebarStore();
   const { setAnnouncement } = useAnnouncement();
@@ -44,11 +49,9 @@ export function Sidebar({ links }: { links: LinkSidebar[] }) {
   const [open, setOpen] = useState(false);
 
   const [user] = useState({
-    name: "Pirita Dreemurr",
-    email: "pirita@gmail.com",
+    name: "Julián López",
+    email: "julian@gmail.com",
   });
-
-  const pathname = usePathname();
 
   const linkClasses = (path: string) => {
     const isActive = pathname === path || pathname?.startsWith(`${path}/`);
@@ -182,8 +185,18 @@ export function Sidebar({ links }: { links: LinkSidebar[] }) {
         <DropdownMenu.Root open={open} onOpenChange={setOpen}>
           <DropdownMenu.Trigger asChild>
             <button className="flex items-center p-4 overflow-hidden w-full gap-4 hover:bg-surface transition-all duration-300 cursor-pointer outline-none border-t border-t-line">
-              <div className="rounded-full w-10 h-10 min-w-10 min-h-10 flex justify-center items-center bg-surface border border-line">
-                <UserRound className="size-4" />
+              <div
+                className={`rounded-full w-10 h-10 min-w-10 min-h-10 flex justify-center items-center bg-surface border relative ${pathname === "/organizer/profile" ? "border-primary" : "border-line"}`}
+              >
+                {/* <UserRound className="size-4" /> */}
+                <Image
+                  alt="Banner"
+                  src={user1}
+                  quality={70}
+                  fill
+                  loading="eager"
+                  className="rounded-full object-cover object-center"
+                />
               </div>
 
               <div className="flex-1 min-w-0 flex flex-col text-left">
@@ -221,7 +234,7 @@ export function Sidebar({ links }: { links: LinkSidebar[] }) {
                   >
                     <DropdownMenu.Item
                       onClick={() => router.push("/organizer/profile")}
-                      className="flex items-center gap-3 rounded-xl p-2 text-sm outline-none cursor-pointer hover:bg-surface mb-2 transition-colors duration-300"
+                      className={`flex items-center gap-3 rounded-xl p-2 text-sm outline-none cursor-pointer mb-2 transition-colors duration-300 border ${pathname === "/organizer/profile" ? "bg-surface/70 border-line text-primary" : "hover:bg-surface border-transparent text-body"}`}
                     >
                       <UserRound className="size-4" />
                       Ver perfil

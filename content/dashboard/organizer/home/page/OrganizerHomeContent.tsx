@@ -54,7 +54,7 @@ export function OrganizerHomeContent() {
   return (
     <SectionContainer>
       <div className="p-6 flex flex-col">
-        <h1 className="text-5xl font-extralight font-bebas mb-2">
+        <h1 className="text-5xl font-extralight font-bebas mb-2 text-ink">
           Hola <span className="text-primary font-normal">Pirita</span>
         </h1>
 
