@@ -1,5 +1,5 @@
 export type AddOrganizationFormType = {
-  orgPicture?: File;
-  orgName?: string;
-  orgDescription?: string;
+  orgPicture: File;
+  orgName: string;
+  orgDescription: string;
 };

@@ -6,4 +6,5 @@ export type OrganizationCardType = {
   image: StaticImport;
   name: string;
   description: string;
+  slug: string
 };

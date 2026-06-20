@@ -1,5 +1,5 @@
 /* COMPONENTS */
-import { OrganizerTournamentsManageContent } from "@/content/dashboard/organizer/tournaments/manage/OrganizerTournamentsManageContent";
+import { OrganizerTournamentsManageContent } from "@/content/dashboard/organizer/tournaments/content/manage/page/OrganizerTournamentsManageContent";
 
 export default async function OrganizerTournamentsManagePage({
   params,

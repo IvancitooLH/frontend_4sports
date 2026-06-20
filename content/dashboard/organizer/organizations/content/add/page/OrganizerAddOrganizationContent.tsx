@@ -3,19 +3,23 @@
 /* COMPONENTS */
 import { SectionContainer } from "@/content/shared/ui/sectionContainer/SectionContainer";
 import { AddOrganizationForm } from "../components/addOrganizationForm/AddOrganizationForm";
+import { Plans } from "@/content/shared/ui/plans/Plans";
 
 /* HOOKS */
 import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
+
+/* LIBS */
+import { AnimatePresence, motion } from "framer-motion";
+
+/* NAVIGATION */
+import { useRouter } from "next/navigation";
 
 /* STORES */
 import { useAnnouncement } from "@/content/shared/ui/annoucement/stores/announcementStore";
 
 /* TYPES */
 import { AddOrganizationFormType } from "../types/addOrganizationFormType";
-import { AnimatePresence, motion } from "framer-motion";
-import { Plans } from "@/content/shared/ui/plans/Plans";
-import { useRouter } from "next/navigation";
 import { PlanCard } from "@/content/shared/ui/plans/types/planCard";
 
 export function OrganizerAddOrganizationContent() {

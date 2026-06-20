@@ -10,6 +10,9 @@ import { SquarePen, Trash2, UsersRound } from "lucide-react";
 /* LIBS */
 import { motion } from "framer-motion";
 
+/* NAVIGATION */
+import { useRouter } from "next/navigation";
+
 /* TYPES */
 import { OrganizationCardType } from "./types/OrganizationCardType";
 
@@ -18,7 +21,10 @@ export function OrganizationCard({
   image,
   name,
   description,
+  slug,
 }: OrganizationCardType) {
+  const router = useRouter();
+
   return (
     <motion.div
       onClick={
@@ -84,7 +90,7 @@ export function OrganizationCard({
         <DinamicButton
           action={(e) => {
             e.stopPropagation();
-            alert("Editar");
+            router.push(`/organizer/organizations/${slug}`);
           }}
           type="unfilled"
           twClassName="w-fit p-2 rounded-full border border-line hover:border-primary"

@@ -25,6 +25,7 @@ const organizations: OrganizationCardType[] = [
     description: "La mejor sede de deportes en todo Sonora, México",
     image: organization1,
     isSelected: true,
+    slug: "sede-deportes",
   },
   {
     name: "Fix Mobile",
@@ -32,12 +33,14 @@ const organizations: OrganizationCardType[] = [
       "Organización para gestionar los torneos internos de nuestros empleados",
     image: organization2,
     isSelected: false,
+    slug: "fix-mobile",
   },
   {
     name: "Gran Maq",
     description: "Organizamos los mejores torneos de la zona sur de Nogales",
     image: organization3,
     isSelected: false,
+    slug: "gran-maq",
   },
 ];
 
@@ -61,7 +64,9 @@ export function OrganizerOrganizationsContent() {
           />
         </div>
 
-        <p className="text-xl font-extralight mb-6">Selecciona una organización para gestionar sus torneos</p>
+        <p className="text-xl font-extralight mb-6">
+          Selecciona una organización para gestionar sus torneos
+        </p>
 
         <div className="grid gap-6 grid-cols-2">
           {organizations.map((o, i) => (
@@ -71,6 +76,7 @@ export function OrganizerOrganizationsContent() {
               description={o.description}
               image={o.image}
               isSelected={o.isSelected}
+              slug={o.slug}
             />
           ))}
         </div>

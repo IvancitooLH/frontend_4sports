@@ -71,7 +71,7 @@ export function OrganizerProfileContent() {
           </div>
 
           <div className="grid grid-cols-2 w-full gap-6">
-            <div className="flex flex-col gap-6 bg-surface rounded-xl p-6 text-sm">
+            <div className="flex flex-col gap-6 border border-line rounded-xl p-6 text-sm">
               <p className="font-semibold">Información básica</p>
 
               <div className="grid grid-cols-2 text-muted">
@@ -97,7 +97,7 @@ export function OrganizerProfileContent() {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col gap-6 bg-surface rounded-xl p-6 text-sm">
+            <div className="flex flex-col gap-6 border border-line rounded-xl p-6 text-sm">
               <p className="font-semibold">Información de contacto</p>
 
               <div className="grid grid-cols-2 text-muted">
