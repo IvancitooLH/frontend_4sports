@@ -12,6 +12,7 @@ export function DinamicTextArea<T extends FieldValues>({
   placeholder,
   rules,
   twHeight,
+  twMarginBottom,
 }: DinamicInputTextAreaProps<T>) {
   const {
     control,
@@ -21,7 +22,9 @@ export function DinamicTextArea<T extends FieldValues>({
   const error = errors[name];
 
   return (
-    <div className="flex flex-col gap-2 mb-4">
+    <div
+      className={`flex flex-col gap-2 ${twMarginBottom !== undefined ? twMarginBottom : "mb-4"}`}
+    >
       {label && <p>{label}</p>}
 
       <Controller

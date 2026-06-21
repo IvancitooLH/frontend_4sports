@@ -28,12 +28,12 @@ export function PlanCard({
   return (
     <div
       className={`relative flex flex-col justify-between rounded-4xl border-2 bg-surface p-6 ${
-        isPopular ? "border-success" : "border-line"
+        isPopular ? "border-primary" : "border-line"
       }`}
     >
       <div>
         {isPopular && (
-          <span className="absolute right-8 top-0 rounded-full bg-success px-3 py-1 text-xs font-black text-white -translate-y-1/2">
+          <span className="absolute right-8 top-0 rounded-full bg-primary px-3 py-1 text-xs font-black text-primary-text -translate-y-1/2">
             Popular
           </span>
         )}
@@ -83,7 +83,7 @@ export function PlanCard({
         twClassName="w-full h-fit py-2 px-4 rounded-xl"
         disabled={false}
         disabledSpinner={false}
-        type={isPopular ? "success" : "filled"}
+        type={isPopular ? "filled" : "ghost"}
         label="Escoger"
         spinFromText
       />

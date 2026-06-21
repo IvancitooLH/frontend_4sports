@@ -17,6 +17,7 @@ import { useAnnouncement } from "@/content/shared/ui/annoucement/stores/announce
 
 /* TYPES */
 import { EditOrganizationFormType } from "./types/editOrganizationFormType";
+import { EditOrganizationPhotoForm } from "../editOrganizationPhotoForm/EditOrganizationPhotoForm";
 
 export function EditOrganizationInfoForm() {
   const { setAnnouncement } = useAnnouncement();
@@ -50,38 +51,46 @@ export function EditOrganizationInfoForm() {
 
   return (
     <FormProvider {...methods}>
-      <div className="flex md:flex-row flex-col md:gap-6 gap-2 items-center mb-2">
-        <div className="flex flex-col w-full h-fit">
-          {/* NOMBRE */}
-          <DinamicInputText<EditOrganizationFormType>
-            name="orgName"
-            label="Nombre de organización"
-            type="text"
-            placeholder="Ingresa el nombre de la organización"
-            rules={{}}
-          />
+      <div className="flex flex-col gap-6 border border-line rounded-2xl p-6">
+        <p className="text-xl font-extralight">Tu organización</p>
 
-          {/* DESCRIPCIÓN */}
-          <DinamicTextArea<EditOrganizationFormType>
-            name="orgDescription"
-            placeholder="Ingrese la descripción de la organización"
-            label="Descripción"
-            twHeight="h-20"
-            rules={{}}
-          />
+        <div className="flex gap-6 w-full items-center">
+          <EditOrganizationPhotoForm />
+
+          <div className="flex flex-col w-full h-fit">
+            {/* NOMBRE */}
+            <DinamicInputText<EditOrganizationFormType>
+              name="orgName"
+              label="Nombre"
+              type="text"
+              placeholder="Ingresa el nombre de la organización"
+              rules={{}}
+            />
+
+            {/* DESCRIPCIÓN */}
+            <DinamicTextArea<EditOrganizationFormType>
+              name="orgDescription"
+              placeholder="Ingrese la descripción de la organización"
+              label="Descripción"
+              twHeight="h-20"
+              twMarginBottom="mb-0"
+              rules={{}}
+            />
+          </div>
         </div>
-      </div>
 
-      {/* BOTÓN GUARDAR */}
-      <DinamicButton
-        action={methods.handleSubmit(onSubmit)}
-        type={saving ? "disabled" : "filled"}
-        label="Guardar"
-        icon={<Save className="size-4 min-h-4 min-w-4" />}
-        disabled={saving}
-        disabledSpinner={true}
-        spinFromText={true}
-      />
+        {/* BOTÓN GUARDAR */}
+        <DinamicButton
+          action={methods.handleSubmit(onSubmit)}
+          type={saving ? "disabled" : "filled"}
+          label="Guardar"
+          icon={<Save className="size-4 min-h-4 min-w-4" />}
+          twClassName="py-1"
+          disabled={saving}
+          disabledSpinner={true}
+          spinFromText={true}
+        />
+      </div>
     </FormProvider>
   );
 }

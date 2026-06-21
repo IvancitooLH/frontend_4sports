@@ -25,20 +25,19 @@ export function AddOrganizationForm({
   const router = useRouter();
 
   return (
-    <div className="w-full h-full flex items-center justify-center">
-      <div className="w-1/2 h-fit flex flex-col gap-6">
-        <div className="flex items-center w-fit gap-4 m-auto">
-          <DinamicButton
-            action={() => router.push("/organizer/organizations")}
-            twClassName="w-fit bg-transparent hover:bg-transparent p-0"
-            type={"filled"}
-            icon={<ArrowLeft className="size-8 min-h-8 min-w-8 text-primary" />}
-          />
+    <div className="w-full h-full flex items-center justify-center relative">
+      <DinamicButton
+        action={() => router.push("/organizer/organizations")}
+        type="unfilled"
+        label="Regresar"
+        twClassName="w-fit py-1 text-sm self-start absolute top-0 left-0"
+        icon={<ArrowLeft className="size-4 min-h-4 min-w-4 text-primary" />}
+      />
 
-          <p className="font-bebas text-5xl text-ink">
-            Agregar <span className="text-primary">Organización</span>
-          </p>
-        </div>
+      <div className="w-1/2 h-fit flex flex-col gap-6">
+        <p className="font-bebas text-5xl text-ink text-center">
+          Agregar <span className="text-primary">Organización</span>
+        </p>
 
         <div className="flex md:flex-row flex-col md:gap-6 gap-2 items-center">
           {/* FOTO */}

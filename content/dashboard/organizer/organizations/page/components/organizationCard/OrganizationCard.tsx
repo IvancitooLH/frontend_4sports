@@ -3,15 +3,19 @@
 /* COMPONENTS */
 import { DinamicButton } from "@/content/shared/form/dinamicButton/DinamicButton";
 import Image from "next/image";
+import { ModalBodyChangeOrganizationPhoto } from "../modalBodyChangeOrganizationPhoto/ModalBodyChangeOrganizationPhoto";
 
 /* ICONS */
-import { SquarePen, Trash2, UsersRound } from "lucide-react";
+import { Camera, SquarePen, Trash2, UsersRound, Wallet } from "lucide-react";
 
 /* LIBS */
 import { motion } from "framer-motion";
 
 /* NAVIGATION */
 import { useRouter } from "next/navigation";
+
+/* STORES */
+import { useModal } from "@/content/shared/ui/modal/stores/modalStore";
 
 /* TYPES */
 import { OrganizationCardType } from "./types/OrganizationCardType";
@@ -24,6 +28,8 @@ export function OrganizationCard({
   slug,
 }: OrganizationCardType) {
   const router = useRouter();
+
+  const { setModal } = useModal();
 
   return (
     <motion.div
@@ -73,16 +79,33 @@ export function OrganizationCard({
       )}
 
       <div className="flex gap-6 items-center min-w-0">
-        <Image
-          alt="Organización"
-          src={image}
-          quality={70}
-          className="w-12 h-12 min-w-12 min-h-12 rounded-full object-cover object-center"
-        />
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            setModal({
+              isActivated: true,
+              title: "Cambiar foto",
+              body: <ModalBodyChangeOrganizationPhoto slug={slug} />,
+            });
+          }}
+          className="w-24 h-24 min-w-24 min-h-24 rounded-full border border-line relative cursor-pointer"
+        >
+          <Image
+            alt="Organización"
+            src={image}
+            quality={70}
+            fill
+            className="rounded-full object-cover object-center"
+          />
+
+          <div className="w-fit h-fit p-2 rounded-full absolute right-0 bottom-0 border-4 border-background bg-primary">
+            <Camera className="size-4 min-w-4 min-h-4 text-primary-text" />
+          </div>
+        </button>
 
         <div className="min-w-0">
           <p className="font-bold text-lg text-left">{name}</p>
-          <p className="text-sm truncate">{description}</p>
+          <p className="text-sm line-clamp-2">{description}</p>
         </div>
       </div>
 
@@ -90,7 +113,6 @@ export function OrganizationCard({
         <DinamicButton
           action={(e) => {
             e.stopPropagation();
-            router.push(`/organizer/organizations/${slug}`);
           }}
           type="unfilled"
           twClassName="w-fit p-2 rounded-full border border-line hover:border-primary"
@@ -99,7 +121,15 @@ export function OrganizationCard({
         <DinamicButton
           action={(e) => {
             e.stopPropagation();
-            alert("Miembros");
+            router.push(`/organizer/organizations/payment-history/${slug}`);
+          }}
+          type="unfilled"
+          twClassName="w-fit p-2 rounded-full border border-line hover:border-primary"
+          icon={<Wallet className="size-4 min-h-4 min-w-4" />}
+        />
+        <DinamicButton
+          action={(e) => {
+            e.stopPropagation();
           }}
           type="unfilled"
           twClassName="w-fit p-2 rounded-full border border-line hover:border-primary"
@@ -108,7 +138,6 @@ export function OrganizationCard({
         <DinamicButton
           action={(e) => {
             e.stopPropagation();
-            alert("Eliminar");
           }}
           type="destructive"
           twClassName="w-fit p-2 rounded-full border border-line hover:border-primary hover:bg-secondary"

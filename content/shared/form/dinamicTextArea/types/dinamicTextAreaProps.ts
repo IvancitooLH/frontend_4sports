@@ -6,5 +6,6 @@ export type DinamicInputTextAreaProps<T extends FieldValues> = {
   label?: string;
   placeholder?: string;
   rules?: RegisterOptions<T, Path<T>>;
-  twHeight?: string
+  twHeight?: string;
+  twMarginBottom?: string;
 };

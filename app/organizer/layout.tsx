@@ -3,6 +3,7 @@
 /* COMPONENTS */
 import { Sidebar } from "@/content/shared/ui/sidebar/Sidebar";
 import { NotificationsSidebar } from "@/content/shared/ui/notificationsSidebar/NotificationsSidebar";
+import { Modal } from '@/content/shared/ui/modal/Modal'
 
 /* DATA */
 import { organizerSidebarLinks } from "@/content/shared/ui/sidebar/data/organizerSidebarLinks";
@@ -28,7 +29,7 @@ export default function OrganizerLayout({
       transition={{ duration: 0.5, ease: "easeInOut" }}
     >
       <Sidebar links={organizerSidebarLinks} />
-      {/* <Modal /> */}
+      <Modal />
       <div
         className={`flex flex-col h-dvh w-full transition-all duration-300 ${
           expanded
