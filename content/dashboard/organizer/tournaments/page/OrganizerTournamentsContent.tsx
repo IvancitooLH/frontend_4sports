@@ -82,7 +82,7 @@ const tournaments: TournamentCardType[] = [
 export function OrganizerTournamentsContent() {
   return (
     <SectionContainer>
-      <div className="p-6 flex flex-col">
+      <div className="p-10 flex flex-col">
         <div className="flex justify-between items-center mb-2">
           <p className="font-bebas text-5xl text-ink">
             Mis <span className="text-primary">Torneos</span>
@@ -100,7 +100,7 @@ export function OrganizerTournamentsContent() {
           />
         </div>
 
-        <div className="w-full flex gap-4 items-center mb-4">
+        <div className="w-full flex gap-4 items-center mb-6">
           <p className="text-xl font-extralight">
             Gestionado torneos de la organización:
           </p>

@@ -1,5 +1,5 @@
 /* ICONS */
-import { Home, Trophy, Building2 } from "lucide-react";
+import { Home, Trophy, Building2, Bell } from "lucide-react";
 
 /* TYPES */
 import { LinkSidebar } from "@/content/shared/ui/sidebar/types/LinkSidebar";
@@ -19,5 +19,10 @@ export const organizerSidebarLinks: LinkSidebar[] = [
     label: "Torneos",
     href: "/organizer/tournaments",
     icon: Trophy,
+  },
+  {
+    label: "Notificaciones",
+    href: "",
+    icon: Bell,
   },
 ];

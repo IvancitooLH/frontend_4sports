@@ -6,5 +6,6 @@ export type OrganizationCardType = {
   image: StaticImport;
   name: string;
   description: string;
-  slug: string
+  slug: string;
+  role: "owner" | "admin" | "viewer" | "organizer";
 };

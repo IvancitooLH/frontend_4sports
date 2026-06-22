@@ -26,6 +26,7 @@ const organizations: OrganizationCardType[] = [
     image: organization1,
     isSelected: true,
     slug: "sede-deportes",
+    role: "owner",
   },
   {
     name: "Fix Mobile",
@@ -34,13 +35,15 @@ const organizations: OrganizationCardType[] = [
     image: organization2,
     isSelected: false,
     slug: "fix-mobile",
+    role: "admin",
   },
   {
-    name: "Gran Maq",
+    name: "Gran Maquina",
     description: "Organizamos los mejores torneos de la zona sur de Nogales",
     image: organization3,
     isSelected: false,
     slug: "gran-maq",
+    role: "organizer",
   },
 ];
 
@@ -49,7 +52,7 @@ export function OrganizerOrganizationsContent() {
 
   return (
     <SectionContainer>
-      <div className="p-6 flex flex-col">
+      <div className="p-10 flex flex-col">
         <div className="flex justify-between items-center mb-2">
           <p className="font-bebas text-5xl text-ink">
             Mis <span className="text-primary">Organizaciones</span>
@@ -68,7 +71,7 @@ export function OrganizerOrganizationsContent() {
           Selecciona una organización para gestionar sus torneos
         </p>
 
-        <div className="grid gap-6 grid-cols-2">
+        <div className="grid gap-6 grid-cols-3">
           {organizations.map((o, i) => (
             <OrganizationCard
               key={i}
@@ -77,6 +80,7 @@ export function OrganizerOrganizationsContent() {
               image={o.image}
               isSelected={o.isSelected}
               slug={o.slug}
+              role={o.role}
             />
           ))}
         </div>

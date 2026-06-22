@@ -25,7 +25,7 @@ export function MatchCard({
 }: MatchCardType) {
   return (
     <motion.div
-      className="border p-6 rounded-xl flex flex-col items-center gap-4 w-full cursor-pointer"
+      className="border-2 p-6 rounded-xl flex flex-col items-center gap-4 w-full cursor-pointer"
       style={{
         backgroundColor: "var(--background)",
         borderColor: "var(--line)",

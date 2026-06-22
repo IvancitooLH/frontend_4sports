@@ -120,11 +120,12 @@ export function ModalBodyMembersFilter() {
           <DinamicCombobox<MembersFilterFormType>
             name="perPage"
             items={membersPerPage}
-            label="Clientes por página"
-            placeholder="Seleccionar clientes por página"
+            label="Mostrar"
+            placeholder="Seleccionar mostrar"
             rules={{
-              required: "Los clientes por página son necesarios",
+              required: "La cantidad a mostrar es necesaria",
             }}
+            twMarginBottom="mb-2 md:mb-0"
           />
 
           {/* ORDER */}
@@ -136,6 +137,7 @@ export function ModalBodyMembersFilter() {
             rules={{
               required: "El orden es necesario",
             }}
+            twMarginBottom="mb-2 md:mb-0"
           />
 
           {/* ORDER BY */}
@@ -147,6 +149,7 @@ export function ModalBodyMembersFilter() {
             rules={{
               required: "El ordenar por es necesario",
             }}
+            twMarginBottom="mb-2 md:mb-0"
           />
         </div>
       </div>
@@ -173,7 +176,7 @@ export function ModalBodyMembersFilter() {
           disabled={filtering}
           disabledSpinner={true}
           spinFromText={true}
-          label="Actualizar"
+          label="Filtrar"
         />
       </div>
     </FormProvider>

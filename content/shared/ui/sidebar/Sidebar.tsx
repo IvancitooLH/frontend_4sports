@@ -27,6 +27,7 @@ import { usePathname, useRouter } from "next/navigation";
 /* STORES */
 import { useSidebarStore } from "@/content/shared/ui/sidebar/stores/SidebarStore";
 import { useAnnouncement } from "@/content/shared/ui/annoucement/stores/announcementStore";
+import { useNotificationsSidebarStore } from "@/content/shared/ui/notificationsSidebar/stores/notificationsSidebarStore";
 
 /* TYPES */
 import { LinkSidebar } from "@/content/shared/ui/sidebar/types/LinkSidebar";
@@ -42,6 +43,7 @@ export function Sidebar({ links }: { links: LinkSidebar[] }) {
 
   const { expanded, toggleSidebar } = useSidebarStore();
   const { setAnnouncement } = useAnnouncement();
+  const { toggleNotificationsSidebar } = useNotificationsSidebarStore();
 
   const [mounted, setMounted] = useState(false);
   const [openTooltip, setOpenTooltip] = useState<string | null>(null);
@@ -145,24 +147,43 @@ export function Sidebar({ links }: { links: LinkSidebar[] }) {
                   }}
                 >
                   <Tooltip.Trigger asChild>
-                    <Link
-                      href={link.href}
-                      className={`px-[0.70rem] py-2 rounded-xl flex relative group transition-all items-center duration-300 w-full ${expanded ? "gap-6" : "lg:gap-0 gap-6"} ${linkClasses(
-                        link.href,
-                      )}`}
-                    >
-                      <link.icon className="size-4 min-w-4 min-h-4" />
-
-                      <span
-                        className={`transition-all duration-300 text-sm ${
-                          expanded
-                            ? "w-full opacity-100"
-                            : "lg:w-0 w-fit lg:opacity-0 opacity-100 pointer-events-none"
-                        }`}
+                    {link.label === "Notificaciones" ? (
+                      <button
+                        onClick={toggleNotificationsSidebar}
+                        className={`px-[0.70rem] py-2 rounded-xl flex relative group transition-all items-center duration-300 w-full cursor-pointer hover:bg-surface/70 border border-transparent text-ink ${expanded ? "gap-6" : "lg:gap-0 gap-6"} `}
                       >
-                        {link.label}
-                      </span>
-                    </Link>
+                        <link.icon className="size-4 min-w-4 min-h-4" />
+
+                        <span
+                          className={`transition-all duration-300 text-sm text-left ${
+                            expanded
+                              ? "w-full opacity-100"
+                              : "lg:w-0 w-fit lg:opacity-0 opacity-100 pointer-events-none"
+                          }`}
+                        >
+                          {link.label}
+                        </span>
+                      </button>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className={`px-[0.70rem] py-2 rounded-xl flex relative group transition-all items-center duration-300 w-full ${expanded ? "gap-6" : "lg:gap-0 gap-6"} ${linkClasses(
+                          link.href,
+                        )}`}
+                      >
+                        <link.icon className="size-4 min-w-4 min-h-4" />
+
+                        <span
+                          className={`transition-all duration-300 text-sm ${
+                            expanded
+                              ? "w-full opacity-100"
+                              : "lg:w-0 w-fit lg:opacity-0 opacity-100 pointer-events-none"
+                          }`}
+                        >
+                          {link.label}
+                        </span>
+                      </Link>
+                    )}
                   </Tooltip.Trigger>
 
                   {!expanded && (

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 /* COMPONENTS */
 import { DinamicButton } from "@/content/shared/form/dinamicButton/DinamicButton";
@@ -110,11 +110,12 @@ export function ModalBodyPaymentsFilter() {
           <DinamicCombobox<PaymentsFilterFormType>
             name="perPage"
             items={paymentsPerPage}
-            label="Clientes por página"
-            placeholder="Seleccionar clientes por página"
+            label="Mostrar"
+            placeholder="Seleccionar mostrar por página"
             rules={{
-              required: "Los clientes por página son necesarios",
+              required: "La cantidad a mostrar es necesaria",
             }}
+            twMarginBottom="mb-2 md:mb-0"
           />
 
           {/* ORDER */}
@@ -126,6 +127,7 @@ export function ModalBodyPaymentsFilter() {
             rules={{
               required: "El orden es necesario",
             }}
+            twMarginBottom="mb-2 md:mb-0"
           />
 
           {/* ORDER BY */}
@@ -137,6 +139,7 @@ export function ModalBodyPaymentsFilter() {
             rules={{
               required: "El ordenar por es necesario",
             }}
+            twMarginBottom="mb-2 md:mb-0"
           />
         </div>
       </div>
@@ -163,7 +166,7 @@ export function ModalBodyPaymentsFilter() {
           disabled={filtering}
           disabledSpinner={true}
           spinFromText={true}
-          label="Actualizar"
+          label="Filtrar"
         />
       </div>
     </FormProvider>

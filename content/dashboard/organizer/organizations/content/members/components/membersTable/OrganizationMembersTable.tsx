@@ -6,7 +6,7 @@ import { DinamicTableFooter } from "@/content/shared/ui/dinamicTable/components/
 import { DinamicTableHeader } from "@/content/shared/ui/dinamicTable/components/dinamicTableHeader/DinamicTableHeader";
 import { DinamicTh } from "@/content/shared/ui/dinamicTable/components/dinamicTh/DinamicTh";
 import { DinamicTable } from "@/content/shared/ui/dinamicTable/DinamicTable";
-import { ModalBodyMembersFilter } from "./components/modalBodyPaymentsFilter/ModalBodyMembersFilter";
+import { ModalBodyMembersFilter } from "./components/modalBodyMembersFilter/ModalBodyMembersFilter";
 import { MemberRow } from "./components/paymentRow/MemberRow";
 import { DinamicButton } from "@/content/shared/form/dinamicButton/DinamicButton";
 
@@ -17,7 +17,12 @@ import { membersColumns } from "./data/membersColumns";
 import { useState, useEffect } from "react";
 
 /* ICONS */
-import { Ellipsis, SlidersHorizontal } from "lucide-react";
+import {
+  ArrowLeftRight,
+  Ellipsis,
+  Plus,
+  SlidersHorizontal,
+} from "lucide-react";
 
 /* STORES */
 import { useAnnouncement } from "@/content/shared/ui/annoucement/stores/announcementStore";
@@ -103,6 +108,7 @@ export function OrganizationMembersTable() {
                 phone: "+52 631 111 1111",
                 role: "viewer",
                 slug: "M1",
+                status: "active",
               },
               {
                 id: 2,
@@ -112,6 +118,7 @@ export function OrganizationMembersTable() {
                 phone: "+52 631 111 1112",
                 role: "viewer",
                 slug: "M2",
+                status: "inactive",
               },
               {
                 id: 3,
@@ -121,6 +128,7 @@ export function OrganizationMembersTable() {
                 phone: "+52 631 111 1113",
                 role: "viewer",
                 slug: "M3",
+                status: "active",
               },
               {
                 id: 4,
@@ -130,6 +138,7 @@ export function OrganizationMembersTable() {
                 phone: "+52 631 111 1114",
                 role: "viewer",
                 slug: "M4",
+                status: "active",
               },
               {
                 id: 5,
@@ -139,6 +148,7 @@ export function OrganizationMembersTable() {
                 phone: "+52 631 111 1115",
                 role: "viewer",
                 slug: "M5",
+                status: "active",
               },
               {
                 id: 6,
@@ -148,6 +158,7 @@ export function OrganizationMembersTable() {
                 phone: "+52 631 111 1116",
                 role: "viewer",
                 slug: "M6",
+                status: "active",
               },
               {
                 id: 7,
@@ -157,6 +168,7 @@ export function OrganizationMembersTable() {
                 phone: "+52 631 111 1117",
                 role: "viewer",
                 slug: "M7",
+                status: "active",
               },
               {
                 id: 8,
@@ -166,6 +178,7 @@ export function OrganizationMembersTable() {
                 phone: "+52 631 111 1118",
                 role: "viewer",
                 slug: "M8",
+                status: "active",
               },
               {
                 id: 9,
@@ -175,6 +188,7 @@ export function OrganizationMembersTable() {
                 phone: "+52 631 111 1119",
                 role: "viewer",
                 slug: "M9",
+                status: "active",
               },
               {
                 id: 10,
@@ -184,6 +198,7 @@ export function OrganizationMembersTable() {
                 phone: "+52 631 111 1120",
                 role: "viewer",
                 slug: "M10",
+                status: "active",
               },
               {
                 id: 11,
@@ -193,6 +208,7 @@ export function OrganizationMembersTable() {
                 phone: "+52 631 111 1121",
                 role: "viewer",
                 slug: "M11",
+                status: "active",
               },
               {
                 id: 12,
@@ -202,6 +218,7 @@ export function OrganizationMembersTable() {
                 phone: "+52 631 111 1122",
                 role: "viewer",
                 slug: "M12",
+                status: "active",
               },
             ],
             count: 12,
@@ -232,13 +249,29 @@ export function OrganizationMembersTable() {
           <div className="border-b border-line flex items-center justify-between w-full p-6 h-fit">
             <p className="text-xl font-extralight text-ink">Miembros</p>
 
-            <DinamicButton
-              action={filterAction}
-              type="filled"
-              label="Filtrar"
-              icon={<SlidersHorizontal className="size-4 min-w-4 min-h-4" />}
-              twClassName="text-sm w-fit py-1"
-            />
+            <div className="flex gap-4 items-center">
+              <DinamicButton
+                action={() => {}}
+                type="filled"
+                label="Agregar"
+                icon={<Plus className="size-4 min-w-4 min-h-4" />}
+                twClassName="text-sm w-fit py-1"
+              />
+              <DinamicButton
+                action={filterAction}
+                type="filled"
+                label="Filtrar"
+                icon={<SlidersHorizontal className="size-4 min-w-4 min-h-4" />}
+                twClassName="text-sm w-fit py-1"
+              />
+              <DinamicButton
+                action={() => {}}
+                type="destructive"
+                label="Transferir"
+                icon={<ArrowLeftRight className="size-4 min-w-4 min-h-4" />}
+                twClassName="text-sm w-fit py-1"
+              />
+            </div>
           </div>
         </DinamicTableHeader>
 

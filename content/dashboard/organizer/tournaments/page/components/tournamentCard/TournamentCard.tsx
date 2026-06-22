@@ -55,7 +55,7 @@ export function TournamentCard({
   return (
     <motion.button
       onClick={() => router.push(`/organizer/tournaments/${slug}`)}
-      className="flex flex-col rounded-xl border cursor-pointer"
+      className="flex flex-col rounded-xl border-2 cursor-pointer"
       style={{
         backgroundColor: "var(--background)",
         borderColor: "var(--line)",
@@ -76,10 +76,10 @@ export function TournamentCard({
       }}
     >
       <div className="w-full h-28 min-h-28 rounded-t-xl relative">
-        <div className="absolute inset-0 bg-linear-to-b from-black/50 to-transparent rounded-t-xl" />
+        <div className="absolute inset-0 bg-linear-to-b from-black/50 to-transparent rounded-t-xl z-10" />
 
         <div
-          className={`py-1 px-3 rounded-full absolute top-4 right-4 shadow-md ${getBgColor(state)}`}
+          className={`py-1 px-3 rounded-full absolute top-4 right-4 shadow-md z-10 ${getBgColor(state)}`}
         >
           <p className="font-bold text-white text-sm">{state}</p>
         </div>
@@ -88,7 +88,7 @@ export function TournamentCard({
           alt="Equipo"
           src={banner}
           quality={70}
-          className="w-full h-28 min-h-28 rounded-t-xl object-cover object-center"
+          className="w-full h-28 min-h-28 rounded-t-xl object-cover object-center z-0"
         />
       </div>
 

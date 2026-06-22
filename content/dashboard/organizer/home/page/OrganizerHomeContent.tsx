@@ -53,13 +53,13 @@ const matches: MatchCardType[] = [
 export function OrganizerHomeContent() {
   return (
     <SectionContainer>
-      <div className="p-6 flex flex-col">
+      <div className="p-10 flex flex-col">
         <h1 className="text-5xl font-extralight font-bebas mb-2 text-ink">
           Hola <span className="text-primary font-normal">Pirita</span>
         </h1>
 
         <div className="flex flex-col">
-          <p className="text-xl font-extralight mb-4">Partidos para hoy</p>
+          <p className="text-xl font-extralight mb-6">Partidos para hoy</p>
 
           <div className="grid gap-6 grid-cols-3">
             {matches.map((m, i) => (

@@ -21,6 +21,7 @@ export function DinamicCombobox<T extends FieldValues>({
   label,
   placeholder,
   rules,
+  twMarginBottom,
 }: DinamicComboboxProps<T>) {
   const {
     control,
@@ -30,7 +31,9 @@ export function DinamicCombobox<T extends FieldValues>({
   const error = errors[name];
 
   return (
-    <div className="flex flex-col gap-2 lg:mb-4 mb-2">
+    <div
+      className={`flex flex-col gap-2 ${twMarginBottom !== undefined ? twMarginBottom : "mb-2 md:mb-4"}`}
+    >
       {label && <p>{label}</p>}
 
       <Controller
