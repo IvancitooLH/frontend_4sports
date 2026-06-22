@@ -36,7 +36,7 @@ export function DinamicTableFooter({
     <AnimatePresence mode="wait">
       <motion.div
         key={loading ? "cargando" : "completado"}
-        className="flex flex-col justify-center items-center p-6 lg:justify-between md:justify-between lg:flex-row md:flex-row"
+        className="flex flex-col justify-center items-center p-6 lg:justify-between md:justify-between lg:flex-row md:flex-row border-t border-line"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3, ease: "easeInOut" }}

@@ -4,7 +4,7 @@
 import { RouteTitle } from "@/content/shared/ui/routeTitle/RouteTitle";
 import { SectionContainer } from "@/content/shared/ui/sectionContainer/SectionContainer";
 import { OrganizationPlan } from "../components/plan/OrganizationPlan";
-import { OrganizationPaymentHistory } from "../components/paymentHistory/OrganizationPaymentHistory";
+import { OrganizationPaymentHistoryTable } from "../components/paymentHistoryTable/OrganizationPaymentHistoryTable";
 import { DinamicButton } from "@/content/shared/form/dinamicButton/DinamicButton";
 import { Plans } from "@/content/shared/ui/plans/Plans";
 
@@ -42,6 +42,10 @@ export function OrganizerPaymentHistoryContent({ slug }: { slug: string }) {
             label: name,
             href: `/organizer/organizations/payment-history/${slug}`,
           },
+          {
+            label: "Historial de pagos",
+            href: `/organizer/organizations/payment-history/${slug}`,
+          },
         ]}
       />
       <div className="overflow-y-auto flex-1">
@@ -77,7 +81,7 @@ export function OrganizerPaymentHistoryContent({ slug }: { slug: string }) {
 
                   <div className="flex gap-6 flex-1 min-h-0 flex-col md:flex-row">
                     <OrganizationPlan onSelect={() => setPosition("plans")} />
-                    <OrganizationPaymentHistory />
+                    <OrganizationPaymentHistoryTable />
                   </div>
                 </>
               ) : (

@@ -136,6 +136,7 @@ export function OrganizationCard({
         <DinamicButton
           action={(e) => {
             e.stopPropagation();
+            router.push(`/organizer/organizations/members/${slug}`);
           }}
           type="unfilled"
           twClassName="w-fit p-2 rounded-full border border-line hover:border-primary"

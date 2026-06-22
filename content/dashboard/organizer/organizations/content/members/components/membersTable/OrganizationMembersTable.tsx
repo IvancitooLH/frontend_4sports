@@ -6,12 +6,12 @@ import { DinamicTableFooter } from "@/content/shared/ui/dinamicTable/components/
 import { DinamicTableHeader } from "@/content/shared/ui/dinamicTable/components/dinamicTableHeader/DinamicTableHeader";
 import { DinamicTh } from "@/content/shared/ui/dinamicTable/components/dinamicTh/DinamicTh";
 import { DinamicTable } from "@/content/shared/ui/dinamicTable/DinamicTable";
-import { ModalBodyPaymentsFilter } from "./components/modalBodyPaymentsFilter/ModalBodyPaymentsFilter";
-import { PaymentRow } from "./components/paymentRow/PaymentRow";
+import { ModalBodyMembersFilter } from "./components/modalBodyPaymentsFilter/ModalBodyMembersFilter";
+import { MemberRow } from "./components/paymentRow/MemberRow";
 import { DinamicButton } from "@/content/shared/form/dinamicButton/DinamicButton";
 
 /* DATA */
-import { paymentsColumns } from "./data/paymentsColumns";
+import { membersColumns } from "./data/membersColumns";
 
 /* HOOKS */
 import { useState, useEffect } from "react";
@@ -22,21 +22,21 @@ import { Ellipsis, SlidersHorizontal } from "lucide-react";
 /* STORES */
 import { useAnnouncement } from "@/content/shared/ui/annoucement/stores/announcementStore";
 import { useModal } from "@/content/shared/ui/modal/stores/modalStore";
-import { usePaymentsFilter } from "./stores/paymentsStore";
+import { useMembersFilter } from "./stores/membersStore";
 
 /* TYPES */
-import { PaymentsType } from "./types/paymentsType";
+import { MemberType } from "./types/memberType";
 
 /* UTILS */
 import { getTwBgColorTable } from "@/content/shared/ui/dinamicTable/utils/getTwBgColorTable";
 import { generatePagination } from "@/content/shared/ui/dinamicTable/utils/generatePagination";
 
-export function OrganizationPaymentHistory() {
+export function OrganizationMembersTable() {
   const { setAnnouncement } = useAnnouncement();
   const { setModal } = useModal();
 
-  const [payments, setPayments] = useState<{
-    data: PaymentsType[];
+  const [members, setMembers] = useState<{
+    data: MemberType[];
     count: number;
   }>({
     data: [],
@@ -49,23 +49,23 @@ export function OrganizationPaymentHistory() {
       page: 0,
       perPage: 25,
       order: "desc",
-      orderBy: "date",
+      orderBy: "id",
     },
     setFilter,
-  } = usePaymentsFilter();
+  } = useMembersFilter();
 
   /* DinamicHeader */
   const filterAction = () =>
     setModal({
       isActivated: true,
-      title: "Filtrar pagos",
-      body: <ModalBodyPaymentsFilter />,
+      title: "Filtrar miembros",
+      body: <ModalBodyMembersFilter />,
     });
 
   /* DinamicBody */
   const nextPage = () => {
     if (!filter) return;
-    const totalPages = Math.ceil(payments.count / filter.perPage);
+    const totalPages = Math.ceil(members.count / filter.perPage);
     if (filter.page + 1 < totalPages) {
       setFilter({ ...filter, page: filter.page + 1 });
     }
@@ -77,95 +77,131 @@ export function OrganizationPaymentHistory() {
   };
 
   const hasNextPage =
-    filter && (filter.page + 1) * filter.perPage < payments.count;
-  const totalPages = filter ? Math.ceil(payments.count / filter.perPage) : 1;
+    filter && (filter.page + 1) * filter.perPage < members.count;
+  const totalPages = filter ? Math.ceil(members.count / filter.perPage) : 1;
 
   /* DinamicFooter */
-  const type = "pago";
+  const type = "miembro";
   const currentPage = filter?.page === undefined ? 0 : filter.page;
   const items = generatePagination(currentPage, totalPages);
 
   useEffect(() => {
-    const fetchPayments = async () => {
+    const fetchMembers = async () => {
       if (!filter) return;
 
       try {
         setLoading(true);
 
         setTimeout(() => {
-          setPayments({
+          setMembers({
             data: [
               {
                 id: 1,
-                total: 299,
-                plan: "starter",
-                date: "2025-01-01",
+                name: "Nombre 1",
+                lastname: "Apellido 1",
+                email: "nombre1@gmail.com",
+                phone: "+52 631 111 1111",
+                role: "viewer",
+                slug: "M1",
               },
               {
                 id: 2,
-                total: 299,
-                plan: "starter",
-                date: "2025-02-01",
+                name: "Nombre 2",
+                lastname: "Apellido 2",
+                email: "nombre2@gmail.com",
+                phone: "+52 631 111 1112",
+                role: "viewer",
+                slug: "M2",
               },
               {
                 id: 3,
-                total: 299,
-                plan: "starter",
-                date: "2025-03-01",
-              },
-              {
-                id: 3,
-                total: 299,
-                plan: "starter",
-                date: "2025-04-01",
+                name: "Nombre 3",
+                lastname: "Apellido 3",
+                email: "nombre3@gmail.com",
+                phone: "+52 631 111 1113",
+                role: "viewer",
+                slug: "M3",
               },
               {
                 id: 4,
-                total: 299,
-                plan: "starter",
-                date: "2025-05-01",
+                name: "Nombre 4",
+                lastname: "Apellido 4",
+                email: "nombre4@gmail.com",
+                phone: "+52 631 111 1114",
+                role: "viewer",
+                slug: "M4",
               },
               {
                 id: 5,
-                total: 299,
-                plan: "starter",
-                date: "2025-06-01",
+                name: "Nombre 5",
+                lastname: "Apellido 5",
+                email: "nombre5@gmail.com",
+                phone: "+52 631 111 1115",
+                role: "viewer",
+                slug: "M5",
               },
               {
                 id: 6,
-                total: 299,
-                plan: "starter",
-                date: "2025-07-01",
+                name: "Nombre 6",
+                lastname: "Apellido 6",
+                email: "nombre6@gmail.com",
+                phone: "+52 631 111 1116",
+                role: "viewer",
+                slug: "M6",
               },
               {
                 id: 7,
-                total: 299,
-                plan: "starter",
-                date: "2025-08-01",
+                name: "Nombre 7",
+                lastname: "Apellido 7",
+                email: "nombre7@gmail.com",
+                phone: "+52 631 111 1117",
+                role: "viewer",
+                slug: "M7",
               },
               {
                 id: 8,
-                total: 299,
-                plan: "starter",
-                date: "2025-09-01",
+                name: "Nombre 8",
+                lastname: "Apellido 8",
+                email: "nombre8@gmail.com",
+                phone: "+52 631 111 1118",
+                role: "viewer",
+                slug: "M8",
+              },
+              {
+                id: 9,
+                name: "Nombre 9",
+                lastname: "Apellido 9",
+                email: "nombre9@gmail.com",
+                phone: "+52 631 111 1119",
+                role: "viewer",
+                slug: "M9",
               },
               {
                 id: 10,
-                total: 299,
-                plan: "starter",
-                date: "2025-10-01",
+                name: "Nombre 10",
+                lastname: "Apellido 10",
+                email: "nombre10@gmail.com",
+                phone: "+52 631 111 1120",
+                role: "viewer",
+                slug: "M10",
               },
               {
                 id: 11,
-                total: 299,
-                plan: "starter",
-                date: "2025-11-01",
+                name: "Nombre 11",
+                lastname: "Apellido 11",
+                email: "nombre11@gmail.com",
+                phone: "+52 631 111 1121",
+                role: "viewer",
+                slug: "M11",
               },
               {
                 id: 12,
-                total: 299,
-                plan: "starter",
-                date: "2025-12-01",
+                name: "Nombre 12",
+                lastname: "Apellido 12",
+                email: "nombre12@gmail.com",
+                phone: "+52 631 111 1122",
+                role: "viewer",
+                slug: "M12",
               },
             ],
             count: 12,
@@ -174,18 +210,18 @@ export function OrganizationPaymentHistory() {
         }, 1000);
       } catch (error) {
         setLoading(false);
-        setPayments({ data: [], count: 0 });
-        console.log("Hubo un error al obtener los pagos:", error);
+        setMembers({ data: [], count: 0 });
+        console.log("Hubo un error al obtener los miembros:", error);
         setAnnouncement({
           isActivated: true,
           announceType: "error",
           message:
-            "Hubo un error al obtener los pagos, intente nuevamente más tarde",
+            "Hubo un error al obtener los miembros, intente nuevamente más tarde",
         });
       }
     };
 
-    fetchPayments();
+    fetchMembers();
   }, [filter, setAnnouncement]);
 
   return (
@@ -194,9 +230,7 @@ export function OrganizationPaymentHistory() {
         {/* HEADER */}
         <DinamicTableHeader>
           <div className="border-b border-line flex items-center justify-between w-full p-6 h-fit">
-            <p className="text-xl font-extralight text-ink">
-              Historial de pagos
-            </p>
+            <p className="text-xl font-extralight text-ink">Miembros</p>
 
             <DinamicButton
               action={filterAction}
@@ -210,25 +244,25 @@ export function OrganizationPaymentHistory() {
 
         {/* BODY */}
         <DinamicTableBody
-          theadColumns={paymentsColumns.map((column, index) => (
+          theadColumns={membersColumns.map((column, index) => (
             <DinamicTh key={index} column={column} />
           ))}
-          tbodyRows={payments.data.map((payment, index) => (
-            <PaymentRow
+          tbodyRows={members.data.map((member, index) => (
+            <MemberRow
               key={index}
-              payment={payment}
+              member={member}
               twBgColor={getTwBgColorTable({ index })}
             />
           ))}
           loading={loading}
-          count={payments.count}
+          count={members.count}
           type={type}
         />
 
         {/* FOOTER */}
         <DinamicTableFooter
           loading={loading}
-          count={payments.count}
+          count={members.count}
           type={type}
           actualPage={(filter?.page ?? 0) + 1}
           totalPages={totalPages > 0 ? totalPages : 1}
@@ -256,7 +290,7 @@ export function OrganizationPaymentHistory() {
                       page: item - 1,
                       perPage: filter?.perPage ?? 10,
                       order: filter?.order ?? "asc",
-                      orderBy: filter?.orderBy ?? "date",
+                      orderBy: filter?.orderBy ?? "id",
                     });
                   }
                 }}

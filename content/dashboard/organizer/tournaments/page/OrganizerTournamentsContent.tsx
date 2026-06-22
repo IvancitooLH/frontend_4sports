@@ -105,14 +105,14 @@ export function OrganizerTournamentsContent() {
             Gestionado torneos de la organización:
           </p>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-4">
             <Image
               alt="Organización"
               src={organization1}
               quality={70}
               className="w-6 h-6 min-w-6 min-h-6 rounded-full object-cover object-center border border-line"
             />
-            <p className="font-semibold text-xl">Sede Deportes</p>
+            <p className="font-bold text-xl text-ink">Sede Deportes</p>
           </div>
         </div>
 
