@@ -24,9 +24,9 @@ export function DinamicTableBody({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="md:flex-1 md:overflow-y-auto md:min-h-0"
+      className="md:flex-1 md:min-h-0 md:overflow-auto"
     >
-      <div className="relative w-full flex-1 min-h-0 overflow-x-auto overflow-y-auto">
+      <div className="relative w-full flex-1 min-h-0">
         <AnimatePresence mode="wait">
           {loading ? (
             <DinamicTableSkeleton />

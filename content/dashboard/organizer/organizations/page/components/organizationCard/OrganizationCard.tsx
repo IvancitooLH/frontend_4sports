@@ -27,6 +27,7 @@ export function OrganizationCard({
   description,
   slug,
   role,
+  banner,
 }: OrganizationCardType) {
   const router = useRouter();
 
@@ -94,21 +95,29 @@ export function OrganizationCard({
 
           <Image
             alt="Organización"
-            src={image}
+            src={banner}
             quality={70}
             fill
             className="rounded-t-xl object-cover object-center"
           />
         </div>
 
-        <div className="flex gap-6 items-center min-w-0 w-full px-6">
-          <div className="min-w-0">
-            <p className="font-bold text-lg text-left text-ink">{name}</p>
-            <p className="text-sm font-semibold mb-2 text-primary">
-              {getRole(role)}
-            </p>
-            <p className="text-sm line-clamp-2 text-muted">{description}</p>
+        <div className="flex flex-col gap-6 items-center min-w-0 w-full px-6">
+          <div className="min-w-0 flex items-center w-full gap-6">
+            <Image
+              alt="Organización"
+              src={image}
+              quality={70}
+              className="w-16 h-16 min-w-16 min-h-16 rounded-xl object-cover object-center border border-line"
+            />
+            <div>
+              <p className="font-bold text-lg text-left text-ink line-clamp-1">{name}</p>
+              <p className="text-sm font-semibold mb-2 text-primary">
+                {getRole(role)}
+              </p>
+            </div>
           </div>
+          <p className="text-sm line-clamp-2 text-muted">{description}</p>
         </div>
       </div>
 
@@ -135,7 +144,7 @@ export function OrganizationCard({
         )}
 
         <DinamicButton
-          action={() => {}}
+          action={() => router.push(`/organizer/organizations/${slug}`)}
           type="unfilled"
           twClassName="py-1 text-sm"
           icon={<SquarePen className="size-4 min-h-4 min-w-4" />}

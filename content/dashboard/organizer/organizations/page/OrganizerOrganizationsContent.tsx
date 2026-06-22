@@ -12,6 +12,7 @@ import { Plus } from "lucide-react";
 import organization1 from "./images/organization1.png";
 import organization2 from "./images/organization2.png";
 import organization3 from "./images/organization3.png";
+import banner1 from "./images/banner1.jpg";
 
 /* NAVIGATION */
 import { useRouter } from "next/navigation";
@@ -27,6 +28,7 @@ const organizations: OrganizationCardType[] = [
     isSelected: true,
     slug: "sede-deportes",
     role: "owner",
+    banner: banner1
   },
   {
     name: "Fix Mobile",
@@ -36,6 +38,7 @@ const organizations: OrganizationCardType[] = [
     isSelected: false,
     slug: "fix-mobile",
     role: "admin",
+    banner: banner1
   },
   {
     name: "Gran Maquina",
@@ -44,6 +47,7 @@ const organizations: OrganizationCardType[] = [
     isSelected: false,
     slug: "gran-maq",
     role: "organizer",
+    banner: banner1
   },
 ];
 
@@ -52,7 +56,7 @@ export function OrganizerOrganizationsContent() {
 
   return (
     <SectionContainer>
-      <div className="p-10 flex flex-col">
+      <div className="p-6 flex flex-col">
         <div className="flex justify-between items-center mb-2">
           <p className="font-bebas text-5xl text-ink">
             Mis <span className="text-primary">Organizaciones</span>
@@ -81,6 +85,7 @@ export function OrganizerOrganizationsContent() {
               isSelected={o.isSelected}
               slug={o.slug}
               role={o.role}
+              banner={o.banner}
             />
           ))}
         </div>
