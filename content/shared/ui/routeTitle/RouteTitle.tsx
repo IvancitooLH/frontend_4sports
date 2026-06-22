@@ -19,7 +19,7 @@ export function RouteTitle({
   const { toggleNotificationsSidebar } = useNotificationsSidebarStore();
 
   return (
-    <header className="w-full p-4 border-b border-b-line bg-background">
+    <header className="w-full py-4 px-6 border-b border-b-line bg-background">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <button

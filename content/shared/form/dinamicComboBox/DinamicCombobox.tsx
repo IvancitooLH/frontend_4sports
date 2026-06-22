@@ -157,7 +157,7 @@ function ComboboxInternal({
         <Popover.Content
           sideOffset={8}
           align="start"
-          className="z-50 w-(--radix-popover-trigger-width) rounded-xl border border-line bg-surface p-2 shadow-lg"
+          className="z-99 w-(--radix-popover-trigger-width) rounded-xl border border-line bg-surface p-2 shadow-lg"
         >
           <div
             ref={listRef}

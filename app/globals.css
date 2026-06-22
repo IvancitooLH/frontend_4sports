@@ -338,8 +338,8 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 }
 
 ::-webkit-scrollbar-track {
@@ -349,6 +349,37 @@ body {
 ::-webkit-scrollbar-thumb {
   background: var(--color-scroll-thumb);
   border-radius: 10px;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.bg-animated-gradient {
+  background-size: 300% 300%;
+  animation: gradientMove 10s ease infinite;
+}
+
+@keyframes skeletonGradientMove {
+  0% {
+    background-position: 150% 0;
+  }
+  100% {
+    background-position: -150% 0;
+  }
+}
+
+.bg-skeleton-gradient {
+  background-size: 300% 100%;
+  animation: skeletonGradientMove 3s linear infinite;
 }
 
 @layer base {

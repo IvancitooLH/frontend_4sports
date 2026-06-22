@@ -6,7 +6,7 @@ import { DinamicButton } from "@/content/shared/form/dinamicButton/DinamicButton
 /* ICONS */
 import { Check, Plus } from "lucide-react";
 
-export function OrganizationPlan() {
+export function OrganizationPlan({ onSelect }: { onSelect: () => void }) {
   const plan = {
     name: "Starter",
     description: "¿Deseas alcanzar tu potencial?",
@@ -14,11 +14,10 @@ export function OrganizationPlan() {
     period: "/mes",
     features: ["3 torneos simultáneos", "Hasta 24 equipos por torneo"],
     unlocks: ["Nuevos formatos", "Finanzas"],
-    onSelect: () => {},
   };
 
   return (
-    <div className="w-1/3 rounded-2xl border border-line flex flex-col">
+    <div className="w-full md:w-1/3 md:min-w-1/3 rounded-2xl border border-line flex flex-col">
       <div className="p-6 border-b border-line">
         <p className="text-xl font-extralight text-ink">Plan actual</p>
       </div>
@@ -30,7 +29,7 @@ export function OrganizationPlan() {
           </p>
           <p className="text-xs mb-4">{plan.description}</p>
 
-          <div className="border-b-2 border-line pb-3 flex items-baseline gap-1 mb-4">
+          <div className="border-b border-line pb-3 flex items-baseline gap-1 mb-4">
             <span className="text-3xl font-black text-ink">{plan.price}</span>
             <span className="text-xs font-semibold text-muted">
               {plan.period}
@@ -68,11 +67,11 @@ export function OrganizationPlan() {
         </div>
 
         <DinamicButton
-          action={plan.onSelect}
+          action={onSelect}
           twClassName="py-1 text-sm"
           disabled={false}
           disabledSpinner={false}
-          type={"ghost"}
+          type={"filled"}
           label="Cambiar plan"
           spinFromText
         />

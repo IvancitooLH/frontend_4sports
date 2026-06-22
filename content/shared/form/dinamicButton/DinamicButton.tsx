@@ -34,6 +34,9 @@ export function DinamicButton({
 
       case "success":
         return "bg-success text-white border-transparent hover:bg-success-hover";
+
+      case "disabled":
+        return "bg-disabled text-disabled-text border-disabled-border";
     }
   };
 

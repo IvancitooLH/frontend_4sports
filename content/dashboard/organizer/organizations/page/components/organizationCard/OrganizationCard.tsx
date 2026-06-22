@@ -3,7 +3,8 @@
 /* COMPONENTS */
 import { DinamicButton } from "@/content/shared/form/dinamicButton/DinamicButton";
 import Image from "next/image";
-import { ModalBodyChangeOrganizationPhoto } from "../modalBodyChangeOrganizationPhoto/ModalBodyChangeOrganizationPhoto";
+import { ModalBodyUpdateOrganizationPhotoForm } from "../modalBodyUpdateOrganizationPhoto/ModalBodyUpdateOrganizationPhotoForm";
+import { ModalBodyUpdateOrganizationInfoForm } from "../modalBodyUpdateOrganizationInfo/ModalBodyUpdateOrganizationInfoForm";
 
 /* ICONS */
 import { Camera, SquarePen, Trash2, UsersRound, Wallet } from "lucide-react";
@@ -85,7 +86,7 @@ export function OrganizationCard({
             setModal({
               isActivated: true,
               title: "Cambiar foto",
-              body: <ModalBodyChangeOrganizationPhoto slug={slug} />,
+              body: <ModalBodyUpdateOrganizationPhotoForm slug={slug} />,
             });
           }}
           className="w-24 h-24 min-w-24 min-h-24 rounded-full border border-line relative cursor-pointer"
@@ -113,6 +114,11 @@ export function OrganizationCard({
         <DinamicButton
           action={(e) => {
             e.stopPropagation();
+            setModal({
+              isActivated: true,
+              title: "Actualizar datos",
+              body: <ModalBodyUpdateOrganizationInfoForm slug={slug} />,
+            });
           }}
           type="unfilled"
           twClassName="w-fit p-2 rounded-full border border-line hover:border-primary"
