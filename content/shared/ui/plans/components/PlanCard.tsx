@@ -43,7 +43,7 @@ export function PlanCard({
         </p>
         <p className="text-xs mb-4">{description}</p>
 
-        <div className="border-b-2 border-line pb-3 flex items-baseline gap-1 mb-4">
+        <div className="border-b border-line pb-3 flex items-baseline gap-1 mb-4">
           <span className="text-3xl font-black text-ink">{price}</span>
           <span className="text-xs font-semibold text-muted">{period}</span>
         </div>

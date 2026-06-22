@@ -4,6 +4,9 @@
 import { TitleWithDescription } from "../titleWithDescription/TitleWithDescription";
 import { PlanCard } from "./components/PlanCard";
 
+/* DATA */
+import { plans } from "./data/plans";
+
 /* HOOKS */
 import { useState, useEffect } from "react";
 
@@ -13,15 +16,12 @@ import { FourSportsIcon } from "@/content/shared/icons/fourSports/FourSportsIcon
 /* LIBS */
 import { motion } from "framer-motion";
 
-/* TYPES */
-import { PlanCard as Plan } from "./types/planCard";
-
 export function Plans({
-  plans,
   wantWait,
+  onSelectArray,
 }: {
-  plans: Plan[];
   wantWait: boolean;
+  onSelectArray: (() => void)[];
 }) {
   const [finish, setFinish] = useState(wantWait ? false : true);
 
@@ -59,7 +59,7 @@ export function Plans({
       {/* Grilla responsiva adaptada al viewport */}
       <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4 items-stretch w-full">
         {plans.map((plan, index) => (
-          <PlanCard key={index} {...plan} />
+          <PlanCard key={index} {...plan} onSelect={onSelectArray[index]} />
         ))}
       </div>
     </motion.div>
