@@ -3,9 +3,9 @@
 /* COMPONENTS */
 import { DinamicRow } from "@/content/shared/ui/dinamicTable/components/dinamicRow/DinamicRow";
 import { DinamicTd } from "@/content/shared/ui/dinamicTable/components/dinamicTd/DinamicTd";
-import { ModalBodyUpdateStatus } from "../modalBodyUpdateStatus/ModalBodyUpdateStatus";
-import { ModalBodyRemoveMember } from "../modalBodyRemoveMember/ModalBodyRemoveMember";
-import { ModalBodyUpdateMemberForm } from "../modalBodyUpdateMember/ModalBodyUpdateMemberForm";
+import { ModalBodyUpdateStatus } from "../../../modalBodyUpdateStatus/ModalBodyUpdateStatus";
+import { ModalBodyRemoveMember } from "../../../modalBodyRemoveMember/ModalBodyRemoveMember";
+import { ModalBodyUpdateMemberForm } from "../../../modalBodyUpdateMember/ModalBodyUpdateMemberForm";
 
 /* ICONS */
 import { Power, PowerOff, SquarePen, Trash2 } from "lucide-react";

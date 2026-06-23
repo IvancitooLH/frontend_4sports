@@ -17,7 +17,7 @@ import { useState } from "react";
 
 /* STORES */
 import { useAnnouncement } from "@/content/shared/ui/annoucement/stores/announcementStore";
-import { useMembersFilter } from "../../stores/membersStore";
+import { useMembersFilter } from "../membersTable/stores/membersStore";
 import { useModal } from "@/content/shared/ui/modal/stores/modalStore";
 
 /* TYPES */

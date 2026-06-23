@@ -6,9 +6,11 @@ import { DinamicTableFooter } from "@/content/shared/ui/dinamicTable/components/
 import { DinamicTableHeader } from "@/content/shared/ui/dinamicTable/components/dinamicTableHeader/DinamicTableHeader";
 import { DinamicTh } from "@/content/shared/ui/dinamicTable/components/dinamicTh/DinamicTh";
 import { DinamicTable } from "@/content/shared/ui/dinamicTable/DinamicTable";
-import { ModalBodyMembersFilter } from "./components/modalBodyMembersFilter/ModalBodyMembersFilter";
+import { ModalBodyMembersFilter } from "../modalBodyMembersFilter/ModalBodyMembersFilter";
 import { MemberRow } from "./components/memberRow/MemberRow";
 import { DinamicButton } from "@/content/shared/form/dinamicButton/DinamicButton";
+import { ModalBodyTransferOrganization } from "../modalBodyTransferOrganization/ModalBodyTransferOrganizationForm";
+import { ModalBodyInviteMemberForm } from "../modalBodyInviteMember/ModalBodyInviteMemberForm";
 
 /* DATA */
 import { membersColumns } from "./data/membersColumns";
@@ -35,7 +37,6 @@ import { MemberType } from "./types/memberType";
 /* UTILS */
 import { getTwBgColorTable } from "@/content/shared/ui/dinamicTable/utils/getTwBgColorTable";
 import { generatePagination } from "@/content/shared/ui/dinamicTable/utils/generatePagination";
-import { ModalBodyInviteMemberForm } from "./components/modalBodyInviteMember/ModalBodyInviteMemberForm";
 
 export function OrganizationMembersTable() {
   const { setAnnouncement } = useAnnouncement();
@@ -272,7 +273,13 @@ export function OrganizationMembersTable() {
                 twClassName="text-sm w-fit py-1"
               />
               <DinamicButton
-                action={() => {}}
+                action={() =>
+                  setModal({
+                    isActivated: true,
+                    title: "Transferir organización",
+                    body: <ModalBodyTransferOrganization />,
+                  })
+                }
                 type="destructive"
                 label="Transferir"
                 icon={<ArrowLeftRight className="size-4 min-w-4 min-h-4" />}
