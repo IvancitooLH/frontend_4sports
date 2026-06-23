@@ -8,9 +8,6 @@ import { useAnnouncement } from "@/content/shared/ui/annoucement/stores/announce
 import { useMemo, useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 
-/* ICONS */
-import { ChevronLeft, ChevronRight, Check } from "lucide-react";
-
 /* LIBS */
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -22,6 +19,7 @@ import { useModal } from "@/content/shared/ui/modal/stores/modalStore";
 
 /* TYPES */
 import { TransferOrganizationFormType } from "./types/transferOrganizationFormType";
+import { DinamicCheckboxOptions } from "@/content/shared/form/dinamicCheckboxOptions/DinamicCheckboxOptions";
 
 type Step = {
   title: string;
@@ -65,7 +63,26 @@ export function ModalBodyTransferOrganization() {
       {
         title: "Paso 2 de 4: Seleccionar nuevo propietario",
         fields: ["id"],
-        component: <p>Paso 2</p>,
+        component: (
+          <div className="w-full">
+            <DinamicCheckboxOptions<TransferOrganizationFormType>
+              name="id"
+              options={[
+                { label: "Pirita D", value: "111" },
+                { label: "Cornalina D", value: "222" },
+                { label: "Nau D", value: "333" },
+              ]}
+              multiple={false}
+              label=""
+            />
+            <DinamicButton
+              action={() => {}}
+              type="unfilled"
+              label="Ver más"
+              twClassName="w-fit py-1 text-sm"
+            />
+          </div>
+        ),
       },
       {
         title: "Paso 3 de 4: Confirmación",

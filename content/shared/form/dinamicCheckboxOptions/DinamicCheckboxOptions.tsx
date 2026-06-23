@@ -14,6 +14,7 @@ export function DinamicCheckboxOptions<T extends FieldValues>({
   label,
   options,
   rules,
+  multiple = true,
 }: DinamicCheckboxOptionsProps<T>) {
   const {
     control,
@@ -30,29 +31,39 @@ export function DinamicCheckboxOptions<T extends FieldValues>({
         name={name}
         control={control}
         rules={rules}
-        render={({ field: { value = [], onChange } }) => {
-          const selectedValues = value as string[];
+        render={({ field: { value, onChange } }) => {
+          const selectedValues = multiple ? ((value ?? []) as string[]) : [];
 
           const handleCheckedChange = (
             checked: boolean,
             optionValue: string,
           ) => {
-            if (checked) {
-              onChange([...selectedValues, optionValue]);
+            if (multiple) {
+              if (checked) {
+                onChange([...selectedValues, optionValue]);
+              } else {
+                onChange(selectedValues.filter((item) => item !== optionValue));
+              }
             } else {
-              onChange(selectedValues.filter((item) => item !== optionValue));
+              onChange(checked ? optionValue : "");
             }
           };
 
           return (
-            <div className="flex flex-row gap-2">
+            <div className="flex flex-row gap-4">
               {options.map((option) => {
-                const checked = selectedValues.includes(option.value);
+                const checked = multiple
+                  ? selectedValues.includes(option.value)
+                  : value === option.value;
 
                 return (
                   <label
                     key={option.value}
-                    className={`flex items-center gap-3 text-sm rounded-full px-4 py-2 cursor-pointer border-2 transition-all duration-300 w-full ${checked ? "bg-primary-background border-primary" : "bg-background border-line hover:bg-surface"}`}
+                    className={`flex items-center gap-3 text-sm rounded-full px-4 py-2 cursor-pointer border transition-all duration-300 w-full ${
+                      checked
+                        ? "bg-primary-background border-primary"
+                        : "bg-background border-line hover:bg-surface"
+                    }`}
                   >
                     <Checkbox
                       checked={checked}

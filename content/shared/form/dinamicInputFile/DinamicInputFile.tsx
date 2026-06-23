@@ -154,8 +154,8 @@ export function DinamicInputFile<T extends FieldValues>({
   }
 
   return (
-    <div className="flex flex-col gap-2 w-full">
-      {label && <label className="text-sm text-faint">{label}</label>}
+    <div className="flex flex-col gap-2 w-full mb-4">
+      {label && <label>{label}</label>}
 
       <Controller
         name={name}
@@ -168,7 +168,7 @@ export function DinamicInputFile<T extends FieldValues>({
             type="file"
             accept={accept}
             placeholder={placeholder}
-            className="w-full text-sm h-fit px-4 py-2 bg-background outline-none border border-line rounded-xl hover:bg-surface transition-all duration-300 placeholder:text-faint focus:ring-2 focus:ring-lucide"
+            className="w-full text-sm h-fit px-4 py-2 bg-background outline-none border border-line rounded-xl hover:bg-surface transition-all duration-300 placeholder:text-faint focus:ring-2 focus:ring-lucide cursor-pointer"
             onChange={(e: ChangeEvent<HTMLInputElement>) => {
               const file = e.target.files?.[0];
               onChange(file);

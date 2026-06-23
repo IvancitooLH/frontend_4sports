@@ -11,4 +11,5 @@ export type DinamicCheckboxOptionsProps<T extends FieldValues> = {
   label?: string;
   options: CheckboxOption[];
   rules?: RegisterOptions<T>;
+  multiple?: boolean;
 };

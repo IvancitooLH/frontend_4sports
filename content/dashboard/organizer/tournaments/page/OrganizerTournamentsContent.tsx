@@ -20,6 +20,9 @@ import banner1 from "./images/banner1.jpg";
 import banner2 from "./images/banner2.jpg";
 import organization1 from "./images/organization1.png";
 
+/* NAVIGATION */
+import { useRouter } from "next/navigation";
+
 /* TYPES */
 import { TournamentCardType } from "./components/tournamentCard/types/TournamentCardType";
 import Image from "next/image";
@@ -80,6 +83,8 @@ const tournaments: TournamentCardType[] = [
 ];
 
 export function OrganizerTournamentsContent() {
+  const router = useRouter();
+
   return (
     <SectionContainer>
       <div className="p-6 flex flex-col">
@@ -89,8 +94,8 @@ export function OrganizerTournamentsContent() {
           </p>
 
           <DinamicButton
-            action={() => {}}
-            twClassName="w-fit h-fit py-1 px-4 rounded-xl text-sm"
+            action={() => router.push("/organizer/tournaments/add")}
+            twClassName="w-fit py-1 text-sm"
             disabled={false}
             disabledSpinner={false}
             type={"filled"}

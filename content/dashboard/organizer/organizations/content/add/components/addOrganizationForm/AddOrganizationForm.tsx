@@ -36,7 +36,7 @@ export function AddOrganizationForm({
 
       <div className="w-1/2 h-fit flex flex-col gap-6">
         <p className="font-bebas text-5xl text-ink text-center">
-          Agregar <span className="text-primary">Organización</span>
+          Nueva <span className="text-primary">Organización</span>
         </p>
 
         <div className="flex md:flex-row flex-col md:gap-6 gap-2 items-center">
