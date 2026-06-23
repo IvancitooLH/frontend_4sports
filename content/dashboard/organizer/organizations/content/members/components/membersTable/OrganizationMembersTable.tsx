@@ -7,7 +7,7 @@ import { DinamicTableHeader } from "@/content/shared/ui/dinamicTable/components/
 import { DinamicTh } from "@/content/shared/ui/dinamicTable/components/dinamicTh/DinamicTh";
 import { DinamicTable } from "@/content/shared/ui/dinamicTable/DinamicTable";
 import { ModalBodyMembersFilter } from "./components/modalBodyMembersFilter/ModalBodyMembersFilter";
-import { MemberRow } from "./components/paymentRow/MemberRow";
+import { MemberRow } from "./components/memberRow/MemberRow";
 import { DinamicButton } from "@/content/shared/form/dinamicButton/DinamicButton";
 
 /* DATA */
@@ -35,6 +35,7 @@ import { MemberType } from "./types/memberType";
 /* UTILS */
 import { getTwBgColorTable } from "@/content/shared/ui/dinamicTable/utils/getTwBgColorTable";
 import { generatePagination } from "@/content/shared/ui/dinamicTable/utils/generatePagination";
+import { ModalBodyInviteMemberForm } from "./components/modalBodyInviteMember/ModalBodyInviteMemberForm";
 
 export function OrganizationMembersTable() {
   const { setAnnouncement } = useAnnouncement();
@@ -251,9 +252,15 @@ export function OrganizationMembersTable() {
 
             <div className="flex gap-4 items-center">
               <DinamicButton
-                action={() => {}}
+                action={() =>
+                  setModal({
+                    isActivated: true,
+                    title: "Invitar miembro",
+                    body: <ModalBodyInviteMemberForm slug="" />,
+                  })
+                }
                 type="filled"
-                label="Agregar"
+                label="Invitar"
                 icon={<Plus className="size-4 min-w-4 min-h-4" />}
                 twClassName="text-sm w-fit py-1"
               />

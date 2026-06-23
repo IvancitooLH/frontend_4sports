@@ -1,7 +1,7 @@
 /* TYPES */
 import { FieldValues, Path, RegisterOptions } from "react-hook-form";
 
-type CheckboxOption = {
+export type CheckboxOption = {
   label: string;
   value: string;
 };

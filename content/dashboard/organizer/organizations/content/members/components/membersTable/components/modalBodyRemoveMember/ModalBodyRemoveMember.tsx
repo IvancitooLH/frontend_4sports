@@ -74,7 +74,7 @@ export function ModalBodyRemoveMember({
 
   return (
     <FormProvider {...methods}>
-      <div className="pr-4 pl-4 overflow-y-auto lg:max-h-3/4 max-h-40">
+      <div className="p-6 overflow-y-auto lg:max-h-3/4 max-h-40">
         <p>
           Al dar clic en <span className="text-danger font-bold">Remover</span>,
           el miembro {complete_name}, será removido permanentemente de la
@@ -84,7 +84,7 @@ export function ModalBodyRemoveMember({
       </div>
 
       {/* BOTONES DE ACCIÓN */}
-      <div className="flex gap-4 mt-6">
+      <div className="flex gap-6 px-6 pb-6">
         {/* CANCELAR */}
         <DinamicButton
           action={() =>

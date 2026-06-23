@@ -5,6 +5,7 @@ import { DinamicRow } from "@/content/shared/ui/dinamicTable/components/dinamicR
 import { DinamicTd } from "@/content/shared/ui/dinamicTable/components/dinamicTd/DinamicTd";
 import { ModalBodyUpdateStatus } from "../modalBodyUpdateStatus/ModalBodyUpdateStatus";
 import { ModalBodyRemoveMember } from "../modalBodyRemoveMember/ModalBodyRemoveMember";
+import { ModalBodyUpdateMemberForm } from "../modalBodyUpdateMember/ModalBodyUpdateMemberForm";
 
 /* ICONS */
 import { Power, PowerOff, SquarePen, Trash2 } from "lucide-react";
@@ -98,7 +99,13 @@ export function MemberRow({
 
       <DinamicTd twClassName="text-nowrap">
         <DinamicButton
-          action={() => {}}
+          action={() =>
+            setModal({
+              isActivated: true,
+              title: "Actualizar miembro",
+              body: <ModalBodyUpdateMemberForm slug="" />,
+            })
+          }
           type={"filled"}
           icon={<SquarePen className="size-4 min-w-4 min-h-4" />}
           twClassName="w-fit rounded-full p-1"

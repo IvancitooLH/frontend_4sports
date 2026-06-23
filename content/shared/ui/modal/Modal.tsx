@@ -57,7 +57,7 @@ export function Modal() {
           </button>
         </div>
 
-        <div className="p-6 scrollbar-custom">{modal.body}</div>
+        <div className="scrollbar-custom">{modal.body}</div>
       </motion.div>
 
       {/* Fondo negro con animación */}

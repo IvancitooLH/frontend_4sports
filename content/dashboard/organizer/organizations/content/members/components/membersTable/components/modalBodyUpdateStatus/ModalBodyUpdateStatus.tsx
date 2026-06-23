@@ -77,7 +77,7 @@ export function ModalBodyUpdateStatus({
 
   return (
     <FormProvider {...methods}>
-      <div className="pr-4 pl-4 overflow-y-auto lg:max-h-3/4 max-h-40">
+      <div className="p-6 overflow-y-auto lg:max-h-3/4 max-h-40">
         {actualStatus === "active" ? (
           <>
             <p>
@@ -106,7 +106,7 @@ export function ModalBodyUpdateStatus({
       </div>
 
       {/* BOTONES DE ACCIÓN */}
-      <div className="flex gap-4 mt-6">
+      <div className="flex gap-6 px-6 pb-6">
         {/* CANCELAR */}
         <DinamicButton
           action={() =>

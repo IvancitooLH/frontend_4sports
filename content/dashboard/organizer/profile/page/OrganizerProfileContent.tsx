@@ -4,6 +4,8 @@
 import { SectionContainer } from "@/content/shared/ui/sectionContainer/SectionContainer";
 import Image from "next/image";
 import { DinamicButton } from "@/content/shared/form/dinamicButton/DinamicButton";
+import { ModalBodyUpdateProfilePhotoForm } from "./components/modalBodyUpdateProfilePhoto/ModalBodyUpdateProfilePhotoForm";
+import { ModalBodyUpdateProfileInfoForm } from "./components/modalBodyUpdateProfileInfo/ModalBodyUpdateProfileInfoForm";
 
 /* ICONS */
 import {
@@ -20,7 +22,12 @@ import {
 import user1 from "./images/user1.jpg";
 import banner1 from "./images/banner1.jpg";
 
+/* STORES */
+import { useModal } from "@/content/shared/ui/modal/stores/modalStore";
+
 export function OrganizerProfileContent() {
+  const { setModal } = useModal();
+
   return (
     <SectionContainer>
       <div className="p-6 flex flex-col">
@@ -46,7 +53,13 @@ export function OrganizerProfileContent() {
 
               <div className="absolute bottom-1 right-1 w-14 h-14 rounded-full bg-primary text-primary-text flex items-center justify-center border-6 border-background">
                 <DinamicButton
-                  action={() => {}}
+                  action={() =>
+                    setModal({
+                      isActivated: true,
+                      title: "Cambiar foto",
+                      body: <ModalBodyUpdateProfilePhotoForm id="" />,
+                    })
+                  }
                   type="filled"
                   icon={<SquarePen className="size-5 min-w-5 min-h-5" />}
                   twClassName="w-full h-full p-0 rounded-full"
@@ -55,9 +68,15 @@ export function OrganizerProfileContent() {
             </div>
 
             <DinamicButton
-              action={() => {}}
+              action={() =>
+                setModal({
+                  isActivated: true,
+                  title: "Actualizar perfil",
+                  body: <ModalBodyUpdateProfileInfoForm id="" />,
+                })
+              }
               type="filled"
-              label="Editar perfil"
+              label="Actualizar perfil"
               icon={<SquarePen className="size-4 min-w-4 min-h-4" />}
               twClassName="w-fit text-sm py-1 absolute bottom-0 right-6 translate-y-[calc(100%+1.5rem)]"
             />
@@ -72,7 +91,7 @@ export function OrganizerProfileContent() {
 
           <div className="grid grid-cols-2 w-full gap-6">
             <div className="flex flex-col gap-6 bg-surface rounded-xl p-6 text-sm">
-              <p className="font-semibold">Información básica</p>
+              <p className="font-semibold text-lg">Información básica</p>
 
               <div className="grid grid-cols-2 text-muted">
                 <div className="flex flex-col gap-6">
@@ -98,7 +117,7 @@ export function OrganizerProfileContent() {
               </div>
             </div>
             <div className="flex flex-col gap-6 bg-surface rounded-xl p-6 text-sm">
-              <p className="font-semibold">Información de contacto</p>
+              <p className="font-semibold text-lg">Información de contacto</p>
 
               <div className="grid grid-cols-2 text-muted">
                 <div className="flex flex-col gap-6">

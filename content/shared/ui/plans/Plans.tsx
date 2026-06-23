@@ -44,23 +44,25 @@ export function Plans({
         },
       }}
     >
-      <div className="w-24 m-auto mb-4">
-        <FourSportsIcon />
-      </div>
+      <div>
+        <div className="w-24 m-auto mb-4">
+          <FourSportsIcon />
+        </div>
 
-      {/* Cabecera compactada */}
-      <div className="text-center mb-8">
-        <TitleWithDescription
-          title="Tu plan ideal"
-          description="Elige entre opciones diseñadas para principiantes, clubes activos y organizadores profesionales"
-        />
-      </div>
+        {/* Cabecera compactada */}
+        <div className="text-center mb-8">
+          <TitleWithDescription
+            title="Tu plan ideal"
+            description="Elige entre opciones diseñadas para principiantes, clubes activos y organizadores profesionales"
+          />
+        </div>
 
-      {/* Grilla responsiva adaptada al viewport */}
-      <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4 items-stretch w-full">
-        {plans.map((plan, index) => (
-          <PlanCard key={index} {...plan} onSelect={onSelectArray[index]} />
-        ))}
+        {/* Grilla responsiva adaptada al viewport */}
+        <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4 items-stretch w-full">
+          {plans.map((plan, index) => (
+            <PlanCard key={index} {...plan} onSelect={onSelectArray[index]} />
+          ))}
+        </div>
       </div>
     </motion.div>
   );

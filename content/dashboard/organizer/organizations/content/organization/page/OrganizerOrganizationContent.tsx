@@ -4,6 +4,8 @@
 import { SectionContainer } from "@/content/shared/ui/sectionContainer/SectionContainer";
 import Image from "next/image";
 import { DinamicButton } from "@/content/shared/form/dinamicButton/DinamicButton";
+import { ModalBodyUpdateOrganizationPhotoForm } from "./components/modalBodyUpdateOrganizationPhoto/ModalBodyUpdateOrganizationPhotoForm";
+import { ModalBodyUpdateOrganizationInfoForm } from "./components/modalBodyUpdateOrganizationInfo/ModalBodyUpdateOrganizationInfoForm";
 
 import { TournamentCard } from "@/content/dashboard/organizer/tournaments/page/components/tournamentCard/TournamentCard";
 
@@ -22,6 +24,9 @@ import team1 from "./images/team1.jpg";
 import team2 from "./images/team2.jpg";
 import team3 from "./images/team3.jpg";
 import team4 from "./images/team4.jpg";
+
+/* STORES */
+import { useModal } from "@/content/shared/ui/modal/stores/modalStore";
 
 /* TYPES */
 import { TournamentCardType } from "@/content/dashboard/organizer/tournaments/page/components/tournamentCard/types/TournamentCardType";
@@ -82,6 +87,8 @@ const tournaments: TournamentCardType[] = [
 ];
 
 export function OrganizerOrganizationContent({ slug }: { slug: string }) {
+  const { setModal } = useModal();
+
   return (
     <SectionContainer>
       <div className="p-6 flex flex-col">
@@ -107,7 +114,15 @@ export function OrganizerOrganizationContent({ slug }: { slug: string }) {
 
               <div className="absolute bottom-1 right-1 w-14 h-14 rounded-full bg-primary text-primary-text flex items-center justify-center border-6 border-background">
                 <DinamicButton
-                  action={() => {}}
+                  action={() =>
+                    setModal({
+                      isActivated: true,
+                      title: "Cambiar foto",
+                      body: (
+                        <ModalBodyUpdateOrganizationPhotoForm slug={slug} />
+                      ),
+                    })
+                  }
                   type="filled"
                   icon={<SquarePen className="size-5 min-w-5 min-h-5" />}
                   twClassName="w-full h-full p-0 rounded-full"
@@ -116,9 +131,15 @@ export function OrganizerOrganizationContent({ slug }: { slug: string }) {
             </div>
 
             <DinamicButton
-              action={() => {}}
+              action={() =>
+                setModal({
+                  isActivated: true,
+                  title: "Actualizar información",
+                  body: <ModalBodyUpdateOrganizationInfoForm slug={slug} />,
+                })
+              }
               type="filled"
-              label="Editar información"
+              label="Actualizar información"
               icon={<SquarePen className="size-4 min-w-4 min-h-4" />}
               twClassName="w-fit text-sm py-1 absolute bottom-0 right-6 translate-y-[calc(100%+1.5rem)]"
             />

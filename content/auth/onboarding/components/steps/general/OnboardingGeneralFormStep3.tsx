@@ -6,9 +6,6 @@ import { ChoiceCard } from "@/content/auth/onboarding/components/choiceCard/Choi
 /* HOOKS */
 import { useFormContext } from "react-hook-form";
 
-/* ICONS */
-import { SportShoe, ClipboardList } from "lucide-react";
-
 /* TYPES */
 import { OnboardingForm } from "@/content/auth/onboarding/types/onboardingForm";
 
@@ -21,7 +18,6 @@ export function OnboardingGeneralFormStep3() {
     <div className="w-full h-full flex md:flex-row flex-col gap-4 p-4">
       <ChoiceCard
         active={role === "player"}
-        icon={<SportShoe className="size-6 min-w-6 min-h-6" />}
         title="¡Seré un jugador!"
         dots={[
           "Me uniré a equipos",
@@ -36,7 +32,6 @@ export function OnboardingGeneralFormStep3() {
 
       <ChoiceCard
         active={role === "organizer"}
-        icon={<ClipboardList className="size-6 min-w-6 min-h-6" />}
         title="¡Seré un organizador!"
         dots={[
           "Organizaré ligas y torneos",

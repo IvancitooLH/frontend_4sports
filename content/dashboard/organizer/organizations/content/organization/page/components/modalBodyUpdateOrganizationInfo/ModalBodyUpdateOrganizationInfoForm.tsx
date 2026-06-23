@@ -2,7 +2,8 @@
 
 /* COMPONENTS */
 import { DinamicButton } from "@/content/shared/form/dinamicButton/DinamicButton";
-import { DinamicInputFile } from "@/content/shared/form/dinamicInputFile/DinamicInputFile";
+import { DinamicInputText } from "@/content/shared/form/dinamicInputText/DinamicInputText";
+import { DinamicTextArea } from "@/content/shared/form/dinamicTextArea/DinamicTextArea";
 
 /* HOOKS */
 import { FormProvider, useForm } from "react-hook-form";
@@ -13,17 +14,21 @@ import { useModal } from "@/content/shared/ui/modal/stores/modalStore";
 import { useAnnouncement } from "@/content/shared/ui/annoucement/stores/announcementStore";
 
 /* TYPES */
-import { UpdateOrganizationPhotoFormType } from "./types/updateOrganizationPhotoFormType";
+import { UpdateOrganizationInfoFormType } from "./types/updateOrganizationInfoFormType";
 
-export function ModalBodyUpdateOrganizationPhotoForm({ slug }: { slug: string }) {
+export function ModalBodyUpdateOrganizationInfoForm({
+  slug,
+}: {
+  slug: string;
+}) {
   const { setModal, modal } = useModal();
 
   const { setAnnouncement } = useAnnouncement();
   const [saving, setSaving] = useState(false);
 
-  const methods = useForm<UpdateOrganizationPhotoFormType>();
+  const methods = useForm<UpdateOrganizationInfoFormType>();
 
-  const onSubmit = async (data: UpdateOrganizationPhotoFormType) => {
+  const onSubmit = async (data: UpdateOrganizationInfoFormType) => {
     try {
       setSaving(true);
 
@@ -34,7 +39,7 @@ export function ModalBodyUpdateOrganizationPhotoForm({ slug }: { slug: string })
         setAnnouncement({
           isActivated: true,
           announceType: "ok",
-          message: "Foto de organización cambiada correctamente",
+          message: "Información de la organización actualizada correctamente",
         });
         setModal({
           isActivated: false,
@@ -50,11 +55,23 @@ export function ModalBodyUpdateOrganizationPhotoForm({ slug }: { slug: string })
 
   return (
     <FormProvider {...methods}>
-      <div className="w-full h-fit flex flex-col gap-6">
-        <DinamicInputFile<UpdateOrganizationPhotoFormType>
-          variant="select-photo"
-          name="image"
-        />
+      <div className="w-full h-fit flex flex-col gap-6 p-6">
+        <div className="flex flex-col">
+          <DinamicInputText<UpdateOrganizationInfoFormType>
+            name="name"
+            label="Nombre"
+            placeholder="Ingrese el nombre de la organización"
+            rules={{}}
+          />
+
+          <DinamicTextArea<UpdateOrganizationInfoFormType>
+            name="description"
+            label="Descripción"
+            placeholder="Ingrese la descripción de la organización"
+            rules={{}}
+            twMarginBottom="mb-0"
+          />
+        </div>
 
         <div className="flex gap-6">
           <DinamicButton
@@ -74,7 +91,7 @@ export function ModalBodyUpdateOrganizationPhotoForm({ slug }: { slug: string })
             disabled={saving}
             disabledSpinner={true}
             spinFromText={true}
-            label="Aceptar"
+            label="Actualizar"
           />
         </div>
       </div>

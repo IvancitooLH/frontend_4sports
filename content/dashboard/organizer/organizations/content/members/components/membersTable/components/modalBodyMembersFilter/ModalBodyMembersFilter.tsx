@@ -114,7 +114,7 @@ export function ModalBodyMembersFilter() {
 
   return (
     <FormProvider {...methods}>
-      <div className="pr-4 pl-4 overflow-y-auto lg:max-h-3/4 max-h-40">
+      <div className="p-6 overflow-y-auto lg:max-h-3/4 max-h-40">
         <div className="grid lg:grid-cols-3 lg:gap-4 gap-0 w-full h-fit grid-cols-1">
           {/* PER PAGE */}
           <DinamicCombobox<MembersFilterFormType>
@@ -155,7 +155,7 @@ export function ModalBodyMembersFilter() {
       </div>
 
       {/* BOTONES DE ACCIÓN */}
-      <div className="flex gap-4 mt-6">
+      <div className="flex gap-6 px-6 pb-6">
         {/* CANCELAR */}
         <DinamicButton
           action={() =>
