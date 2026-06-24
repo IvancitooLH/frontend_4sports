@@ -13,7 +13,7 @@ import { TournamentCard } from "@/content/dashboard/organizer/tournaments/page/c
 import { SquarePen } from "lucide-react";
 
 /* IMAGES */
-import banner1 from "./images/banner1.jpg";
+import banner1 from "./images/banner3.jpg";
 import banner2 from "./images/banner2.jpg";
 import banner3 from "./images/banner3.jpg";
 import organization1 from "./images/organization1.png";

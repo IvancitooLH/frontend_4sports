@@ -1,7 +1,8 @@
-"use client"
+"use client";
 
 /* COMPONENTS */
 import { Checkbox } from "@/components/ui/checkbox";
+import { Switch } from "@/components/ui/switch";
 
 /* HOOKS */
 import { Controller, FieldValues, useFormContext } from "react-hook-form";
@@ -14,6 +15,8 @@ export function DinamicCheckboxBoolean<T extends FieldValues>({
   label,
   description,
   rules,
+  wantCustomCheck,
+  twClassName,
 }: DinamicCheckboxBooleanProps<T>) {
   const {
     control,
@@ -23,17 +26,28 @@ export function DinamicCheckboxBoolean<T extends FieldValues>({
   const error = errors[name];
 
   return (
-    <div className="flex flex-col gap-2 lg:mb-4 mb-0 justify-center">
+    <div
+      className={`flex flex-col gap-2 lg:mb-4 mb-0 justify-center w-fit ${twClassName !== undefined && twClassName}`}
+    >
       <Controller
         name={name}
         control={control}
         rules={rules}
         render={({ field: { value, onChange } }) => (
-          <label className="flex items-center gap-3 cursor-pointer">
-            <Checkbox
-              checked={value}
-              onCheckedChange={(checked) => onChange(Boolean(checked))}
-            />
+          <label
+            className={`flex items-center cursor-pointer ${label !== undefined && description !== undefined && "gap-3"}`}
+          >
+            {wantCustomCheck ? (
+              <Switch
+                checked={value}
+                onCheckedChange={(checked) => onChange(Boolean(checked))}
+              />
+            ) : (
+              <Checkbox
+                checked={value}
+                onCheckedChange={(checked) => onChange(Boolean(checked))}
+              />
+            )}
 
             <div className="flex flex-col justify-center items-center select-none">
               {label && <span className="text-sm">{label}</span>}

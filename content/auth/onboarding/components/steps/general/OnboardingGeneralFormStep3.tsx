@@ -28,6 +28,7 @@ export function OnboardingGeneralFormStep3() {
         action={() => {
           setValue("role", "player");
         }}
+        wantCheck
       />
 
       <ChoiceCard
@@ -42,6 +43,7 @@ export function OnboardingGeneralFormStep3() {
         action={() => {
           setValue("role", "organizer");
         }}
+        wantCheck
       />
     </div>
   );

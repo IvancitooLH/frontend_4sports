@@ -4,21 +4,22 @@
 import { DinamicInputText } from "@/content/shared/form/dinamicInputText/DinamicInputText";
 import { DinamicInputFile } from "@/content/shared/form/dinamicInputFile/DinamicInputFile";
 import { DinamicTextArea } from "@/content/shared/form/dinamicTextArea/DinamicTextArea";
-
-/* TYPES */
-import { TournamentAddFormType } from "../../types/tournamentAddFormType";
 import { DinamicCheckboxOptions } from "@/content/shared/form/dinamicCheckboxOptions/DinamicCheckboxOptions";
 import { DinamicTagsGroup } from "@/content/shared/form/dinamicTagsGroup/DinamicTagsGroup";
 import { DinamicInputDate } from "@/content/shared/form/dinamicInputDate/DinamicInputDate";
+import { SpecificInputFileImage } from "../specificInputFileImage/SpecificInputFileImage";
 
-export function TournamentAddStep1() {
+/* TYPES */
+import { TournamentAddFormType } from "../../types/tournamentAddFormType";
+
+export function TournamentAddStep1({ preview }: { preview: string | null }) {
   return (
-    <div className="w-full h-fit py-6">
+    <div className="w-full h-fit p-10">
       <div className="w-full h-fit flex md:flex-row flex-col md:gap-6 gap-2 md:items-center">
         {/* FOTO */}
-        <DinamicInputFile<TournamentAddFormType>
+        <SpecificInputFileImage<TournamentAddFormType>
           name="image"
-          variant="avatar"
+          preview={preview}
           rules={{
             validate: (file) => {
               if (!(file instanceof File)) return true;

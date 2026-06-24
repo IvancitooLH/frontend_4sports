@@ -6,4 +6,6 @@ export type DinamicCheckboxBooleanProps<T extends FieldValues> = {
   label?: string;
   description?: string;
   rules?: RegisterOptions<T>;
+  wantCustomCheck?: boolean
+  twClassName?: string
 };

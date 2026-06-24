@@ -2,11 +2,17 @@
 
 /* COMPONENTS */
 import { TournamentAddStep1 } from "./components/tournamentAddStep1/TournamentAddStep1";
+import { TournamentAddStep2 } from "./components/tournamentAddStep2/TournamentAddStep2";
+import { TournamentAddStep3RoundRobin } from "./components/tournamentAddStep3/TournamentAddStep3RoundRobin";
+import { TournamentAddStep3DirectElimination } from "./components/tournamentAddStep3/TournamentAddStep3DirectElimination";
+import { TournamentAddStep4 } from "./components/tournamentAddStep4/TournamentAddStep4";
+import { TournamentAddStep5 } from "./components/tournamentAddStep5/TournamentAddStep5";
+import { TournamentAddStep6 } from "./components/tournamentAddStep6/TournamentAddStep6";
 import { DinamicButton } from "@/content/shared/form/dinamicButton/DinamicButton";
-import { useAnnouncement } from "@/content/shared/ui/annoucement/stores/announcementStore";
+import { SectionContainer } from "@/content/shared/ui/sectionContainer/SectionContainer";
 
 /* HOOKS */
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   FormProvider,
   SubmitHandler,
@@ -23,9 +29,11 @@ import { AnimatePresence, motion } from "framer-motion";
 /* NAVIGATION */
 import { useRouter } from "next/navigation";
 
+/* STORES */
+import { useAnnouncement } from "@/content/shared/ui/annoucement/stores/announcementStore";
+
 /* TYPES */
 import { TournamentAddFormType } from "./types/tournamentAddFormType";
-import { SectionContainer } from "@/content/shared/ui/sectionContainer/SectionContainer";
 
 type Step = {
   title: string;
@@ -53,6 +61,14 @@ export function OrganizerTournamentAddContent() {
       tags: [],
       registrationInterval: undefined,
       gameInterval: undefined,
+      type: "round-robin",
+      ageGap: { min: 0, max: 100 },
+
+      sexVR: { visible: false, required: false },
+      birthdayVR: { visible: false, required: false },
+      emailVR: { visible: false, required: false },
+      telphoneVR: { visible: false, required: false },
+      jerseyVR: { visible: false, required: false },
     },
   });
 
@@ -62,6 +78,25 @@ export function OrganizerTournamentAddContent() {
     control: methods.control,
     name: "type",
   });
+
+  const file = useWatch({
+    control: methods.control,
+    name: "image",
+  }) as File | undefined;
+
+  const preview = useMemo(() => {
+    if (!file) return null;
+
+    return URL.createObjectURL(file);
+  }, [file]);
+
+  useEffect(() => {
+    return () => {
+      if (preview) {
+        URL.revokeObjectURL(preview);
+      }
+    };
+  }, [preview]);
 
   const steps: Step[] = useMemo(() => {
     const commonSteps: Step[] = [
@@ -76,13 +111,13 @@ export function OrganizerTournamentAddContent() {
           "registrationInterval",
           "gameInterval",
         ],
-        component: <TournamentAddStep1 />,
+        component: <TournamentAddStep1 preview={preview} />,
       },
       {
         title: "Paso 2 de 6",
         description: "Formato de competición",
         fields: ["type"],
-        component: <></>,
+        component: <TournamentAddStep2 />,
       },
     ];
 
@@ -91,7 +126,7 @@ export function OrganizerTournamentAddContent() {
         title: "Paso 3 de 6",
         description: "Todos contra todos",
         fields: ["teamsQuantityRoundRobin", "laps"],
-        component: <></>,
+        component: <TournamentAddStep3RoundRobin />,
       },
     ];
 
@@ -104,7 +139,7 @@ export function OrganizerTournamentAddContent() {
           "thirdPlaceMatch",
           "bestOfX",
         ],
-        component: <></>,
+        component: <TournamentAddStep3DirectElimination />,
       },
     ];
 
@@ -113,19 +148,19 @@ export function OrganizerTournamentAddContent() {
         title: "Paso 4 de 6",
         description: "Reglas de elegibilidad",
         fields: ["sex", "ageGap", "templateValidation", "eligibility"],
-        component: <></>,
+        component: <TournamentAddStep4 />,
       },
       {
         title: "Paso 5 de 6",
         description: "Campos de jugadores",
         fields: ["sexVR", "birthdayVR", "emailVR", "telphoneVR", "jerseyVR"],
-        component: <></>,
+        component: <TournamentAddStep5 />,
       },
       {
         title: "Paso 6 de 6",
-        description: "Modo borrador",
+        description: "Vista final y Confirmar",
         fields: [],
-        component: <></>,
+        component: <TournamentAddStep6 preview={preview} />,
       },
     ];
 
@@ -135,7 +170,7 @@ export function OrganizerTournamentAddContent() {
       resetField("bestOfX");
     }
 
-    if (type === "single-elimination") {
+    if (type === "direct-elimination") {
       resetField("teamsQuantityRoundRobin");
       resetField("laps");
     }
@@ -145,7 +180,7 @@ export function OrganizerTournamentAddContent() {
       ...(type === "round-robin" ? roundRobinSteps : singleEliminationSteps),
       ...finalSteps,
     ];
-  }, [type, resetField]);
+  }, [type, resetField, preview]);
 
   const currentStep = steps[step];
   const isLastStep = step === steps.length - 1;
@@ -175,7 +210,7 @@ export function OrganizerTournamentAddContent() {
       delete cleanData.bestOfX;
     }
 
-    if (cleanData.type === "single-elimination") {
+    if (cleanData.type === "direct-elimination") {
       delete cleanData.teamsQuantityRoundRobin;
       delete cleanData.laps;
     }
@@ -211,7 +246,7 @@ export function OrganizerTournamentAddContent() {
         >
           <div className="w-full h-fit z-10 py-6 border-b border-line">
             <h1 className="text-center font-bebas text-ink text-5xl mb-2">
-              Agregar <span className="text-primary">torneo</span>
+              Nuevo <span className="text-primary">torneo</span>
             </h1>
 
             {/* TITLE */}
@@ -297,7 +332,7 @@ export function OrganizerTournamentAddContent() {
                 transition={{
                   duration: 0.3,
                 }}
-                className="w-1/2 m-auto min-h-fit flex items-center"
+                className="w-full m-auto min-h-fit flex items-center"
               >
                 {currentStep.component}
               </motion.div>

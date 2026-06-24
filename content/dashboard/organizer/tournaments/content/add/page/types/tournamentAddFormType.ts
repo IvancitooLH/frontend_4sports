@@ -13,11 +13,11 @@ export type TournamentAddFormType = {
   gameInterval: DateRange;
 
   /* STEP 2 */
-  type: "round-robin" | "single-elimination";
+  type: "round-robin" | "direct-elimination";
 
   /* STEP 3 -> ROUND-ROBIN */
   teamsQuantityRoundRobin?: number;
-  laps?: boolean;
+  laps?: string;
 
   /* STEP 3 -> DIRECT-ELIMINATION */
   teamsQuantityDirectElimination?: number;
@@ -26,7 +26,7 @@ export type TournamentAddFormType = {
 
   /* STEP 4 */
   sex: string;
-  ageGap: { number1: number; number2: number };
+  ageGap: { min: number; max: number };
   templateValidation: string;
   eligibility: string;
 

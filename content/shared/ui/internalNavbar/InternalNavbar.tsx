@@ -114,7 +114,7 @@ export function InternalNavbar({ to }: { to: "organization" | "tournament" }) {
               {link.label}
 
               {active && (
-                <span className="absolute bottom-0 left-0 right-0 h-1 bg-background translate-y-full" />
+                <span className="absolute bottom-0 left-0 right-0 h-px bg-background translate-y-full" />
               )}
             </Link>
           );
