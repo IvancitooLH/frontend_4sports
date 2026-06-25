@@ -32,10 +32,6 @@ export function PaymentRow({
   return (
     <DinamicRow twBgColor={twBgColor}>
       <DinamicTd twClassName="text-nowrap">
-        <p>{payment.id}</p>
-      </DinamicTd>
-
-      <DinamicTd twClassName="text-nowrap">
         <p>{payment.total}</p>
       </DinamicTd>
 

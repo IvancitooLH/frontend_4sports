@@ -1,6 +1,5 @@
 export const membersColumns: string[] = [
   "",
-  "ID",
   "Apodo",
   "Nombre",
   "Rol",

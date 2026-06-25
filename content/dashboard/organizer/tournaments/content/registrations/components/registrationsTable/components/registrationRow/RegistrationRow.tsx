@@ -5,6 +5,7 @@ import { DinamicRow } from "@/content/shared/ui/dinamicTable/components/dinamicR
 import { DinamicTd } from "@/content/shared/ui/dinamicTable/components/dinamicTd/DinamicTd";
 import Image from "next/image";
 import { ModalBodyAcceptDeclineRegistration } from "../../../modalBodyAcceptDeclineRegistration/ModalBodyAcceptDeclineRegistration";
+import { DinamicButton } from "@/content/shared/form/dinamicButton/DinamicButton";
 
 /* ICONS */
 import { Check, X } from "lucide-react";
@@ -14,7 +15,6 @@ import { useModal } from "@/content/shared/ui/modal/stores/modalStore";
 
 /* TYPES */
 import { RegistrationType } from "../../types/registrationType";
-import { DinamicButton } from "@/content/shared/form/dinamicButton/DinamicButton";
 
 /* UTILS */
 import { formatDate } from "@/content/shared/utils/formatDate";
@@ -30,10 +30,6 @@ export function RegistrationRow({
 
   return (
     <DinamicRow twBgColor={twBgColor}>
-      <DinamicTd twClassName="text-nowrap">
-        <p>{registration.id}</p>
-      </DinamicTd>
-
       <DinamicTd twClassName="text-nowrap">
         <div className="flex items-center gap-4">
           <Image

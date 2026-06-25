@@ -1,1 +1,1 @@
-export const registrationsColumns: string[] = ["ID", "Equipo", "Envíada", "Opciones"];
+export const registrationsColumns: string[] = ["Equipo", "Envíada", ""];

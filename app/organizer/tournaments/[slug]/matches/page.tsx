@@ -1,3 +1,3 @@
-export default function OrganizerTournamentsMatches() {
+export default function OrganizerTournamentsMatchesPage() {
   return <div>Matches</div>;
 }

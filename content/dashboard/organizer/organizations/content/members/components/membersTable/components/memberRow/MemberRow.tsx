@@ -72,10 +72,6 @@ export function MemberRow({
       </DinamicTd>
 
       <DinamicTd twClassName="text-nowrap">
-        <p>{member.id}</p>
-      </DinamicTd>
-
-      <DinamicTd twClassName="text-nowrap">
         <p>{member.slug}</p>
       </DinamicTd>
 

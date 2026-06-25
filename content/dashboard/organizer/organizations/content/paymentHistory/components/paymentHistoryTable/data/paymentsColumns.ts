@@ -1,1 +1,1 @@
-export const paymentsColumns: string[] = ["ID", "Total", "Plan", "Fecha"];
+export const paymentsColumns: string[] = ["Total", "Plan", "Fecha"];
