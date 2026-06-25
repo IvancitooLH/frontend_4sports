@@ -6,6 +6,9 @@ import Image from "next/image";
 import { DinamicButton } from "@/content/shared/form/dinamicButton/DinamicButton";
 import { CarouselManual } from "@/content/shared/ui/carousel/carouselManual/CarouselManual";
 import { ModalBodyUpdateTournamentPhotoForm } from "./components/modalBodyUpdateTournamentPhoto/ModalBodyUpdateTournamentPhotoForm";
+import { ModalBodyCreateTeam } from "./components/modalBodyCreateTeam/ModalBodyCreateTeam";
+import { ModalBodyFinishTournament } from "./components/modalBodyFinishTournament/ModalBodyFinishTournament";
+import { ModalBodyDeleteTournament } from "./components/modalBodyDeleteTournament/ModalBodyDeleteTournament";
 
 /* HOOKS */
 import { useState } from "react";
@@ -42,8 +45,6 @@ import { useModal } from "@/content/shared/ui/modal/stores/modalStore";
 
 /* TYPES */
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
-import { ModalBodyCreateTeam } from "./components/modalBodyCreateTeam/ModalBodyCreateTeam";
-import { ModalBodyFinishTournament } from "./components/modalBodyFinishTournament/ModalBodyFinishTournament";
 
 type Team = {
   id: number;
@@ -165,7 +166,13 @@ export function OrganizerTournamentsContent({ slug }: { slug: string }) {
                       </DropdownMenu.Item>
 
                       <DropdownMenu.Item
-                        onClick={() => {}}
+                        onClick={() =>
+                          setModal({
+                            isActivated: true,
+                            title: "Finalizar torneo",
+                            body: <ModalBodyDeleteTournament id={0} />,
+                          })
+                        }
                         className="rounded-xl p-2 text-sm outline-none cursor-pointer mb-2 transition-colors duration-300 hover:bg-surface text-secondary"
                       >
                         Eliminar torneo
