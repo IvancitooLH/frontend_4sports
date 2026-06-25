@@ -5,11 +5,7 @@ import { DinamicButton } from "@/content/shared/form/dinamicButton/DinamicButton
 import { DinamicCombobox } from "@/content/shared/form/dinamicComboBox/DinamicCombobox";
 
 /* DATA */
-import {
-  registrationsOrder,
-  registrationsOrderBy,
-  registrationsPerPage,
-} from "./data/comboboxItems";
+import { teamsOrder, teamsOrderBy, teamsPerPage } from "./data/comboboxItems";
 
 /* HOOKS */
 import { FormProvider, useForm } from "react-hook-form";
@@ -17,20 +13,20 @@ import { useState } from "react";
 
 /* STORES */
 import { useAnnouncement } from "@/content/shared/ui/annoucement/stores/announcementStore";
-import { useRegistrationsFilter } from "../registrationsTable/stores/registrationsStore";
+import { useTeamsFilter } from "../teamsTable/stores/teamsStore";
 import { useModal } from "@/content/shared/ui/modal/stores/modalStore";
 
 /* TYPES */
-import { RegistrationsFilterFormType } from "./types/registrationsFilterFormType";
+import { TeamsFilterFormType } from "./types/teamsFilterFormType";
 
-export function ModalBodyRegistrationsFilter() {
+export function ModalBodyTeamsFilter() {
   const { setAnnouncement } = useAnnouncement();
   const { modal, setModal } = useModal();
-  const { setFilter } = useRegistrationsFilter();
+  const { setFilter } = useTeamsFilter();
 
   const [filtering, setFiltering] = useState(false);
 
-  const methods = useForm<RegistrationsFilterFormType>({
+  const methods = useForm<TeamsFilterFormType>({
     defaultValues: {
       perPage: undefined,
       order: undefined,
@@ -38,7 +34,7 @@ export function ModalBodyRegistrationsFilter() {
     },
   });
 
-  const onSubmit = (data: RegistrationsFilterFormType) => {
+  const onSubmit = (data: TeamsFilterFormType) => {
     try {
       setFiltering(true);
 
@@ -68,17 +64,7 @@ export function ModalBodyRegistrationsFilter() {
         data.order === "Ascendente" ? "asc" : "desc";
 
       // ORDER BY
-      let orderBy: "date" | "teamName" = "date";
-
-      switch (data.orderBy) {
-        case "date":
-          orderBy = "date";
-          break;
-
-        case "teamName":
-          orderBy = "teamName";
-          break;
-      }
+      const orderBy = "teamName";
 
       setFilter({
         page: 0,
@@ -117,9 +103,9 @@ export function ModalBodyRegistrationsFilter() {
       <div className="p-6 overflow-y-auto lg:max-h-3/4 max-h-40">
         <div className="grid lg:grid-cols-3 lg:gap-4 gap-0 w-full h-fit grid-cols-1">
           {/* PER PAGE */}
-          <DinamicCombobox<RegistrationsFilterFormType>
+          <DinamicCombobox<TeamsFilterFormType>
             name="perPage"
-            items={registrationsPerPage}
+            items={teamsPerPage}
             label="Mostrar"
             placeholder="Seleccionar mostrar"
             rules={{
@@ -129,9 +115,9 @@ export function ModalBodyRegistrationsFilter() {
           />
 
           {/* ORDER */}
-          <DinamicCombobox<RegistrationsFilterFormType>
+          <DinamicCombobox<TeamsFilterFormType>
             name="order"
-            items={registrationsOrder}
+            items={teamsOrder}
             label="Orden"
             placeholder="Seleccionar orden"
             rules={{
@@ -141,9 +127,9 @@ export function ModalBodyRegistrationsFilter() {
           />
 
           {/* ORDER BY */}
-          <DinamicCombobox<RegistrationsFilterFormType>
+          <DinamicCombobox<TeamsFilterFormType>
             name="orderBy"
-            items={registrationsOrderBy}
+            items={teamsOrderBy}
             label="Ordenar por"
             placeholder="Seleccionar ordenar por"
             rules={{
