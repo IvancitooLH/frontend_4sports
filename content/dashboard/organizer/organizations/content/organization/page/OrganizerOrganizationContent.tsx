@@ -141,7 +141,7 @@ export function OrganizerOrganizationContent({ slug }: { slug: string }) {
               type="filled"
               label="Actualizar información"
               icon={<SquarePen className="size-4 min-w-4 min-h-4" />}
-              twClassName="w-fit text-sm py-1 absolute bottom-0 right-6 translate-y-[calc(100%+1.5rem)]"
+              twClassName="w-fit text-sm py-1 absolute bottom-0 right-0 translate-y-[calc(100%+1.5rem)]"
             />
 
             <div className="flex flex-col gap-1 absolute bottom-0 left-60 translate-y-[calc(100%+1.5rem)]">

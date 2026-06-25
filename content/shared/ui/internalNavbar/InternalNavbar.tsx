@@ -6,6 +6,7 @@ import Image from "next/image";
 
 /* IMAGES */
 import organization1 from "./images/organization1.png";
+import tournament1 from './images/tournament1.png'
 
 /* NAVIGATION */
 import { usePathname } from "next/navigation";
@@ -85,8 +86,8 @@ export function InternalNavbar({ to }: { to: "organization" | "tournament" }) {
         ) : (
           <>
             <Image
-              alt="Organización"
-              src={organization1}
+              alt="Torneo"
+              src={tournament1}
               quality={70}
               className="w-12 h-12 min-w-12 min-h-12 rounded-xl object-cover object-center border border-line"
             />

@@ -5,6 +5,10 @@ import { SectionContainer } from "@/content/shared/ui/sectionContainer/SectionCo
 import Image from "next/image";
 import { DinamicButton } from "@/content/shared/form/dinamicButton/DinamicButton";
 import { CarouselManual } from "@/content/shared/ui/carousel/carouselManual/CarouselManual";
+import { ModalBodyUpdateTournamentPhotoForm } from "./components/modalBodyUpdateTournamentPhoto/ModalBodyUpdateTournamentPhotoForm";
+
+/* HOOKS */
+import { useState } from "react";
 
 /* ICONS */
 import {
@@ -14,6 +18,7 @@ import {
   LoaderPinwheel,
   MapPin,
   Merge,
+  SlidersHorizontal,
   SquarePen,
   UserRound,
   Venus,
@@ -28,11 +33,16 @@ import team3 from "./image/team3.jpg";
 import team4 from "./image/team4.jpg";
 import tournament1 from "./image/tournament1.png";
 
+/* LIBS */
+import { AnimatePresence, motion } from "framer-motion";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+
 /* STORES */
 import { useModal } from "@/content/shared/ui/modal/stores/modalStore";
 
 /* TYPES */
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import { ModalBodyCreateTeam } from "./components/modalBodyCreateTeam/ModalBodyCreateTeam";
 
 type Team = {
   id: number;
@@ -42,6 +52,8 @@ type Team = {
 
 export function OrganizerTournamentsContent({ slug }: { slug: string }) {
   const { setModal } = useModal();
+
+  const [open, setOpen] = useState(false);
 
   const teams: Team[] = [
     { id: 1, image: team1, name: "Super Team 1" },
@@ -83,7 +95,7 @@ export function OrganizerTournamentsContent({ slug }: { slug: string }) {
                   setModal({
                     isActivated: true,
                     title: "Cambiar foto",
-                    body: <></>,
+                    body: <ModalBodyUpdateTournamentPhotoForm id="" />,
                   })
                 }
                 type="filled"
@@ -92,6 +104,71 @@ export function OrganizerTournamentsContent({ slug }: { slug: string }) {
               />
             </div>
           </div>
+
+          <DropdownMenu.Root open={open} onOpenChange={setOpen}>
+            <DropdownMenu.Trigger asChild>
+              <button className="w-fit h-fit flex items-center justify-center gap-2 text-sm py-1 absolute bottom-0 right-0 translate-y-[calc(100%+1.5rem)] bg-primary border-transparent border-2 text-primary-text font-semibold px-4 rounded-lg cursor-pointer hover:bg-primary-hover">
+                <SlidersHorizontal className="size-4 min-w-4 min-h-4" />
+                Acciones
+              </button>
+            </DropdownMenu.Trigger>
+
+            <AnimatePresence>
+              {open && (
+                <DropdownMenu.Portal forceMount>
+                  <DropdownMenu.Content
+                    sideOffset={24}
+                    align="end"
+                    avoidCollisions
+                    side={"bottom"}
+                    asChild
+                  >
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.95, y: -6 }}
+                      animate={{ opacity: 1, scale: 1, y: -12 }}
+                      exit={{ opacity: 0, scale: 0.95, y: -6 }}
+                      transition={{ duration: 0.15 }}
+                      className="z-100 min-w-56 rounded-2xl border border-line p-2 shadow-md bg-background"
+                    >
+                      <DropdownMenu.Item
+                        onClick={() => {}}
+                        className="rounded-xl p-2 text-sm outline-none cursor-pointer mb-2 transition-colors duration-300 hover:bg-surface"
+                      >
+                        Actualizar torneo
+                      </DropdownMenu.Item>
+
+                      <DropdownMenu.Item
+                        onClick={() =>
+                          setModal({
+                            isActivated: true,
+                            title: "Crear equipo interno",
+                            body: <ModalBodyCreateTeam />,
+                          })
+                        }
+                        className="rounded-xl p-2 text-sm outline-none cursor-pointer mb-2 transition-colors duration-300 hover:bg-surface"
+                      >
+                        Crear equipo interno
+                      </DropdownMenu.Item>
+
+                      <DropdownMenu.Item
+                        onClick={() => {}}
+                        className="rounded-xl p-2 text-sm outline-none cursor-pointer mb-2 transition-colors duration-300 hover:bg-surface"
+                      >
+                        Finalizar torneo
+                      </DropdownMenu.Item>
+
+                      <DropdownMenu.Item
+                        onClick={() => {}}
+                        className="rounded-xl p-2 text-sm outline-none cursor-pointer mb-2 transition-colors duration-300 hover:bg-surface text-secondary"
+                      >
+                        Eliminar torneo
+                      </DropdownMenu.Item>
+                    </motion.div>
+                  </DropdownMenu.Content>
+                </DropdownMenu.Portal>
+              )}
+            </AnimatePresence>
+          </DropdownMenu.Root>
 
           <div className="flex flex-col gap-1 absolute bottom-0 left-60 translate-y-[calc(100%+1.5rem)]">
             <h2 className="text-3xl font-bold text-ink">Torneo Verano II</h2>
