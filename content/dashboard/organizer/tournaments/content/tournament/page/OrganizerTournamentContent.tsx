@@ -9,6 +9,7 @@ import { ModalBodyUpdateTournamentPhotoForm } from "./components/modalBodyUpdate
 import { ModalBodyCreateTeam } from "./components/modalBodyCreateTeam/ModalBodyCreateTeam";
 import { ModalBodyFinishTournament } from "./components/modalBodyFinishTournament/ModalBodyFinishTournament";
 import { ModalBodyDeleteTournament } from "./components/modalBodyDeleteTournament/ModalBodyDeleteTournament";
+import { ModalBodyUpdateTournament } from "./components/modalBodyUpdateTournament/ModalBodyUpdateTournament";
 
 /* HOOKS */
 import { useState } from "react";
@@ -133,7 +134,13 @@ export function OrganizerTournamentsContent({ slug }: { slug: string }) {
                       className="z-100 min-w-56 rounded-2xl border border-line p-2 shadow-md bg-background"
                     >
                       <DropdownMenu.Item
-                        onClick={() => {}}
+                        onClick={() =>
+                          setModal({
+                            isActivated: true,
+                            title: "Actualizar torneo",
+                            body: <ModalBodyUpdateTournament />,
+                          })
+                        }
                         className="rounded-xl p-2 text-sm outline-none cursor-pointer mb-2 transition-colors duration-300 hover:bg-surface"
                       >
                         Actualizar torneo
