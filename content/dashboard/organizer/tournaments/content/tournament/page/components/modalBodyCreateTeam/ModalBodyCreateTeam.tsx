@@ -3,6 +3,9 @@
 /* COMPONENTS */
 import { DinamicButton } from "@/content/shared/form/dinamicButton/DinamicButton";
 import { DinamicInputFile } from "@/content/shared/form/dinamicInputFile/DinamicInputFile";
+import { DinamicInputText } from "@/content/shared/form/dinamicInputText/DinamicInputText";
+import { DinamicColorPicker } from "@/content/shared/form/dinamicColorPicker/DinamicColorPicker";
+import { DinamicCombobox } from "@/content/shared/form/dinamicComboBox/DinamicCombobox";
 
 /* HOOKS */
 import { FormProvider, useForm } from "react-hook-form";
@@ -14,9 +17,6 @@ import { useAnnouncement } from "@/content/shared/ui/annoucement/stores/announce
 
 /* TYPES */
 import { CreateTeamFormType } from "./types/createTeamFormType";
-import { DinamicInputText } from "@/content/shared/form/dinamicInputText/DinamicInputText";
-import { DinamicColorPicker } from "@/content/shared/form/dinamicColorPicker/DinamicColorPicker";
-import { DinamicCombobox } from "@/content/shared/form/dinamicComboBox/DinamicCombobox";
 
 export function ModalBodyCreateTeam() {
   const { setModal, modal } = useModal();
@@ -133,7 +133,7 @@ export function ModalBodyCreateTeam() {
           disabled={saving}
           disabledSpinner={true}
           spinFromText={true}
-          label="Cambiar"
+          label="Crear"
         />
       </div>
     </FormProvider>

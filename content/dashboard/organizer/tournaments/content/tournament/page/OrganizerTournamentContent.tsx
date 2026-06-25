@@ -43,6 +43,7 @@ import { useModal } from "@/content/shared/ui/modal/stores/modalStore";
 /* TYPES */
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import { ModalBodyCreateTeam } from "./components/modalBodyCreateTeam/ModalBodyCreateTeam";
+import { ModalBodyFinishTournament } from "./components/modalBodyFinishTournament/ModalBodyFinishTournament";
 
 type Team = {
   id: number;
@@ -79,7 +80,7 @@ export function OrganizerTournamentsContent({ slug }: { slug: string }) {
             className="rounded-xl object-cover object-center"
           />
 
-          <div className="w-48 h-48 min-w-48 min-h-48 absolute left-6 bottom-0 translate-y-1/2 rounded-full border-background border-8">
+          <div className="w-48 h-48 min-w-48 min-h-48 absolute left-6 bottom-0 translate-y-1/2 rounded-full border-background border-8 bg-background">
             {/* FOTO */}
             <Image
               alt="Torneo"
@@ -151,7 +152,13 @@ export function OrganizerTournamentsContent({ slug }: { slug: string }) {
                       </DropdownMenu.Item>
 
                       <DropdownMenu.Item
-                        onClick={() => {}}
+                        onClick={() =>
+                          setModal({
+                            isActivated: true,
+                            title: "Finalizar torneo",
+                            body: <ModalBodyFinishTournament />,
+                          })
+                        }
                         className="rounded-xl p-2 text-sm outline-none cursor-pointer mb-2 transition-colors duration-300 hover:bg-surface"
                       >
                         Finalizar torneo
