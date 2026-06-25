@@ -4,13 +4,11 @@
 import { SectionContainer } from "@/content/shared/ui/sectionContainer/SectionContainer";
 import Image from "next/image";
 import { DinamicButton } from "@/content/shared/form/dinamicButton/DinamicButton";
-import { CarouselManual } from "@/content/shared/ui/carouselManual/CarouselManual";
-
-/* HOOKS */
-import { useState } from "react";
+import { CarouselManual } from "@/content/shared/ui/carousel/carouselManual/CarouselManual";
 
 /* ICONS */
 import {
+  BookDown,
   CalendarDays,
   ClockAlert,
   Download,
@@ -29,6 +27,7 @@ import team1 from "./image/team1.jpg";
 import team2 from "./image/team2.jpg";
 import team3 from "./image/team3.jpg";
 import team4 from "./image/team4.jpg";
+import tournament1 from './image/tournament1.png'
 
 /* STORES */
 import { useModal } from "@/content/shared/ui/modal/stores/modalStore";
@@ -45,7 +44,7 @@ type Team = {
 export function OrganizerTournamentsContent({ slug }: { slug: string }) {
   const { setModal } = useModal();
 
-  const [teams, setTeams] = useState<Team[]>([
+  const teams: Team[] = [
     { id: 1, image: team1, name: "Super Team 1" },
     { id: 2, image: team2, name: "Super Team 2" },
     { id: 3, image: team3, name: "Super Team 3" },
@@ -54,30 +53,7 @@ export function OrganizerTournamentsContent({ slug }: { slug: string }) {
     { id: 6, image: team2, name: "Super Team 6" },
     { id: 7, image: team3, name: "Super Team 7" },
     { id: 8, image: team4, name: "Super Team 8" },
-  ]);
-  const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
-
-  // Simulación de fetch
-  const fetchMore = async () => {
-    await new Promise((r) => setTimeout(r, 1000)); // loading fake
-
-    const newItems = Array.from({ length: 3 }, (_, i) => ({
-      id: teams.length + i + 1,
-      name: `Contenido ${teams.length + i + 1}`,
-      image: team1,
-    }));
-
-    setTeams((prev) => [...prev, ...newItems]);
-
-    const nextPage = page + 1;
-    setPage(nextPage);
-
-    // Simulamos fin de datos
-    if (nextPage === 4) {
-      setHasMore(false);
-    }
-  };
+  ];
 
   return (
     <SectionContainer>
@@ -92,8 +68,16 @@ export function OrganizerTournamentsContent({ slug }: { slug: string }) {
             className="rounded-xl object-cover object-center"
           />
 
-          <div className="w-48 h-48 min-w-48 min-h-48 absolute left-6 bottom-0 translate-y-1/2 rounded-full border-background">
+          <div className="w-48 h-48 min-w-48 min-h-48 absolute left-6 bottom-0 translate-y-1/2 rounded-full border-background border-8">
             {/* FOTO */}
+            <Image
+              alt="Torneo"
+              src={tournament1}
+              quality={70}
+              fill
+              className="rounded-full object-cover object-center"
+            />
+
             <div className="absolute bottom-1 right-1 w-14 h-14 rounded-full bg-primary text-primary-text flex items-center justify-center border-6 border-background">
               <DinamicButton
                 action={() =>
@@ -187,21 +171,22 @@ export function OrganizerTournamentsContent({ slug }: { slug: string }) {
             <p className="text-muted">Torneo de verano en localidad la mesa</p>
           </div>
 
-          <div className="p-10 bg-surface rounded-xl flex flex-col gap-4 w-1/3 min-w-1/3">
+          <div className="p-10 bg-surface rounded-xl flex flex-col gap-4 w-full">
             <p className="font-semibold text-lg">Reglamento</p>
 
-            <div className="flex gap-2 items-center text-primary-text bg-primary w-fit rounded-lg py-1 px-4 text-sm">
-              <Download className="size-4 min-w-4 min-h-4" />
-              <p>Descargar</p>
-            </div>
+            <DinamicButton
+              action={() => {}}
+              type="filled"
+              label="Descargar"
+              twClassName="w-fit py-1 text-sm"
+              icon={<Download className="size-4 min-w-4 min-h-4" />}
+            />
           </div>
-        </div>
 
-        <div className="flex gap-6 w-full">
-          <div className="flex flex-col gap-6 bg-surface rounded-xl p-10 w-1/3 min-w-1/3">
+          <div className="flex flex-col gap-6 bg-surface rounded-xl p-10 w-full">
             <p className="font-semibold text-lg">Organización</p>
 
-            <div className="flex gap-6">
+            <div className="flex gap-6 items-center">
               <Image
                 alt="Organización"
                 src={organization1}
@@ -212,30 +197,40 @@ export function OrganizerTournamentsContent({ slug }: { slug: string }) {
 
               <div className="min-w-0">
                 <p className="text-lg text-ink font-bold">Sede Deportes</p>
-                <p className="text-sm mb-1 line-clamp-2">
+                <p className="text-sm mb-2 line-clamp-2">
                   La mejor sede de deportes en todo Sonora, México
                 </p>
-                <p className="text-primary underline text-sm">Ver más</p>
+                <DinamicButton
+                  action={() => {}}
+                  type="filled"
+                  label="Ver más"
+                  twClassName="w-fit text-sm py-1"
+                />
               </div>
             </div>
           </div>
+        </div>
 
-          <div className="bg-surface p-10 w-2/3 max-w-2/3 flex flex-col gap-6 rounded-xl">
-            <p className="font-semibold text-lg">Equipos</p>
+        <div className="bg-surface p-10 w-full flex flex-col gap-6 rounded-xl">
+          <p className="font-semibold text-lg">Equipos</p>
 
-            <CarouselManual
-              items={teams}
-              columns={3}
-              gap={20}
-              hasMore={hasMore}
-              fetchMore={fetchMore}
-              renderItem={(t) => (
-                <div className="h-40 rounded-xl border flex items-center justify-center bg-muted">
+          <CarouselManual
+            slides={teams.map((t, i) => (
+              <div key={i} className="flex flex-col gap-4 items-center">
+                <Image
+                  loading="lazy"
+                  alt="Equipo"
+                  src={t.image}
+                  className="w-22 h-22 min-w-22 min-h-22 rounded-full"
+                />
+
+                <p className="line-clamp-1 text-center text-ink font-bold">
                   {t.name}
-                </div>
-              )}
-            />
-          </div>
+                </p>
+              </div>
+            ))}
+            options={{ dragFree: true }}
+          />
         </div>
 
         <div className="bg-surface p-10 w-full flex flex-col gap-6 rounded-xl">

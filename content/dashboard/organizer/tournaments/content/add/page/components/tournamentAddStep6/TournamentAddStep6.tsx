@@ -36,6 +36,7 @@ import { es } from "date-fns/locale";
 /* TYPES */
 import { TournamentAddFormType } from "../../types/tournamentAddFormType";
 import { DateRange } from "react-day-picker";
+import { DinamicButton } from "@/content/shared/form/dinamicButton/DinamicButton";
 
 export function TournamentAddStep6({ preview }: { preview: string | null }) {
   const { control } = useFormContext();
@@ -273,14 +274,15 @@ export function TournamentAddStep6({ preview }: { preview: string | null }) {
         <div className="p-10 bg-surface rounded-xl flex flex-col gap-4 w-1/3 min-w-1/3">
           <p className="font-semibold text-lg">Reglamento</p>
 
-          <div className="flex gap-2 items-center text-primary-text bg-primary w-fit rounded-lg py-1 px-4 text-sm">
-            <Download className="size-4 min-w-4 min-h-4" />
-            <p>Descargar</p>
-          </div>
+          <DinamicButton
+            action={() => {}}
+            type="filled"
+            label="Descargar"
+            twClassName="w-fit py-1 text-sm"
+            icon={<Download className="size-4 min-w-4 min-h-4" />}
+          />
         </div>
-      </div>
 
-      <div className="flex gap-6 w-full">
         <div className="flex flex-col gap-6 bg-surface rounded-xl p-10 w-1/3 min-w-1/3">
           <p className="font-semibold text-lg">Organización</p>
 
@@ -295,33 +297,23 @@ export function TournamentAddStep6({ preview }: { preview: string | null }) {
 
             <div className="min-w-0">
               <p className="text-lg text-ink font-bold">Sede Deportes</p>
-              <p className="text-sm mb-1 line-clamp-2">
+              <p className="text-sm mb-2 line-clamp-2">
                 La mejor sede de deportes en todo Sonora, México
               </p>
-              <p className="text-primary underline text-sm">Ver más</p>
+              <DinamicButton
+                action={() => {}}
+                type="filled"
+                label="Ver más"
+                twClassName="w-fit text-sm py-1"
+              />
             </div>
           </div>
         </div>
+      </div>
 
-        <div className="bg-surface p-10 w-full flex flex-col gap-6 rounded-xl">
-          <p className="font-semibold text-lg">Equipos</p>
-
-          <div className="flex items-center">
-            {[1, 2, 3, 4, 5].map((t, i) => {
-              return (
-                <div
-                  key={i}
-                  className={`relative ${i > 0 ? "-ml-3" : ""}`}
-                  style={{ zIndex: 10 + i }}
-                >
-                  <div className="w-24 h-24 min-w-24 min-h-24 rounded-full border border-line bg-surface"></div>
-                </div>
-              );
-            })}
-          </div>
-
-          <p className="text-muted">El torneo no cuenta con equipos</p>
-        </div>
+      <div className="bg-surface p-10 w-full flex flex-col gap-6 rounded-xl">
+        <p className="font-semibold text-lg">Equipos</p>
+        <p className="text-muted">El torneo no cuenta con equipos</p>
       </div>
 
       <div className="bg-surface p-10 w-full flex flex-col gap-6 rounded-xl">
