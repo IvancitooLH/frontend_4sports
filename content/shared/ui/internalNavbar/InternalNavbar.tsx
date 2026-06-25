@@ -44,7 +44,7 @@ export function InternalNavbar({ to }: { to: "organization" | "tournament" }) {
       href: `/organizer/tournaments/${slug}`,
     },
     {
-      label: "Inscripciones",
+      label: "Solicitudes",
       href: `/organizer/tournaments/${slug}/registrations`,
     },
     {

@@ -8,7 +8,6 @@ import { CarouselManual } from "@/content/shared/ui/carousel/carouselManual/Caro
 
 /* ICONS */
 import {
-  BookDown,
   CalendarDays,
   ClockAlert,
   Download,
@@ -27,7 +26,7 @@ import team1 from "./image/team1.jpg";
 import team2 from "./image/team2.jpg";
 import team3 from "./image/team3.jpg";
 import team4 from "./image/team4.jpg";
-import tournament1 from './image/tournament1.png'
+import tournament1 from "./image/tournament1.png";
 
 /* STORES */
 import { useModal } from "@/content/shared/ui/modal/stores/modalStore";
