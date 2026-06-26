@@ -43,16 +43,14 @@ export function ModalBodyUpdateOrganizationContext({
   };
 
   return (
-    <>
-      <div className="pr-4 pl-4 overflow-y-auto lg:max-h-3/4 max-h-40">
-        <p>
-          Al dar clic en{" "}
-          <span className="text-primary font-bold">Seleccionar</span>, empezará
-          a gestionar los torneos de la organización{" "}
-          <span className="text-primary font-bold">{orgName}</span>
-        </p>
-        <p>¿Desea Continuar?</p>
-      </div>
+    <div className="p-6">
+      <p>
+        Al dar clic en{" "}
+        <span className="text-primary font-bold">Seleccionar</span>, empezará a
+        gestionar los torneos de la organización{" "}
+        <span className="text-primary font-bold">{orgName}</span>
+      </p>
+      <p>¿Desea Continuar?</p>
 
       {/* BOTONES DE ACCIÓN */}
       <div className="flex gap-4 mt-6">
@@ -78,6 +76,6 @@ export function ModalBodyUpdateOrganizationContext({
           label={"Seleccionar"}
         />
       </div>
-    </>
+    </div>
   );
 }

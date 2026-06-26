@@ -55,7 +55,7 @@ export function OrganizerHomeContent() {
     <SectionContainer>
       <div className="p-6 flex flex-col">
         <h1 className="text-5xl font-extralight font-bebas mb-2 text-ink">
-          Hola <span className="text-primary font-normal">Pirita</span>
+          Hola <span className="text-primary font-normal">Julián Lopez</span>
         </h1>
 
         <div className="flex flex-col">
